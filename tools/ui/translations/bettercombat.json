@@ -1,0 +1,8 @@
+{
+ "text.autoconfig.bettercombat.option.client.isShowingWeaponTrails": "Следы взмахов оружия",
+ "text.autoconfig.bettercombat.option.client.isShowingWeaponTrails.@Tooltip": "Рисовать след взмаха при атаках от любого лица",
+ "text.autoconfig.bettercombat.option.client.isSwingThruGrassSmart": "Умный удар сквозь траву",
+ "text.autoconfig.bettercombat.option.client.isSwingThruGrassSmart.@Tooltip": "Бить сквозь траву, только если в зоне удара есть враги",
+ "text.autoconfig.bettercombat.option.client.mineWithWeaponWhitelist": "Оружие, которым можно копать",
+ "text.autoconfig.bettercombat.option.client.mineWithWeaponWhitelist.@Tooltip": "Оружие с ID, подходящим под этот шаблон, всегда может копать блоки, даже если «Копать оружием» выключено"
+}

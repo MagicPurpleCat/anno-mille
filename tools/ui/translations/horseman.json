@@ -1,0 +1,8 @@
+{
+ "gui.horseman.summoning.cannot_bind.already_bound_to_someone_else": "§cЭто животное уже привязано к другому",
+ "gui.horseman.summoning.cannot_bind.already_bound_to_you": "§cЭто животное уже привязано к тебе",
+ "gui.horseman.summoning.cannot_bind.no_instrument": "§cНе привязать: нет инструмента",
+ "horseman.jei.info.copper_horn3": "Лошадь может откликаться на несколько инструментов.",
+ "subtitles.horseman.item.lead.break": "Узел поводка рвётся",
+ "subtitles.horseman.item.lead.untied": "Узел поводка развязан"
+}

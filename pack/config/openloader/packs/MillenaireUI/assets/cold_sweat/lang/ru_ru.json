@@ -1,0 +1,9 @@
+{
+ "entity.chameleon.shed.ready": "Хамелеон готовится линять",
+ "entity.chameleon.tongue": "Хамелеон облизывается",
+ "jei.cold_sweat.fuel_duration_depends": "Время горения зависит от данных предмета",
+ "container.cold_sweat.boiler": "§fБойлер",
+ "container.cold_sweat.icebox": "§fХолодильник",
+ "container.cold_sweat.sewing_table": "§fШвейный стол",
+ "container.cold_sweat.hearth": "§fОчаг"
+}

@@ -1,0 +1,13 @@
+{
+  "type": "culturaldelights:baking",
+  "cooktime": 600,
+  "ingredients": [
+    {"item": "farmersdelight:wheat_dough"},
+    {"item": "farmersdelight:tomato_sauce"},
+    {"item": "farmersdelight:beef_patty"},
+    {"item": "minecraft:brown_mushroom"},
+    {"item": "brewinandchewin:flaxen_cheese_wedge"}
+  ],
+  "result": {"id": "brewinandchewin:pizza"},
+  "neoforge:conditions": [{"type": "neoforge:mod_loaded", "modid": "brewinandchewin"}]
+}

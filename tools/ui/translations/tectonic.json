@@ -1,0 +1,10 @@
+{
+ "preset.tectonic.default": "По умолчанию",
+ "preset.tectonic.deserted": "Пустынный",
+ "preset.tectonic.frozen_wasteland": "Ледяная пустошь",
+ "preset.tectonic.large_biomes": "Большие биомы",
+ "preset.tectonic.overkill": "На максимум",
+ "preset.tectonic.overkill.dh": "я играю с Distant Horizons",
+ "preset.tectonic.overkill.voxy": "я играю с Voxy",
+ "preset.tectonic.title": "Пресеты"
+}

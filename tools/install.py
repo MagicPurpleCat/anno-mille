@@ -12,7 +12,7 @@ Minecraft 1.21.1 + NeoForge 21.1.264 ставит сам лаунчер.
  2. Копирует настройки, квесты, ресурспак интерфейса и мини-мод сборки; переносит в options.txt клавиши и порядок паков.
  3. Перекрашивает окна модов в тёмный стиль интерфейса.
 """
-import concurrent.futures as cf, hashlib, io, json, os, re, shutil, sys, urllib.parse, urllib.request, zipfile
+import concurrent.futures as cf, hashlib, io, json, os, re, shutil, sys, time, urllib.parse, urllib.request, zipfile
 
 API = "https://api.modrinth.com/v2"
 UA = {"User-Agent": "anno-mille-installer/1.1"}
@@ -145,6 +145,79 @@ def remove_duplicates(game, log):
             log(f"Старая версия убрана в _old: {f}")
 
 
+FTB_THEME = {  # тёмная тема окна квестов: правки поверх темы из самого мода
+    "background": "ftblibrary:textures/gui/background_squares.png; color=#F02A2A30; tile_size=64",
+    "chapter_panel_background": "hollow_rectangle:{{widget_border}}; round_edges + #F0141416; padding=1",
+    "key_reference_background": "ftblibrary:textures/gui/background_squares.png; color=#F02A2A30; tile_size=64",
+    "context_menu": "hollow_rectangle:{{widget_border}}; round_edges + #F0141416; padding=1",
+    "selected_chapter_highlight_1": "#50E8C26A",
+    "selected_chapter_highlight_2": "#20E8C26A",
+    "hover_text_color": "#E8C26A",
+    "disabled_text_color": "#8A8A92",
+    "widget_border": "#5C5C68",
+    "widget_background": "#30FFFFFF",
+    "quest_view_title": "#E8C26A",
+    "tasks_text_color": "#9DB4FF",
+    "rewards_text_color": "#E8C26A",
+}
+
+
+def _ftb_theme(game, pack):
+    jar = next((os.path.join(game, "mods", f) for f in os.listdir(os.path.join(game, "mods"))
+                if f.startswith("ftb-quests-") and f.endswith(".jar")), None)
+    if not jar:
+        return
+    try:
+        src = zipfile.ZipFile(jar).read("assets/ftbquests/ftb_quests_theme.txt").decode("utf-8")
+    except (KeyError, zipfile.BadZipFile):
+        return
+    out = []
+    for line in src.splitlines():
+        m = re.match(r"^(\w+):(\s*)(.*)$", line)
+        out.append(f"{m.group(1)}:{m.group(2)}{FTB_THEME[m.group(1)]}" if m and m.group(1) in FTB_THEME else line)
+    dest = os.path.join(pack, "assets", "ftbquests", "ftb_quests_theme.txt")
+    os.makedirs(os.path.dirname(dest), exist_ok=True)
+    open(dest, "w", encoding="utf-8", newline="\n").write("\n".join(out) + "\n")
+
+
+def _fix_animations(game, pack):
+    """Некоторые моды (Born in Chaos) кладут в анимации GeckoLib пустое выражение «-», и анимация не грузится.
+    Пишем в пак исправленную копию с «0» вместо «-»."""
+    fixed = 0
+    def walk(o):
+        nonlocal changed
+        if isinstance(o, dict):
+            return {k: walk(v) for k, v in o.items()}
+        if isinstance(o, list):
+            return [walk(v) for v in o]
+        if isinstance(o, str) and o.strip() == "-":
+            changed = True
+            return "0"
+        return o
+    for jar in os.listdir(os.path.join(game, "mods")):
+        if not jar.endswith(".jar"):
+            continue
+        try:
+            z = zipfile.ZipFile(os.path.join(game, "mods", jar))
+        except zipfile.BadZipFile:
+            continue
+        for name in z.namelist():
+            if not re.match(r"assets/[^/]+/animations/.+\.json$", name):
+                continue
+            try:
+                data = json.loads(z.read(name).decode("utf-8-sig"))
+            except ValueError:
+                continue
+            changed = False
+            data = walk(data)
+            if changed:
+                dest = os.path.join(pack, *name.split("/"))
+                os.makedirs(os.path.dirname(dest), exist_ok=True)
+                json.dump(data, open(dest, "w", encoding="utf-8"))
+                fixed += 1
+    return fixed
+
+
 def run(game, log=print, progress=lambda done, total: None):
     root = data_root()
     os.makedirs(game, exist_ok=True)
@@ -171,8 +244,13 @@ def run(game, log=print, progress=lambda done, total: None):
 
     log("Копирую настройки, квесты, интерфейс и навыки...")
     skipped = []
+    old_ui = os.path.join(game, "resourcepacks", "MillenaireUI")
+    if os.path.isdir(old_ui):  # раньше пак лежал здесь; теперь его всегда включает Open Loader
+        os.makedirs(os.path.join(game, "_old"), exist_ok=True)
+        shutil.move(old_ui, os.path.join(game, "_old", f"MillenaireUI-{int(time.time())}"))
     for sub in ("config", "resourcepacks", "mods"):
-        skipped += safe_copytree(os.path.join(root, "pack", sub), os.path.join(game, sub))
+        if os.path.isdir(os.path.join(root, "pack", sub)):
+            skipped += safe_copytree(os.path.join(root, "pack", sub), os.path.join(game, sub))
     if skipped:
         log(f"Не удалось обновить файлов: {len(skipped)} (заняты другой программой):")
         for p in skipped[:10]:
@@ -182,21 +260,23 @@ def run(game, log=print, progress=lambda done, total: None):
     if not os.path.exists(opt):
         shutil.copy(ref_path, opt)
     else:
-        ref = dict(l.split(":", 1) for l in open(ref_path, encoding="utf-8").read().splitlines() if ":" in l)
-        lines = open(opt, encoding="utf-8").read().splitlines()
+        ref = dict(l.split(":", 1) for l in open(ref_path, encoding="utf-8-sig").read().splitlines() if ":" in l)
+        lines = [l for l in open(opt, encoding="utf-8-sig", errors="replace").read().splitlines() if l.strip()]
         idx = {l.split(":", 1)[0]: i for i, l in enumerate(lines) if ":" in l}
-        for k in [k for k in ref if k.startswith("key_") or k in ("lang", "resourcePacks")]:
+        for k in [k for k in ref if k.startswith("key_") or k in ("lang", "resourcePacks", "darkMojangStudiosBackground")]:
             if k in idx:
                 lines[idx[k]] = f"{k}:{ref[k]}"
             else:
                 lines.append(f"{k}:{ref[k]}")
+        # Без строки version первой игра считает файл очень старым, «чинит» его, падает и сбрасывает все настройки.
+        lines = ["version:" + ref.get("version", "3955")] + [l for l in lines if not l.startswith("version:")]
         _make_writable(opt)
-        open(opt, "w", encoding="utf-8").write("\n".join(lines) + "\n")
+        open(opt, "w", encoding="utf-8", newline="\n").write("\n".join(lines) + "\n")
     log("Клавиши и порядок ресурспаков применены.")
 
     log("Перекрашиваю окна модов в тёмный стиль...")
     from PIL import Image
-    pack, n = os.path.join(game, "resourcepacks", "MillenaireUI"), 0
+    pack, n = os.path.join(game, "config", "openloader", "packs", "MillenaireUI"), 0
     for jar in sorted(os.listdir(os.path.join(game, "mods"))):
         if not jar.endswith(".jar"):
             continue
@@ -221,6 +301,10 @@ def run(game, log=print, progress=lambda done, total: None):
                     open(dest + ".mcmeta", "wb").write(z.read(name + ".mcmeta"))
                 n += 1
     log(f"Перекрашено окон модов: {n}.")
+    _ftb_theme(game, pack)
+    n = _fix_animations(game, pack)
+    if n:
+        log(f"Исправлено сломанных анимаций мобов: {n}.")
     log("Всё установлено. Выдели игре 8 ГБ памяти и создай новый мир на сложности «Сложная».")
 
 

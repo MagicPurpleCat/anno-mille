@@ -27,6 +27,27 @@ modId="minecraft"
 type="required"
 versionRange="[1.21.1]"
 side="BOTH"
+
+[[dependencies.no_vanilla_villages]]
+modId="culturaldelights"
+type="optional"
+versionRange="*"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.no_vanilla_villages]]
+modId="samurai_dynasty"
+type="optional"
+versionRange="*"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.no_vanilla_villages]]
+modId="brewinandchewin"
+type="optional"
+versionRange="*"
+ordering="AFTER"
+side="BOTH"
 '''
 for f in os.listdir(mods):
     if f.startswith("no_vanilla_villages"): os.remove(os.path.join(mods,f))
@@ -37,6 +58,11 @@ with zipfile.ZipFile(os.path.join(mods,"no_vanilla_villages-1.2.0.jar"),"w",zipf
         z.writestr(f"data/minecraft/tags/worldgen/biome/has_structure/village_{v}.json",json.dumps({"replace":True,"values":[]}))
     for t,vals in tags.items():
         z.writestr(f"data/millpack/tags/worldgen/structure/{t}.json",json.dumps({"values":[{"id":v,"required":False} for v in vals]},indent=1))
+    # исправления данных модов: рецепт пиццы (тесто называется wheat_dough), добыча статуй Samurai Dynasty
+    fixes=os.path.join(os.path.dirname(os.path.abspath(__file__)),"minimod_fixes")
+    for root,_,fs in os.walk(fixes):
+        for f in fs:
+            p=os.path.join(root,f); z.write(p,os.path.relpath(p,fixes).replace(os.sep,"/"))
     # деревья навыков Pufferfish's Skills (генерирует ui-pack/skills.py)
     skills_root=sys.argv[2] if len(sys.argv)>2 else None
     if skills_root:

@@ -1,0 +1,6 @@
+{
+ "text.autoconfig.steves_realistic_sleep.option.clearWeatherAfterSleeping": "Ясная погода после сна",
+ "text.autoconfig.steves_realistic_sleep.option.clearWeatherAfterSleeping.@Tooltip": "После сна погода становится ясной.",
+ "text.autoconfig.steves_realistic_sleep.option.showSleepVignette": "Затемнение во сне",
+ "text.autoconfig.steves_realistic_sleep.option.showSleepVignette.@Tooltip": "Затемнять края экрана, пока спишь."
+}

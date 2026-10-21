@@ -9,11 +9,13 @@ import hashlib, json, os, sys
 sys.stdout.reconfigure(encoding="utf-8")
 ROOT = sys.argv[1]
 VALID = set(json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "itemset.json"))))
+# Иконки достижений: без них FTB Quests показывает пустую иконку и подпись «Продвижение», пока игрок не откроет достижение.
+ADV_ICONS = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "adv_icons.json"), encoding="utf-8"))
 
 
 def hid(*p): return hashlib.sha1("|".join(p).encode()).hexdigest()[:16].upper()
 def item(i, n=1): return ("item", i, n)
-def adv(a): return ("advancement", a)
+def adv(a, title=None): return ("advancement", a, title)
 def kill(e, n=1): return ("kill", e, n)
 def biome(b): return ("biome", b)
 def check(): return ("checkmark",)
@@ -58,7 +60,7 @@ MAIN = [
     dict(k="trade", t="Первые денье", dep=["contact"], task=[item("millenaire:denier", 64)], x=12, y=0,
          d=[f"Поговори с торговцем ({Y}ПКМ{R}). В окне торговли есть список {Y}«Мы покупаем»{R} — продай это и получи денье.",
             f"Клики: {Y}ЛКМ{R} — 1 шт., {Y}ПКМ{R} — 8, {Y}Shift{R} — 64. Курс: 64 денье = 1 серебряное, 64 серебряных = 1 золотое.",
-            f"{G}Совет:{R} с покупками покупай и семена местных культур — рис, кукурузу, виноград, хлопок. Сажать их научит вождь (см. ветку «Деревни Millénaire»)."],
+            f"{G}Совет:{R} с покупками покупай и семена местных культур — рис, кукурузу, виноград, хлопок. Сажать их научит вождь (см. главу «Жизнь деревень»)."],
          r=[give("millenaire:purse")]),
     dict(k="friend", t="Друг деревни", dep=["trade"], task=[adv("millenaire:friendindeed")], x=14, y=0,
          d=[f"Репутация растёт от торговли. Быстрее всего — {Y}режим пожертвования{R} в окне торговли: отдаёшь товары даром, но репутация растёт {Y}в 4 раза{R} быстрее.",
@@ -105,7 +107,7 @@ MAIN = [
     dict(k="oneofus", t="Один из нас", dep=["cultures/norman_rep", "cultures/byzantines_rep", "cultures/seljuk_rep", "cultures/indian_rep",
                                             "cultures/japanese_rep", "cultures/mayan_rep", "cultures/inuits_rep"],
          dep_req="one_completed", task=[check()], x=22, y=2, size=1.5,
-         d=[f"Открывается, когда в любой культуре достигнешь репутации {Y}«Один из нас»{R} (глава «Семь культур»). Отметь квест галочкой.",
+         d=[f"Открывается, когда в любой культуре достигнешь репутации {Y}«Один из нас»{R} (глава «Семь народов»). Отметь квест галочкой.",
             f"Теперь у вождя можно {Y}заказывать постройки{R} для себя, изучать культуры и охотничьи приёмы. Загляни в его меню ({Y}ПКМ{R} по вождю)."],
          r=[give("millenaire:denier_argent", 4)]),
     dict(k="cresus", t="Золотое денье", dep=["oneofus"], task=[adv("millenaire:cresus")], x=24, y=2,
@@ -169,28 +171,56 @@ MILL = [
          d=[f"Вождь своей деревни может {Y}спланировать набег{R} на враждебное поселение. Удачный набег приносит добычу, но портит отношения."], r=[xp(400)]),
 ]
 
+# У каждого народа свои названия, иконки, подсказки и награды: квесты культур не повторяют друг друга.
 CULTURES = [
-    ("norman", "Норманны", "millenaire:calva", "Живут на равнинах и в лесах. Купи у них кальвадос, яблочный бренди."),
-    ("byzantines", "Византийцы", "millenaire:feta", "Живут в тёплых краях. На их рынках продают сыр фету."),
-    ("seljuk", "Сельджуки", "millenaire:lokum", "Живут в пустынях и сухих землях. На базарах продают лукум."),
-    ("indian", "Индийцы", "millenaire:vegcurry", "Живут в саваннах и на равнинах. Попробуй их овощное карри."),
-    ("japanese", "Японцы", "millenaire:sake", "Живут в тайге, вишнёвых рощах и на лугах. Купи у них саке."),
-    ("mayan", "Майя", "millenaire:cacauhaa", "Живут в джунглях. Их священный напиток называется какауа."),
-    ("inuits", "Инуиты", "millenaire:inuitbearstew", "Живут в снегах, так что сначала утепли броню. Купи у них рагу из медвежатины."),
+    dict(c="norman", name="Норманны", gen="норманнов", food="millenaire:calva", gift="millenaire:cider",
+         guest=("Кальвадос с побережья", "Норманны селятся на равнинах и в лесах. Найди их деревню и купи кальвадос, крепкий яблочный бренди."),
+         rep=("Друзья навек", "millenaire:norman_pattern", "Норманны уважают тех, кто помогает делом. Продавай то, что у них в списке «Мы покупаем», бери задания жителей и отгоняй от деревни монстров по ночам. Режим пожертвования ускоряет рост репутации вчетверо."),
+         comp=("Фахверк до последней балки", "millenaire:timber_frame_cross", "Деревне не хватает материалов. Вози строителям дерево, камень и солому: недостроенные дома видно в инфопанели деревни (N)."),
+         lead=("Его величество Стив", "millenaire:norman_helmet", "Стань норманнским вождём и основай свою деревню: норманнский жезл призыва продаёт вождь, когда репутация достаточно высока.")),
+    dict(c="byzantines", name="Византийцы", gen="византийцев", food="millenaire:feta", gift="millenaire:winefancy",
+         guest=("Сыр с рынков Нового Рима", "Византийцы живут в тёплых краях, у моря и среди оливковых рощ. На их рынке купи фету."),
+         rep=("Приветствую, ромей!", "millenaire:byzantine_pattern", "Ромеи любят торговать. Заходи на рынок почаще, продавай то, что им нужно, и выполняй поручения, тогда тебя назовут своим."),
+         comp=("Купола и мозаики", "millenaire:byzantine_tiles", "Византийские мастера кладут черепицу и мозаику месяцами. Помоги им материалами, и деревня станет маленьким Константинополем."),
+         lead=("Рождённый не в порфире", "millenaire:byzantine_mace", "Получи у вождя право основать византийскую деревню. Императором по крови ты не станешь, но своим городом править сможешь.")),
+    dict(c="seljuk", name="Сельджуки", gen="сельджуков", food="millenaire:lokum", gift="millenaire:ayran",
+         guest=("Сладости базара", "Сельджуки живут в пустынях и сухих степях. Загляни на базар и купи лукум."),
+         rep=("Путь братства", "millenaire:seljuk_pattern", "Сельджуки помнят, кто приходил к ним с караваном. Вози им товары из других деревень: так растёт и репутация, и кошелёк."),
+         comp=("Город из сырцового кирпича", "millenaire:mud_brick_seljuk_ornamented", "Сырцовый кирпич сохнет на солнце, а строители ждут глину и песок. Помоги им закончить все здания."),
+         lead=("Сельджукский бей", "millenaire:seljuk_scimitar", "Стань беем: вождь сельджуков даст право основать свою деревню, если ты для них уже свой.")),
+    dict(c="indian", name="Индийцы", gen="индийцев", food="millenaire:vegcurry", gift="millenaire:rasgulla",
+         guest=("Карри с пряностями", "Индийские деревни стоят в саваннах и на равнинах. Попробуй их овощное карри."),
+         rep=("Брат деревни", "millenaire:indian_pattern", "Индийцы гостеприимны, но доверие надо заслужить. Покупай у них специи и ткани, продавай то, что им нужно, и не забывай про задания жителей."),
+         comp=("Резной песчаник", "millenaire:sandstone_carved", "Храмы и дворцы индийцев украшены резьбой по песчанику. Привози песчаник и глину, пока строители не закончат все здания."),
+         lead=("Маленький махараджа", "millenaire:wall_indian_statue", "Получи у вождя право основать индийскую деревню и стань её махараджей.")),
+    dict(c="japanese", name="Японцы", gen="японцев", food="millenaire:sake", gift="millenaire:udon",
+         guest=("Чарка саке", "Японцы выбирают тайгу, вишнёвые рощи и луга. Купи у них саке."),
+         rep=("Коничива!", "millenaire:jappattern", "В японской деревне ценят вежливость и терпение. Не торопись: торгуй понемногу каждый день, выполняй просьбы и не трогай чужого."),
+         comp=("Под черепичными крышами", "millenaire:japanese_tiles", "Японские дома строятся из дерева и черепицы. Помоги строителям закончить все дома."),
+         lead=("Хризантемовый трон", "millenaire:japanese_tachi", "Стань японским вождём и заложи свою деревню. Тати в руке подобает даймё.")),
+    dict(c="mayan", name="Майя", gen="майя", food="millenaire:cacauhaa", gift="millenaire:masa",
+         guest=("Напиток богов", "Майя живут в джунглях. Их священный напиток из какао называется какауа, купи его."),
+         rep=("Священные узы", "millenaire:mayan_pattern", "Майя доверяют тем, кто приносит дары. Продавай им нужное, бери задания жрецов и защищай деревню от ночных монстров."),
+         comp=("Ступени к небу", "millenaire:mayan_gold_block", "Пирамиды майя растут ступень за ступенью. Носи строителям камень и золото, пока деревня не будет достроена."),
+         lead=("Бог-царь деревни", "millenaire:mayan_statue", "Получи у вождя право основать свою деревню майя. В джунглях её правителя почитали как живого бога.")),
+    dict(c="inuits", name="Инуиты", gen="инуитов", food="millenaire:inuitbearstew", gift="millenaire:inuitmeatystew",
+         guest=("Рагу у полярного костра", "Инуиты живут во льдах, поэтому сначала утепли броню. Купи у них рагу из медвежатины."),
+         rep=("Приветствую, инуит!", "millenaire:inuit_carving", "Во льдах выживают вместе. Продавай инуитам то, что у них в списке «Мы покупаем», и деревня примет тебя."),
+         comp=("В единстве сила", "millenaire:snow_brick", "Иглу и сараи из снежного кирпича строятся быстро, но материалов нужно много. Помоги деревне закончить все постройки."),
+         lead=("Настоящий инуит", "millenaire:inuittrident", "Стань инуитским вождём и поставь свою деревню среди снегов.")),
 ]
 CULT = []
-for i, (c, name, food, flav) in enumerate(CULTURES):
+for i, cu in enumerate(CULTURES):
+    c, name, gen = cu["c"], cu["name"], cu["gen"]
     CULT += [
-        dict(k=f"{c}_guest", t=f"{name}: гость", dep=["main/contact"], task=[item(food)], x=i * 2.5, y=0, icon=food, sub="Первая покупка",
-             d=[f"Найди деревню культуры «{name}» и купи местный товар.", flav], r=[give("millenaire:denier", 32)]),
-        dict(k=f"{c}_rep", t=f"{name}: один из нас", dep=[f"{c}_guest"], task=[adv(f"millenaire:rep_{c}")], x=i * 2.5, y=1.5, sub="Репутация",
-             d=[f"Дойди до репутации «один из нас» в деревне культуры «{name}». Торгуй, жертвуй товары в режиме пожертвования (он даёт ×4 к репутации) и выполняй задания жителей."],
-             r=[give("millenaire:denier_argent", 2)]),
-        dict(k=f"{c}_complete", t=f"{name}: процветание", dep=[f"{c}_rep"], task=[adv(f"millenaire:complete_{c}")], x=i * 2.5, y=3, optional=True, sub="Все постройки",
-             d=["Помоги деревне достроить все здания: продавай ей стройматериалы и защищай строителей. Что ей нужно, видно в инфопанели деревни."],
-             r=[xp(400)]),
-        dict(k=f"{c}_leader", t=f"{name}: вождь", dep=[f"{c}_rep"], task=[adv(f"millenaire:leader_{c}")], x=i * 2.5, y=4.5, size=1.5, optional=True, sub="Своя деревня",
-             d=[f"Получи у вождя право основывать деревни культуры «{name}» и основай свою. Как это сделать, описано в квесте «Жезл призыва» Главной линии."],
+        dict(k=f"{c}_guest", t=cu["guest"][0], dep=["main/contact"], task=[item(cu["food"])], x=i * 2.5, y=0, icon=cu["food"], sub=f"{name}: первая покупка",
+             d=[cu["guest"][1]], r=[give("millenaire:denier", 32)]),
+        dict(k=f"{c}_rep", t=cu["rep"][0], dep=[f"{c}_guest"], task=[adv(f"millenaire:rep_{c}", f"Репутация «один из нас» у {gen}")], x=i * 2.5, y=1.5,
+             icon=cu["rep"][1], sub=f"{name}: свой среди своих", d=[cu["rep"][2]], r=[give(cu["gift"], 4), give("millenaire:denier_argent", 2)]),
+        dict(k=f"{c}_complete", t=cu["comp"][0], dep=[f"{c}_rep"], task=[adv(f"millenaire:complete_{c}", f"Все постройки деревни {gen}")], x=i * 2.5, y=3,
+             icon=cu["comp"][1], optional=True, sub=f"{name}: деревня достроена", d=[cu["comp"][2]], r=[give(cu["comp"][1], 16), xp(400)]),
+        dict(k=f"{c}_leader", t=cu["lead"][0], dep=[f"{c}_rep"], task=[adv(f"millenaire:leader_{c}", f"Своя деревня {gen}")], x=i * 2.5, y=4.5, size=1.5,
+             icon=cu["lead"][1], optional=True, sub=f"{name}: вождь", d=[cu["lead"][2], "Как основать деревню, рассказано в квесте «Жезл призыва» в «Летописи»."],
              r=[give("millenaire:denier_or", 1)]),
     ]
 CULT += [
@@ -410,16 +440,16 @@ TRIALS += [
 TRIALS[[q["k"] for q in TRIALS].index("wrought")]["dep"] = ["chamber"]
 
 CHAPTERS = [
-    ("main", "Главная линия", "millenaire:travel_book", MAIN),
-    ("travel", "Дорога и море", "smallships:oak_cog", TRAVEL),
+    ("main", "Летопись", "millenaire:travel_book", MAIN),
+    ("travel", "Пути и паруса", "smallships:oak_cog", TRAVEL),
     ("build", "Зодчество", "dawnoftimebuilder:flat_roof_tiles", BUILD),
-    ("survival", "Выживание", "minecraft:campfire", SURVIVAL),
-    ("millenaire", "Деревни Millénaire", "millenaire:denier", MILL),
-    ("cultures", "Семь культур", "millenaire:norman_sword", CULT),
+    ("survival", "Суровый край", "minecraft:campfire", SURVIVAL),
+    ("millenaire", "Жизнь деревень", "millenaire:denier", MILL),
+    ("cultures", "Семь народов", "millenaire:norman_sword", CULT),
     ("craft", "Ремесло и очаг", "farmersdelight:cooking_pot", CRAFT),
-    ("arms", "Сталь и кольчуга", "magistuarmory:iron_kiteshield", ARMS),
-    ("roads", "Дальние дороги", "minecraft:filled_map", ROADS),
-    ("trials", "Испытания", "minecraft:wither_skeleton_skull", TRIALS),
+    ("arms", "Кузня и сталь", "magistuarmory:iron_kiteshield", ARMS),
+    ("roads", "За горизонтом", "minecraft:filled_map", ROADS),
+    ("trials", "Ратные подвиги", "minecraft:wither_skeleton_skull", TRIALS),
 ]
 ALL = {(ck, q["k"]) for ck, _, _, qs in CHAPTERS for q in qs}
 
@@ -485,8 +515,9 @@ for order, (ck, title, icon, qs) in enumerate(CHAPTERS):
             L.append("\t\t\tdependencies: [" + ", ".join(S(ref(ck, d)) for d in q["dep"]) + "]")
         if q.get("dep_req"):
             L.append(f"\t\t\tdependency_requirement: {S(q['dep_req'])}")
-        if q.get("icon"):
-            chk(q["icon"]); L.append(f"\t\t\ticon: {{ id: {S(q['icon'])} }}")
+        qicon = q.get("icon") or next((ADV_ICONS.get(t[1]) for t in q["task"] if t[0] == "advancement" and ADV_ICONS.get(t[1])), None)
+        if qicon:
+            chk(qicon); L.append(f"\t\t\ticon: {{ id: {S(qicon)} }}")
         L.append(f"\t\t\tid: {S(qid)}")
         if q.get("optional"):
             L.append("\t\t\toptional: true")
@@ -506,7 +537,10 @@ for order, (ck, title, icon, qs) in enumerate(CHAPTERS):
             if t[0] == "item":
                 chk(t[1]); tk.append(f'{{ count: {t[2]}L, id: {tid}, item: {{ count: 1, id: {S(t[1])} }}, type: "item" }}')
             elif t[0] == "advancement":
-                tk.append(f'{{ advancement: {S(t[1])}, criterion: "", id: {tid}, type: "advancement" }}')
+                ticon = ADV_ICONS.get(t[1]) or qicon or "minecraft:book"
+                chk(ticon)
+                tk.append(f'{{ advancement: {S(t[1])}, criterion: "", icon: {{ id: {S(ticon)} }}, id: {tid}, type: "advancement" }}')
+                ql[f"task.{json.loads(tid)}.title"] = t[2] or q["t"]
             elif t[0] == "kill":
                 tk.append(f'{{ entity: {S(t[1])}, id: {tid}, type: "kill", value: {t[2]}L }}')
             elif t[0] == "structure":

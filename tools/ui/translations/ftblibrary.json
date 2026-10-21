@@ -1,0 +1,6 @@
+{
+ "ftblibrary.client_settings.tooltips.entity_modname": "Показывать название мода при выборе лица существа",
+ "ftblibrary.read_only": "только чтение",
+ "ftblibrary.select_entity.all_entities": "Все живые существа",
+ "ftblibrary.server_settings": "Настройки сервера"
+}

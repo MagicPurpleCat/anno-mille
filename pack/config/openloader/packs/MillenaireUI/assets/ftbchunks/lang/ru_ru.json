@@ -1,0 +1,14 @@
+{
+ "ftbchunks.claim_mode.circle": "Захват кругом",
+ "ftbchunks.claim_mode.freehand": "Захват кистью",
+ "ftbchunks.claim_mode.rectangle": "Захват прямоугольником",
+ "ftbchunks.config.client": "Настройки клиента",
+ "ftbchunks.config.client.appearance.claim_mode": "Способ захвата чанков",
+ "ftbchunks.config.client.minimap.reticle": "Перекрестие",
+ "ftbchunks.config.client.minimap.text_above_minimap": "Текст над миникартой",
+ "ftbchunks.config.server": "Настройки сервера",
+ "ftbchunks.config.server.fire_spread_protection": "Защита от распространения огня",
+ "ftbchunks.config.server.flowing_fluid_protection": "Защита от растекания жидкостей",
+ "ftbchunks.gui.edit": "Изменить",
+ "ftbchunks.gui.edit_waypoint": "Изменить метку"
+}

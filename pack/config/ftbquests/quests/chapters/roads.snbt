@@ -58,9 +58,10 @@
 		}
 		{
 			dependencies: ["23094F20C179C299"]
+			icon: { id: "minecraft:crossbow" }
 			id: "AA2DD37A3DDC2A12"
 			rewards: [{ count: 8, id: "F309B2AF68129D30", item: { count: 1, id: "minecraft:emerald" }, type: "item" }]
-			tasks: [{ advancement: "minecraft:adventure/voluntary_exile", criterion: "", id: "06465DC9C620735C", type: "advancement" }]
+			tasks: [{ advancement: "minecraft:adventure/voluntary_exile", criterion: "", icon: { id: "minecraft:crossbow" }, id: "06465DC9C620735C", type: "advancement" }]
 			x: 4.0d
 			y: -1.75d
 		}

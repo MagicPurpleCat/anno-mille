@@ -44,26 +44,29 @@
 		}
 		{
 			dependencies: ["FAF34EEB8C1E1850"]
+			icon: { id: "minecraft:red_bed" }
 			id: "741700639044B80F"
 			rewards: [{ id: "C827ECB6711A0A2D", type: "xp", xp: 40 }]
-			tasks: [{ advancement: "minecraft:adventure/sleep_in_bed", criterion: "", id: "4F8A794A51CDA35F", type: "advancement" }]
+			tasks: [{ advancement: "minecraft:adventure/sleep_in_bed", criterion: "", icon: { id: "minecraft:red_bed" }, id: "4F8A794A51CDA35F", type: "advancement" }]
 			x: 6.0d
 			y: 0.0d
 		}
 		{
 			dependencies: ["741700639044B80F"]
+			icon: { id: "minecraft:iron_ingot" }
 			id: "8C030A7C352ED111"
 			rewards: [{ count: 6, id: "E1EC328CC57AAEC8", item: { count: 1, id: "minecraft:iron_ingot" }, type: "item" }]
-			tasks: [{ advancement: "minecraft:story/smelt_iron", criterion: "", id: "343A5BC7B2C154E6", type: "advancement" }]
+			tasks: [{ advancement: "minecraft:story/smelt_iron", criterion: "", icon: { id: "minecraft:iron_ingot" }, id: "343A5BC7B2C154E6", type: "advancement" }]
 			x: 8.0d
 			y: 0.0d
 		}
 		{
 			dependencies: ["8C030A7C352ED111"]
+			icon: { id: "millenaire:denier_or" }
 			id: "C12283B890CC6405"
 			rewards: [{ count: 32, id: "8252A18E52383122", item: { count: 1, id: "millenaire:denier" }, type: "item" }]
 			size: 1.75d
-			tasks: [{ advancement: "millenaire:firstcontact", criterion: "", id: "E450B31BE9697154", type: "advancement" }]
+			tasks: [{ advancement: "millenaire:firstcontact", criterion: "", icon: { id: "millenaire:denier_or" }, id: "E450B31BE9697154", type: "advancement" }]
 			x: 10.0d
 			y: 0.0d
 		}
@@ -77,9 +80,10 @@
 		}
 		{
 			dependencies: ["BC207F770B11B2D5"]
+			icon: { id: "millenaire:denier" }
 			id: "458EA928F633AB0B"
 			rewards: [{ id: "C4079C5C7025A611", type: "xp", xp: 150 }]
-			tasks: [{ advancement: "millenaire:friendindeed", criterion: "", id: "39B1F5951CE3A90B", type: "advancement" }]
+			tasks: [{ advancement: "millenaire:friendindeed", criterion: "", icon: { id: "millenaire:denier" }, id: "39B1F5951CE3A90B", type: "advancement" }]
 			x: 14.0d
 			y: 0.0d
 		}
@@ -117,34 +121,38 @@
 		}
 		{
 			dependencies: ["458EA928F633AB0B"]
+			icon: { id: "minecraft:writable_book" }
 			id: "8992E3137A2F0089"
 			rewards: [{ count: 64, id: "2F83531970F11984", item: { count: 1, id: "millenaire:denier" }, type: "item" }]
-			tasks: [{ advancement: "millenaire:thequest", criterion: "", id: "EF7F74DBF36632E4", type: "advancement" }]
+			tasks: [{ advancement: "millenaire:thequest", criterion: "", icon: { id: "minecraft:writable_book" }, id: "EF7F74DBF36632E4", type: "advancement" }]
 			x: 16.0d
 			y: 0.0d
 		}
 		{
 			dependencies: ["8992E3137A2F0089"]
+			icon: { id: "millenaire:denier_argent" }
 			id: "F9C7D5474EB36910"
 			rewards: [{ id: "C80A286488FF7832", type: "xp", xp: 100 }]
-			tasks: [{ advancement: "millenaire:hired", criterion: "", id: "F140633BD0B5EFB2", type: "advancement" }]
+			tasks: [{ advancement: "millenaire:hired", criterion: "", icon: { id: "millenaire:denier_argent" }, id: "F140633BD0B5EFB2", type: "advancement" }]
 			x: 18.0d
 			y: 0.0d
 		}
 		{
 			dependencies: ["F9C7D5474EB36910", "08E1C48CC6AD12F0"]
+			icon: { id: "minecraft:map" }
 			id: "435CC775FF53D074"
 			rewards: [{ count: 2, id: "EC03DFF7A53181A6", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
 			size: 1.5d
-			tasks: [{ advancement: "millenaire:marcopolo", criterion: "", id: "ECD146E0BF84FDF3", type: "advancement" }]
+			tasks: [{ advancement: "millenaire:marcopolo", criterion: "", icon: { id: "minecraft:map" }, id: "ECD146E0BF84FDF3", type: "advancement" }]
 			x: 20.0d
 			y: 0.0d
 		}
 		{
 			dependencies: ["435CC775FF53D074"]
+			icon: { id: "minecraft:flint_and_steel" }
 			id: "A2C11113E1E3CB6D"
 			rewards: [{ count: 8, id: "1911AFDF3D38E6C5", item: { count: 1, id: "minecraft:golden_carrot" }, type: "item" }]
-			tasks: [{ advancement: "minecraft:story/enter_the_nether", criterion: "", id: "36EC6030421A01F5", type: "advancement" }]
+			tasks: [{ advancement: "minecraft:story/enter_the_nether", criterion: "", icon: { id: "minecraft:flint_and_steel" }, id: "36EC6030421A01F5", type: "advancement" }]
 			x: 22.0d
 			y: 0.0d
 		}
@@ -168,43 +176,48 @@
 		}
 		{
 			dependencies: ["365FED7EFED4DE2B"]
+			icon: { id: "millenaire:purse" }
 			id: "2AFA2511A7FD6154"
 			rewards: [{ id: "BEA4351F809BACE0", type: "xp", xp: 300 }]
-			tasks: [{ advancement: "millenaire:cresus", criterion: "", id: "5EE9C93BC2CD1C64", type: "advancement" }]
+			tasks: [{ advancement: "millenaire:cresus", criterion: "", icon: { id: "millenaire:purse" }, id: "5EE9C93BC2CD1C64", type: "advancement" }]
 			x: 24.0d
 			y: 2.0d
 		}
 		{
 			dependencies: ["2AFA2511A7FD6154"]
+			icon: { id: "millenaire:summoning_wand" }
 			id: "EA15E6430373F811"
 			rewards: [{ count: 4, id: "B4F8F29E83CBC2DB", item: { count: 1, id: "minecraft:obsidian" }, type: "item" }]
 			size: 1.75d
-			tasks: [{ advancement: "millenaire:summoningwand", criterion: "", id: "BA2C667731BDDF57", type: "advancement" }]
+			tasks: [{ advancement: "millenaire:summoningwand", criterion: "", icon: { id: "millenaire:summoning_wand" }, id: "BA2C667731BDDF57", type: "advancement" }]
 			x: 26.0d
 			y: 1.0d
 		}
 		{
 			dependencies: ["EA15E6430373F811"]
+			icon: { id: "minecraft:chiseled_stone_bricks" }
 			id: "D331EAC3FEA4D180"
 			rewards: [{ id: "0717126231839C6A", type: "xp", xp: 300 }]
-			tasks: [{ advancement: "millenaire:controlledbuilder", criterion: "", id: "C7413147013A9435", type: "advancement" }]
+			tasks: [{ advancement: "millenaire:controlledbuilder", criterion: "", icon: { id: "minecraft:chiseled_stone_bricks" }, id: "C7413147013A9435", type: "advancement" }]
 			x: 28.0d
 			y: 1.0d
 		}
 		{
 			dependencies: ["435CC775FF53D074"]
+			icon: { id: "minecraft:filled_map" }
 			id: "8F5A58BEAE1C0B17"
 			rewards: [{ count: 8, id: "7856C1914588A618", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
-			tasks: [{ advancement: "millenaire:magellan", criterion: "", id: "451442432DA41884", type: "advancement" }]
+			tasks: [{ advancement: "millenaire:magellan", criterion: "", icon: { id: "minecraft:filled_map" }, id: "451442432DA41884", type: "advancement" }]
 			x: 22.0d
 			y: -2.0d
 		}
 		{
 			dependencies: ["D331EAC3FEA4D180"]
+			icon: { id: "minecraft:white_concrete" }
 			id: "AFD8BA2D7C75B58C"
 			rewards: [{ count: 2, id: "D2F8AD4A6F72AE9D", item: { count: 1, id: "millenaire:denier_or" }, type: "item" }]
 			size: 2.0d
-			tasks: [{ advancement: "millenaire:medievalmetropolis", criterion: "", id: "14C2A5F92D101956", type: "advancement" }]
+			tasks: [{ advancement: "millenaire:medievalmetropolis", criterion: "", icon: { id: "minecraft:white_concrete" }, id: "14C2A5F92D101956", type: "advancement" }]
 			x: 30.0d
 			y: 1.0d
 		}

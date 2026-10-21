@@ -1,0 +1,6 @@
+{
+ "gamerule.animalMobCap": "Лимит животных",
+ "gamerule.animalMobCap.description": "Помогает решить, когда перестать создавать животных в мире.",
+ "gamerule.persistentAnimals": "Постоянные животные",
+ "gamerule.persistentAnimals.description": "Животные остаются в мире навсегда, а новые появляются только от разведения."
+}

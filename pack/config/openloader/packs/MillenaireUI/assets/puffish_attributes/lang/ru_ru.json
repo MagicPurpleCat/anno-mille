@@ -1,0 +1,15 @@
+{
+ "attribute.puffish_attributes.axe_damage": "Урон топором",
+ "attribute.puffish_attributes.bow_projectile_speed": "Скорость стрел из лука",
+ "attribute.puffish_attributes.breaking_speed": "Скорость добычи",
+ "attribute.puffish_attributes.consuming_speed": "Скорость еды и питья",
+ "attribute.puffish_attributes.crossbow_projectile_speed": "Скорость болтов из арбалета",
+ "attribute.puffish_attributes.damage_reflection": "Отражение урона",
+ "attribute.puffish_attributes.experience": "Опыт",
+ "attribute.puffish_attributes.mace_damage": "Урон булавой",
+ "attribute.puffish_attributes.mount_speed": "Скорость верхового животного",
+ "attribute.puffish_attributes.sword_damage": "Урон мечом",
+ "attribute.puffish_attributes.tamed_damage": "Урон питомцев",
+ "attribute.puffish_attributes.tamed_resistance": "Защита питомцев",
+ "attribute.puffish_attributes.trident_damage": "Урон трезубцем"
+}

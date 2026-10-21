@@ -1,0 +1,22 @@
+{
+ "particlerain.FadeType.DISTANCE": "Исчезновение по расстоянию",
+ "particlerain.FadeType.IN_AND_OUT": "Появление и исчезновение",
+ "particlerain.FadeType.OUT": "Исчезновение",
+ "particlerain.ParticleStyle.BLOCK_MODEL": "Модель блока",
+ "particlerain.ParticleStyle.CUSTOM": "Настраиваемый",
+ "particlerain.ParticleStyle.REGISTERED": "Из игры или других модов",
+ "particlerain.RotationType.HORIZONTAL": "Горизонтально",
+ "particlerain.RotationType.VERTICAL": "Вертикально",
+ "particlerain.animateSprites": "Анимировать спрайты",
+ "particlerain.blockId": "Модель блока",
+ "particlerain.distanceScaling": "Масштаб по расстоянию",
+ "particlerain.fadeType": "Тип исчезновения",
+ "particlerain.heavy_rain": "Сильный дождь",
+ "particlerain.heavy_snow": "Сильный снегопад",
+ "particlerain.particleStyle": "Вид частиц",
+ "particlerain.registeredParticleId": "Какие частицы создавать",
+ "particlerain.skittering_dust": "Позёмка из пыли",
+ "particlerain.vertical_fog": "Вертикальный туман во влажных биомах",
+ "particlerain.vertical_fog_after_rain": "Вертикальный туман после дождя",
+ "particlerain.windswept_haze": "Дымка в ветреных биомах"
+}

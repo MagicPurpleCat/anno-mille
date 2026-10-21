@@ -167,6 +167,66 @@ for f in ("hotbar.png", "hotbar_selection.png", "hotbar_offhand_left.png", "hotb
         darken_grays(Image.open(p)).save(out_path("assets", "minecraft", "textures", "gui", "sprites", "hud", f))
 report.append("hud: hotbar, selection, offhand")
 
+
+# ---------- 3b. мелкие серые элементы: галочки, замки, книга рецептов, тосты, фоны эффектов, ползунки окон ----------
+def dark_any(im, keep_white):
+    """Любой серый -> тёмный графит; чёрный край -> тонкая светлая рамка; цветные пиксели (иконки) не трогаем."""
+    im = im.convert("RGBA")
+    w, h = im.size
+    src, out = im.load(), im.copy()
+    dst = out.load()
+    for y in range(h):
+        for x in range(w):
+            r, g, b, a = src[x, y]
+            if not a or max(r, g, b) - min(r, g, b) >= 14:
+                continue
+            if keep_white and min(r, g, b) > 215:
+                continue
+            if max(r, g, b) < 8:
+                edge = any(not (0 <= x + dx < w and 0 <= y + dy < h) or src[x + dx, y + dy][3] == 0
+                           for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)))
+                dst[x, y] = (*(OUTLINE if edge else CONTAINER_MAP[(0, 0, 0)]), a)
+                continue
+            v = round(4 + (r + g + b) / 3 * 0.2)
+            dst[x, y] = (v, v, v + 2, a)
+    return out
+
+
+SMALL = [
+    "sprites/widget/checkbox*", "sprites/widget/locked_button*", "sprites/widget/unlocked_button*",
+    "sprites/widget/cross_button*", "sprites/widget/page_*", "sprites/widget/slot_frame",
+    "sprites/toast/advancement", "sprites/toast/recipe", "sprites/toast/system", "sprites/toast/tutorial",
+    "sprites/advancements/title_box", "sprites/popup/background", "sprites/social_interactions/background",
+    "sprites/hud/effect_background*", "sprites/container/inventory/effect_background_*", "sprites/container/slot",
+    "recipe_book", "sprites/recipe_book/button*", "sprites/recipe_book/slot_*", "sprites/recipe_book/page_*",
+    "sprites/container/*/scroller*", "sprites/container/stonecutter/recipe*", "sprites/container/loom/pattern*",
+    "sprites/container/enchanting_table/enchantment_slot*", "sprites/container/beacon/button*",
+    "sprites/container/anvil/text_field*", "sprites/container/bundle/slot", "sprites/container/crafter/disabled_slot",
+    "sprites/container/horse/*_slot", "sprites/container/loom/*_slot", "sprites/container/villager/out_of_stock",
+    "sprites/server_list/*_highlighted", "sprites/transferable_list/*", "sprites/statistics/header",
+    "sprites/statistics/block_mined", "sprites/statistics/item_*", "sprites/spectator/scroll_*",
+    "sprites/hud/heart/container*", "sprites/hud/heart/vehicle_container", "sprites/hud/armor_empty", "sprites/hud/jump_bar_background",
+]
+import fnmatch
+small_done = 0
+for root, _, files in os.walk(gui_root):
+    rel_dir = os.path.relpath(root, gui_root).replace("\\", "/")
+    for f in files:
+        if not f.endswith(".png"):
+            continue
+        rel = (f"{rel_dir}/{f[:-4]}" if rel_dir != "." else f[:-4])
+        if not any(fnmatch.fnmatch(rel, pat) for pat in SMALL):
+            continue
+        dst = out_path("assets", "minecraft", "textures", "gui", *rel.split("/")) + ".png"
+        if os.path.exists(dst):
+            continue
+        keep = any(s in f for s in ("highlighted", "selected"))
+        dark_any(Image.open(os.path.join(root, f)), keep).save(dst)
+        if os.path.exists(os.path.join(root, f + ".mcmeta")):
+            shutil.copy(os.path.join(root, f + ".mcmeta"), dst + ".mcmeta")
+        small_done += 1
+report.append(f"small grey sprites darkened: {small_done}")
+
 # ---------- 4. фоны меню, разделители, панорама-заглушка ----------
 G = ("assets", "minecraft", "textures", "gui")
 for f, rgba in {"menu_background.png": (*BG_DEEP, 215), "menu_list_background.png": (14, 14, 16, 170),
@@ -210,8 +270,18 @@ for f in ("minecraft.png", "minceraft.png"):
     shutil.copy(os.path.join(VAN, "textures", "gui", "title", "minecraft.png.mcmeta"), out_path(*G, "title", f + ".mcmeta"))
 text_image((512, 64), "Год тысячный · Millénaire", FONT_MED, 480, 40, (255, 255, 255, 135), glow=False).save(out_path(*G, "title", "edition.png"))
 shutil.copy(os.path.join(VAN, "textures", "gui", "title", "edition.png.mcmeta"), out_path(*G, "title", "edition.png.mcmeta"))
-open(out_path("assets", "minecraft", "texts", "splashes.txt"), "w", encoding="utf-8").write("")
-report.append("logo: Anno Mille / Год тысячный · Millénaire; splashes off")
+shutil.copy(os.path.join(HERE, "splashes.txt"), out_path("assets", "minecraft", "texts", "splashes.txt"))
+
+# Экран загрузки рисует логотип двумя половинами: верх текстуры - левая часть, низ - правая.
+wide = logo.crop(logo.getbbox())
+half = Image.new("RGBA", (1024, 256), (0, 0, 0, 0))
+wide.thumbnail((1000, 240), Image.LANCZOS)
+half.alpha_composite(wide, ((1024 - wide.width) // 2, (256 - wide.height) // 2))
+studios = Image.new("RGBA", (512, 512), (0, 0, 0, 0))
+studios.alpha_composite(half.crop((0, 0, 512, 256)), (0, 0))
+studios.alpha_composite(half.crop((512, 0, 1024, 256)), (0, 256))
+studios.save(out_path(*G, "title", "mojangstudios.png"))
+report.append("logo: Anno Mille / Год тысячный · Millénaire; loading logo; own splashes")
 
 # ---------- 6. белые заголовки окон ----------
 def white_titles(lang_json):
@@ -255,6 +325,17 @@ for jar in sorted(os.listdir(mods_dir)):
                 continue
             lang.setdefault((lm.group(1), lm.group(2)), {}).update(white_titles(data))
 report.append(f"mod gui recolored: {mod_done} in {len(mod_ns)} mods: " + ", ".join(f"{k}({v})" for k, v in sorted(mod_ns.items())))
+
+# ---------- 7b. русский перевод того, что в модах осталось на английском (translations/<мод>.json) ----------
+tr_dir, tr_total = os.path.join(HERE, "translations"), 0
+for f in sorted(os.listdir(tr_dir)) if os.path.isdir(tr_dir) else []:
+    if f.endswith(".json"):
+        ns, data = f[:-5], json.load(open(os.path.join(tr_dir, f), encoding="utf-8"))
+        merged = {**data, **white_titles(data)}
+        merged.update(lang.get((ns, "ru_ru"), {}))
+        lang[(ns, "ru_ru")] = merged
+        tr_total += len(data)
+report.append(f"translations: {tr_total}")
 
 for key, entries in lang.items():
     if not entries:

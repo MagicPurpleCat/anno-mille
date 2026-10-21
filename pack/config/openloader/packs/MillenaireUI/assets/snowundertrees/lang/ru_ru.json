@@ -1,0 +1,7 @@
+{
+ "snowundertrees.configuration.enable_biome_feature": "Снег под деревьями при генерации",
+ "snowundertrees.configuration.enable_biome_feature.tooltip": "Если выключить, при создании новых чанков снега под деревьями не будет.",
+ "snowundertrees.configuration.enable_when_snowing": "Снег под деревьями в снегопад",
+ "snowundertrees.configuration.enable_when_snowing.tooltip": "Если выключить, во время снегопада снег под деревьями не копится.",
+ "snowundertrees.configuration.filtered_biomes": "Исключённые биомы"
+}

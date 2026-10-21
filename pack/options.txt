@@ -22,8 +22,8 @@ narrator:0
 particles:0
 reducedDebugInfo:false
 renderClouds:"true"
-renderDistance:32
-simulationDistance:32
+renderDistance:16
+simulationDistance:10
 screenEffectScale:1.0
 soundDevice:""
 autoJump:false
@@ -41,14 +41,14 @@ touchscreen:false
 bobView:true
 toggleCrouch:false
 toggleSprint:false
-darkMojangStudiosBackground:false
+darkMojangStudiosBackground:true
 hideLightningFlashes:false
 hideSplashTexts:false
 mouseSensitivity:0.5
 damageTiltStrength:1.0
 highContrast:false
 narratorHotkey:true
-resourcePacks:["serilum_mod_translations", "vanilla", "fabric", "generated/fragmentum_layer", "mod_resources", "moonlight:merged_pack", "mod/culturaldelights:resourcepacks/supplementaries", "naturalist:custom_spawn_eggs", "mod/subtle_effects:resourcepacks/biome_color_water_particles", "supplementaries:darker_ropes", "vinery:bushy_leaves", "mod/meadow:resourcepacks/betterleaves", "mod/meadow:resourcepacks/connectedtexturesupport", "mod/farm_and_charm:vanilla_blend", "mod/bakery:vanilla_blend", "file/Excalibur_V1.21.1.zip", "file/Better-Leaves-9.6.zip", "file/Better+Lanterns+v1.2(mc-1.21).zip", "file/§eTorches§8-§eReimagined§0_§8[v1.8]§0.zip", "file/LowOnFire v26.2§8.zip", "file/FreshAnimations_v1.11.1_1.20+.zip", "file/FA+All_Extensions-v1.8.1.zip", "file/millenaire-hd-9.0.zip", "file/MillenaireUI"]
+resourcePacks:["serilum_mod_translations", "vanilla", "fabric", "generated/fragmentum_layer", "mod_resources", "moonlight:merged_pack", "mod/culturaldelights:resourcepacks/supplementaries", "naturalist:custom_spawn_eggs", "mod/subtle_effects:resourcepacks/biome_color_water_particles", "supplementaries:darker_ropes", "vinery:bushy_leaves", "mod/meadow:resourcepacks/betterleaves", "mod/meadow:resourcepacks/connectedtexturesupport", "mod/farm_and_charm:vanilla_blend", "mod/bakery:vanilla_blend", "file/Excalibur_V1.21.1.zip", "file/Better-Leaves-9.6.zip", "file/Better+Lanterns+v1.2(mc-1.21).zip", "file/§eTorches§8-§eReimagined§0_§8[v1.8]§0.zip", "file/LowOnFire v26.2§8.zip", "file/FreshAnimations_v1.11.1_1.20+.zip", "file/FA+All_Extensions-v1.8.1.zip", "file/millenaire-hd-9.0.zip"]
 incompatibleResourcePacks:[]
 lastServer:
 lang:ru_ru

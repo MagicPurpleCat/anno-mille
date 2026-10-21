@@ -1,0 +1,20 @@
+{
+ "ftbteams.disbanded_no_lives": "Отряд распущен: кончились жизни и игроки!",
+ "ftbteams.gui.toggle_chat": "Нажми, чтобы переключить",
+ "ftbteams.kicked_no_lives": "Игрок %s исключён: он погиб, а жизней у отряда не осталось!",
+ "ftbteams.lost_a_life": "Отряд потерял жизнь! Осталось %s из %s!",
+ "ftbteams.message.added_stage": "Добавлен этап команды: %s",
+ "ftbteams.message.chat_redirected.off": "Сообщения идут в общий чат",
+ "ftbteams.message.chat_redirected.on": "Сообщения идут в чат команды",
+ "ftbteams.message.limited_lives": "У отряда осталось жизней: %s из %s!",
+ "ftbteams.message.limited_lives.warn": "Если погибнешь, тебя исключат из отряда!",
+ "ftbteams.message.no_team_stages": "У этой команды нет этапов",
+ "ftbteams.message.parse_failed": "Не удалось прочитать значение: %s",
+ "ftbteams.message.property_not_editable": "Свойство %s менять нельзя!",
+ "ftbteams.message.removed_stage": "Убран этап команды: %s",
+ "ftbteams.message.set_property": "Свойство %s теперь %s",
+ "ftbteams.message.team_stages_header": "Этапов у команды: %s",
+ "ftbteams.out_of_lives": "У отряда кончились жизни! Новых участников пригласить нельзя!",
+ "ftbteams.party_full": "Нельзя добавить игроков, отряд полон! Наибольший размер: %s",
+ "ftbteams.team_already_exists": "Команда %s уже есть!"
+}

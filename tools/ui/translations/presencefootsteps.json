@@ -1,0 +1,22 @@
+{
+ "key.category.presencefootsteps": "Presence Footsteps",
+ "key.presencefootsteps.toggle": "Включить или выключить мод",
+ "key.presencefootsteps.toggle.disabled": "Звуки выключены",
+ "key.presencefootsteps.toggle.enabled": "Звуки включены",
+ "menu.pf.disable_mod": "Выключить все звуки",
+ "menu.pf.footwear.off": "Обувь: ВЫКЛ.",
+ "menu.pf.footwear.on": "Обувь: ВКЛ.",
+ "menu.pf.group.debugging": "Отладка",
+ "menu.pf.group.footsteps": "Шаги",
+ "menu.pf.group.sound_packs": "Звуковые паки",
+ "menu.pf.group.volume": "Громкость",
+ "menu.pf.report.acoustics": "Выгрузить акустику",
+ "menu.pf.volume.foliage": "Растения: %s%%",
+ "menu.pf.volume.foliage.tooltip": "Громкость шороха, когда идёшь сквозь растения и высокую траву.",
+ "menu.pf.volume.hostile_entities": "Враждебные существа: %d%%",
+ "menu.pf.volume.hostile_entities.tooltip": "Громкость шагов врагов.",
+ "menu.pf.volume.passive_entities": "Мирные существа: %d%%",
+ "menu.pf.volume.passive_entities.tooltip": "Громкость шагов животных.",
+ "mod.presencefootsteps.name": "Presence Footsteps",
+ "pf.default_sounds.missing": "Звуковые паки не найдены. Открой пакеты ресурсов и включи %s, чтобы начать."
+}

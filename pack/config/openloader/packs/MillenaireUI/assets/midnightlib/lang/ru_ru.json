@@ -1,0 +1,10 @@
+{
+ "midnightconfig.action.color_chooser": "Выбрать цвет",
+ "midnightconfig.action.file_chooser": "Выбрать файл",
+ "midnightconfig.action.list_index": "Правка элемента списка %s",
+ "midnightconfig.color_chooser.brightness": "Яркость: %s",
+ "midnightconfig.color_chooser.hue": "Оттенок: %s",
+ "midnightconfig.color_chooser.saturation": "Насыщенность: %s",
+ "midnightlib.curseforge": "CurseForge",
+ "midnightlib.modrinth": "Modrinth"
+}

@@ -1,0 +1,7 @@
+{
+ "iris.keybind.wireframe": "Каркас (только одиночная игра)",
+ "iris.load.failure.generic": "У Iris не получилось загрузить шейдер, сообщи об этом разработчикам Iris.",
+ "iris.load.failure.shader": "Шейдерпак не загрузился! Сообщи об ошибке автору шейдера.",
+ "options.iris.colorSpace": "Цветовое пространство",
+ "options.iris.colorSpace.sodium_tooltip": "В какое цветовое пространство переводить экран. Работает поверх шейдеров. Если не уверен, выбери SRGB."
+}

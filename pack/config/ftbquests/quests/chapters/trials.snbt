@@ -10,9 +10,10 @@
 	quests: [
 		{
 			dependencies: ["A50CFF48479D9998"]
+			icon: { id: "minecraft:bell" }
 			id: "532793547031FF23"
 			rewards: [{ id: "ED66ADD61AA48A98", type: "xp", xp: 300 }]
-			tasks: [{ advancement: "minecraft:adventure/hero_of_the_village", criterion: "", id: "B888E3B2F08E5231", type: "advancement" }]
+			tasks: [{ advancement: "minecraft:adventure/hero_of_the_village", criterion: "", icon: { id: "minecraft:bell" }, id: "B888E3B2F08E5231", type: "advancement" }]
 			x: 0.0d
 			y: 0.0d
 		}

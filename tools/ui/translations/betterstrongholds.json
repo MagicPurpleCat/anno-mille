@@ -1,0 +1,7 @@
+{
+ "text.autoconfig.betterstrongholds-fabric-1_21.option.betterStrongholds.general.enableStructureRuin": "Разрушение строения",
+ "text.autoconfig.betterstrongholds-fabric-1_21.option.betterStrongholds.general.enableStructureRuin.@Tooltip[0]": "Небольшие пещеры-«лапша» могут слегка разрушить крепость.",
+ "text.autoconfig.betterstrongholds-fabric-1_21.option.betterStrongholds.general.enableStructureRuin.@Tooltip[1]": "Большие пещеры её не трогают.",
+ "text.autoconfig.betterstrongholds-fabric-1_21.option.betterStrongholds.general.filledPortalFrameChance": "Шанс заполненной рамки портала",
+ "text.autoconfig.betterstrongholds-fabric-1_21.option.betterStrongholds.general.filledPortalFrameChance.@Tooltip": "Шанс, что блок рамки портала в Край появится уже с оком Эндера."
+}

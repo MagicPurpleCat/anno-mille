@@ -1,0 +1,9 @@
+{
+ "key.category.minecraft.text.entityculling.title": "EntityCulling",
+ "text.entityculling.blockEntityFrustumCulling": "Отсечение блоков-сущностей по обзору",
+ "text.entityculling.blockEntityFrustumCulling.tooltip": "Если включено, блоки-сущности вне поля зрения камеры не обрабатываются. Может поднять FPS, если загрузчик или другой мод этого ещё не делает.",
+ "text.entityculling.forceDisplayCulling": "Принудительное отсечение отображений",
+ "text.entityculling.forceDisplayCulling.tooltip": "Если включено, сущностям-отображениям без рамки задаётся рамка по умолчанию для отсечения. Может поднять FPS на картах и серверах, где эти рамки не настроены.",
+ "text.entityculling.solidLeaves": "Сплошная листва",
+ "text.entityculling.solidLeaves.tooltip": "Если включено, листва при отсечении считается сплошной. В лесах FPS выше, но возможны ошибки картинки. Полезно, если «Прозрачная листва» выключена или стоит пак с кустистой листвой."
+}

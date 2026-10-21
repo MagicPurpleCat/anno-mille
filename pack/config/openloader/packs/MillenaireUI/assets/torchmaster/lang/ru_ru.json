@@ -1,0 +1,12 @@
+{
+ "screen.torchmaster.feral_flare_lantern.description": "Где ставить свет",
+ "screen.torchmaster.feral_flare_lantern.line_of_sight.disabled": "Везде, даже за стенами.",
+ "screen.torchmaster.feral_flare_lantern.line_of_sight.disabled.description": "Фонарю не нужен прямой обзор.",
+ "screen.torchmaster.feral_flare_lantern.line_of_sight.enabled": "Только там, куда фонарь видит.",
+ "screen.torchmaster.feral_flare_lantern.line_of_sight.enabled.description": "Свет не ставится за стенами.",
+ "screen.torchmaster.feral_flare_lantern.title": "Фонарь дикого пламени",
+ "screen.torchmaster.volume_gui.range": "Радиус в каждую сторону: §a%s§r блоков",
+ "screen.torchmaster.volume_gui.title": "Зона действия Torchmaster",
+ "screen.torchmaster.volume_gui.toggle_off": "Показать зону действия",
+ "screen.torchmaster.volume_gui.toggle_on": "Скрыть зону действия"
+}

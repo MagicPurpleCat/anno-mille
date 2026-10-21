@@ -189,3 +189,6 @@ mod almanac 1.26.10.3
 mod supermartijn642s-config-lib 1.1.8-neoforge-mc1.21
 mod skills 0.19.2
 mod attributes 0.8.3
+mod open-loader 21.1.5
+mod default-options 21.1.8+neoforge-1.21.1
+mod balm 21.0.66+neoforge-1.21.1

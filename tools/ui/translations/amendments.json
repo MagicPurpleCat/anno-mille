@@ -1,0 +1,13 @@
+{
+ "message.amendments.ebe_warning": "[Amendments] Установлен Enhanced Block Entities. Таблички будут выглядеть неправильно, а подвесные не будут качаться, пока не выключишь это в настройках EBE.",
+ "tag.block.amendments.cauldron_heat_source": "Источники нагрева котла",
+ "tag.block.amendments.ceiling_banners": "Потолочные знамёна",
+ "tag.block.amendments.skull_candles": "Черепа со свечами",
+ "tag.block.amendments.stairs_carpets": "Ковры на ступенях",
+ "tag.moonlight.amendments.soft_fluid.can_glow": "Может светиться",
+ "tag.moonlight.amendments.soft_fluid.cant_boil": "Не кипит",
+ "tag.moonlight.amendments.soft_fluid.cant_extinguish": "Не гасит огонь",
+ "tag.moonlight.amendments.soft_fluid.cant_go_in_liquid_cauldron": "Не наливается в котёл с жидкостью",
+ "tag.moonlight.amendments.soft_fluid.no_tint_in_cauldron": "Без окраски в котле",
+ "tag.worldgen.amendments.structure.add_potion_cauldron": "Добавить котёл с зельем"
+}

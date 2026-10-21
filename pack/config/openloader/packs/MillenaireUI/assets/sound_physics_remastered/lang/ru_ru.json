@@ -1,0 +1,8 @@
+{
+ "cloth_config.sound_physics_remastered.evaluate_ambient_sounds": "Физика для фоновых звуков",
+ "cloth_config.sound_physics_remastered.evaluate_ambient_sounds.description": "Применять физику звука к фоновым звукам пещер, Нижнего мира и подводного мира",
+ "cloth_config.sound_physics_remastered.reverb_attenuation_distance": "Расстояние затухания эха",
+ "cloth_config.sound_physics_remastered.reverb_attenuation_distance.description": "Расстояние луча, с которого начинается эхо.\n0.0 отключает затухание эха.",
+ "cloth_config.sound_physics_remastered.reverb_distance": "Дальность эха",
+ "cloth_config.sound_physics_remastered.reverb_distance.description": "Дальность эха относительно расстояния до звука."
+}

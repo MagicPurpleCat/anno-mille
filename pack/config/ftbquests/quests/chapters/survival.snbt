@@ -50,9 +50,10 @@
 		}
 		{
 			dependencies: ["1CDBEEC5FB992C76"]
+			icon: { id: "minecraft:wheat_seeds" }
 			id: "E7827C493372DD74"
 			rewards: [{ count: 16, id: "F0EE997526C2FC55", item: { count: 1, id: "minecraft:bone_meal" }, type: "item" }]
-			tasks: [{ advancement: "minecraft:husbandry/plant_seed", criterion: "", id: "D3642975383D14A2", type: "advancement" } { count: 16L, id: "886C66F95FA16E0F", item: { count: 1, id: "minecraft:wheat" }, type: "item" }]
+			tasks: [{ advancement: "minecraft:husbandry/plant_seed", criterion: "", icon: { id: "minecraft:wheat_seeds" }, id: "D3642975383D14A2", type: "advancement" } { count: 16L, id: "886C66F95FA16E0F", item: { count: 1, id: "minecraft:wheat" }, type: "item" }]
 			x: 0.0d
 			y: -0.875d
 		}

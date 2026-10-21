@@ -1,0 +1,16 @@
+{
+ "advancement.dungeons_arise.find_kisegi_sanctuary.desc": "Найди святилище Кисэги",
+ "advancement.dungeons_arise.find_kisegi_sanctuary.title": "Сочувствие дьяволу",
+ "advancement.dungeons_arise.find_mining_complex.desc": "Найди горнодобывающий комплекс",
+ "advancement.dungeons_arise.find_mining_complex.title": "Накорми машину",
+ "enchantment.dungeons_arise.discharge": "Разряд",
+ "enchantment.dungeons_arise.discharge.desc": "Атаки разгоняют тебя, но сильный разгон разряжается взрывом, который ранит и врага, и тебя.",
+ "enchantment.dungeons_arise.ensnaring": "Ловчий",
+ "enchantment.dungeons_arise.ensnaring.desc": "С некоторым шансом сильно замедляет раненого врага и призывает клыки, которые бьют монстров вокруг.",
+ "enchantment.dungeons_arise.lolths_curse": "Проклятие Ллос",
+ "enchantment.dungeons_arise.lolths_curse.desc": "С некоторым шансом лечит при атаке, но из тела врага могут вылезти пауки. Урон по членистоногим отражается в тебя.",
+ "enchantment.dungeons_arise.purification": "Очищение",
+ "enchantment.dungeons_arise.purification.desc": "С некоторым шансом снимает яд и иссушение и выпускает волну энергии, которая ранит ближних врагов.",
+ "enchantment.dungeons_arise.voltaic_shot": "Вольтов выстрел",
+ "enchantment.dungeons_arise.voltaic_shot.desc": "Заряжает стрелы электричеством: они летят прямо и взрываются."
+}

@@ -2,7 +2,7 @@
 
 Minecraft 1.21.1, NeoForge 21.1.264. Точные версии файлов, которые ставит установщик. Ссылки ведут на страницы авторов.
 
-## Моды (184)
+## Моды (187)
 
 | Мод | Версия | Файл | Источник |
 |---|---|---|---|
@@ -12,6 +12,9 @@ Minecraft 1.21.1, NeoForge 21.1.264. Точные версии файлов, к�
 | appleskin | 3.0.9+mc1.21 | `appleskin-neoforge-mc1.21-3.0.9.jar` | https://modrinth.com/project/appleskin |
 | aquaculture | 2.7.21 | `Aquaculture-1.21.1-2.7.21.jar` | https://modrinth.com/project/aquaculture |
 | architectury-api | 13.0.11+neoforge | `architectury-13.0.11-neoforge.jar` | https://modrinth.com/project/architectury-api |
+| balm | 21.0.66+neoforge-1.21.1 | `balm-neoforge-1.21.1-21.0.66.jar` | https://modrinth.com/project/balm |
+| default-options | 21.1.8+neoforge-1.21.1 | `defaultoptions-neoforge-1.21.1-21.1.8.jar` | https://modrinth.com/project/default-options |
+| open-loader | 21.1.5 | `OpenLoader-neoforge-1.21.1-21.1.5.jar` | https://modrinth.com/project/open-loader |
 | astikorcarts-redux | 1.2.4 | `astikorcartsredux-1.2.4.jar` | https://modrinth.com/project/astikorcarts-redux |
 | athena-ctm | 4.0.6 | `athena-neoforge-1.21.1-4.0.6.jar` | https://modrinth.com/project/athena-ctm |
 | attributes | 0.8.3 | `puffish_attributes-0.8.3-1.21-neoforge.jar` | https://modrinth.com/project/attributes |
