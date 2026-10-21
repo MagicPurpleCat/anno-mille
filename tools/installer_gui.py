@@ -9,16 +9,59 @@ BG, PANEL, TEXT, MUTED, ACCENT = "#121214", "#1c1c20", "#f4f4f5", "#9a9aa2", "#e
 APPDATA, HOME = os.environ.get("APPDATA", ""), os.path.expanduser("~")
 
 
+def profile_info(path):
+    """(версия Minecraft, загрузчик) из файлов лаунчера, если их удаётся прочитать."""
+    import json
+    try:
+        s = os.path.join(path, "millida-settings.json")                 # Millida
+        if os.path.exists(s):
+            j = json.load(open(s, encoding="utf-8"))
+            return j.get("version"), j.get("loader")
+        s = os.path.join(os.path.dirname(path), "mmc-pack.json")         # Prism / MultiMC
+        if os.path.exists(s):
+            comps = {c["uid"]: c.get("version") for c in json.load(open(s, encoding="utf-8"))["components"]}
+            loader = next((n for u, n in (("net.neoforged", "neoforge"), ("net.minecraftforge", "forge"),
+                                          ("net.fabricmc.fabric-loader", "fabric"), ("org.quiltmc.quilt-loader", "quilt")) if u in comps), "vanilla")
+            return comps.get("net.minecraft"), loader
+        s = os.path.join(path, "profile.json")                           # Modrinth App
+        if os.path.exists(s):
+            j = json.load(open(s, encoding="utf-8"))
+            return j.get("game_version") or j.get("metadata", {}).get("game_version"), j.get("loader") or j.get("metadata", {}).get("loader")
+        s = os.path.join(path, "minecraftinstance.json")                 # CurseForge
+        if os.path.exists(s):
+            j = json.load(open(s, encoding="utf-8"))
+            ml = (j.get("baseModLoader") or {}).get("name", "")
+            return j.get("gameVersion"), ml.split("-")[0] if ml else None
+    except Exception:
+        pass
+    return None, None
+
+
+def suits(info):
+    v, l = info
+    if v is None:
+        return None                       # неизвестно
+    return v == "1.21.1" and (l or "").lower() == "neoforge"
+
+
 def find_game_folders():
-    """Папки игры популярных лаунчеров: (подпись, путь)."""
+    """Папки игры популярных лаунчеров: (подпись, путь), подходящие профили — первыми."""
     found = []
 
     def add(label, path):
-        if os.path.isdir(path) and os.path.normcase(path) not in {os.path.normcase(p) for _, p in found}:
-            found.append((label, path))
+        if os.path.isdir(path) and os.path.normcase(path) not in {os.path.normcase(f[1]) for f in found}:
+            v, l = profile_info(path)
+            ok = suits((v, l))
+            tag = "✓ подходит" if ok else (f"✗ {v} {l or ''}".strip() if ok is False else "версия неизвестна")
+            found.append((f"{label}   [{tag}]", path, ok))
 
     for p in glob.glob(os.path.join(APPDATA, "net.millida.launcher", "minecraft", "profiles", "*")):
-        add(f"Millida · {os.path.basename(p)}", p)
+        try:
+            import json
+            name = json.load(open(os.path.join(p, "millida-settings.json"), encoding="utf-8")).get("name") or os.path.basename(p)
+        except Exception:
+            name = os.path.basename(p)
+        add(f"Millida · {name}", p)
     for p in glob.glob(os.path.join(APPDATA, "PrismLauncher", "instances", "*")):
         sub = next((s for s in ("minecraft", ".minecraft") if os.path.isdir(os.path.join(p, s))), None)
         if sub:
@@ -31,7 +74,8 @@ def find_game_folders():
     for p in glob.glob(os.path.join(APPDATA, "ATLauncher", "instances", "*")):
         add(f"ATLauncher · {os.path.basename(p)}", p)
     add("TLauncher / официальный лаунчер · .minecraft", os.path.join(APPDATA, ".minecraft"))
-    return found
+    order = {True: 0, None: 1, False: 2}
+    return sorted(found, key=lambda f: order[f[2]])
 
 
 class App(tk.Tk):
@@ -64,8 +108,9 @@ class App(tk.Tk):
                                highlightthickness=0, borderwidth=0, font=("Segoe UI", 10), activestyle="none")
         self.list.pack(fill="x", padx=8, pady=8)
         self.folders = find_game_folders()
-        for label, path in self.folders:
+        for i, (label, path, ok) in enumerate(self.folders):
             self.list.insert("end", f"  {label}")
+            self.list.itemconfig(i, fg=TEXT if ok else (MUTED if ok is None else "#8a6a6a"))
         if self.folders:
             self.list.selection_set(0)
         self.list.bind("<<ListboxSelect>>", lambda e: self.show_path())
@@ -92,17 +137,17 @@ class App(tk.Tk):
 
     def selected(self):
         sel = self.list.curselection()
-        return self.folders[sel[0]][1] if sel else None
+        return self.folders[sel[0]] if sel else None
 
     def show_path(self):
-        p = self.selected()
-        self.path_label.config(text=p or "Папка не выбрана")
+        f = self.selected()
+        self.path_label.config(text=f[1] if f else "Папка не выбрана")
 
     def pick(self):
         p = filedialog.askdirectory(title="Папка игры профиля (там, где mods и config)")
         if p:
             p = os.path.normpath(p)
-            self.folders.append(("Выбрано вручную", p))
+            self.folders.append(("Выбрано вручную", p, suits(profile_info(p))))
             self.list.insert("end", "  Выбрано вручную · " + os.path.basename(p))
             self.list.selection_clear(0, "end")
             self.list.selection_set("end")
@@ -120,10 +165,18 @@ class App(tk.Tk):
         self.after(0, lambda: self.bar.config(maximum=total, value=done))
 
     def start(self):
-        game = self.selected()
-        if not game:
+        f = self.selected()
+        if not f:
             messagebox.showwarning("Anno Mille", "Выбери папку игры.")
             return
+        game, ok = f[1], f[2]
+        if ok is False:
+            v, l = profile_info(game)
+            text = (f"Этот профиль на Minecraft {v} ({l}).\n\n"
+                    "Сборке нужен Minecraft 1.21.1 с NeoForge, иначе игра не запустится. "
+                    "Создай в лаунчере такой профиль и выбери его.\n\nВсё равно установить сюда?")
+            if not messagebox.askyesno("Anno Mille", text):
+                return
         self.go.config(state="disabled", text="Устанавливаю…")
         threading.Thread(target=self.work, args=(game,), daemon=True).start()
 
