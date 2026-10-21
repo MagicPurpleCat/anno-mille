@@ -1,17 +1,22 @@
-"""Окно установщика Anno Mille. Собирается в AnnoMille-Setup.exe командой tools/build_exe.bat."""
-import glob, os, sys, threading, tkinter as tk
-from tkinter import filedialog, messagebox, ttk
+"""Окно установщика Anno Mille в стиле фона главного меню: тёмный фон с живыми волнами, белый текст,
+полупрозрачные кнопки-«таблетки» с тонкой обводкой. Собирается в AnnoMille-Setup.exe командой tools/build_exe.py."""
+import ctypes, glob, io, json, os, sys, threading, zipfile, tkinter as tk
+from tkinter import filedialog, messagebox
+from PIL import Image, ImageDraw, ImageTk
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import install  # noqa: E402
 
-BG, PANEL, TEXT, MUTED, ACCENT = "#121214", "#1c1c20", "#f4f4f5", "#9a9aa2", "#e8c26a"
+W, H = 960, 600
+TEXT, MUTED, DIM, BAD = "#f4f4f5", "#9a9aa2", "#5f5f68", "#e39a9a"
 APPDATA, HOME = os.environ.get("APPDATA", ""), os.path.expanduser("~")
+ROOT = install.data_root()
+FONT, FONT_B = "Inter Medium", "Inter SemiBold"
 
 
+# ---------------------------------------------------------------- профили лаунчеров
 def profile_info(path):
     """(версия Minecraft, загрузчик) из файлов лаунчера, если их удаётся прочитать."""
-    import json
     try:
         s = os.path.join(path, "millida-settings.json")                 # Millida
         if os.path.exists(s):
@@ -45,19 +50,15 @@ def suits(info):
 
 
 def find_game_folders():
-    """Папки игры популярных лаунчеров: (подпись, путь), подходящие профили — первыми."""
+    """Папки игры популярных лаунчеров: (подпись, путь, подходит ли), подходящие первыми."""
     found = []
 
     def add(label, path):
         if os.path.isdir(path) and os.path.normcase(path) not in {os.path.normcase(f[1]) for f in found}:
-            v, l = profile_info(path)
-            ok = suits((v, l))
-            tag = "✓ подходит" if ok else (f"✗ {v} {l or ''}".strip() if ok is False else "версия неизвестна")
-            found.append((f"{label}   [{tag}]", path, ok))
+            found.append((label, path, suits(profile_info(path))))
 
     for p in glob.glob(os.path.join(APPDATA, "net.millida.launcher", "minecraft", "profiles", "*")):
         try:
-            import json
             name = json.load(open(os.path.join(p, "millida-settings.json"), encoding="utf-8")).get("name") or os.path.basename(p)
         except Exception:
             name = os.path.basename(p)
@@ -78,91 +79,255 @@ def find_game_folders():
     return sorted(found, key=lambda f: order[f[2]])
 
 
+def tag_of(path, ok):
+    if ok:
+        return "подходит", MUTED
+    if ok is None:
+        return "версия неизвестна", DIM
+    v, l = profile_info(path)
+    return f"{v} {l or ''}".strip(), BAD
+
+
+# ---------------------------------------------------------------- графика
+def pill(w, h, fill, outline, radius=None):
+    """Скруглённая полупрозрачная плашка с тонкой обводкой (рисуется вчетверо крупнее и уменьшается для гладких краёв)."""
+    s = 4
+    r = (radius if radius is not None else h / 2) * s
+    im = Image.new("RGBA", (w * s, h * s), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    d.rounded_rectangle([0, 0, w * s - 1, h * s - 1], radius=r, fill=fill, outline=outline, width=s)
+    return ImageTk.PhotoImage(im.resize((w, h), Image.LANCZOS))
+
+
+def load_fonts():
+    for f in glob.glob(os.path.join(ROOT, "tools", "ui", "fonts", "*.ttf")):
+        try:
+            ctypes.windll.gdi32.AddFontResourceExW(f, 0x10, 0)   # FR_PRIVATE: шрифт виден только этой программе
+        except Exception:
+            pass
+
+
+class Background:
+    """Петля фона из главного меню сборки (кадры FMA), подогнанная под окно."""
+
+    def __init__(self):
+        self.frames, self.i = [], 0
+        self.path = os.path.join(ROOT, "pack", "config", "fancymenu", "assets", "millenaire_bg.fma")
+        self.first = self._frame(0) if os.path.exists(self.path) else Image.new("RGB", (W, H), (12, 12, 13))
+        threading.Thread(target=self._load, daemon=True).start()
+
+    def _fit(self, im):
+        im = im.convert("RGB")
+        k = max(W / im.width, H / im.height)
+        im = im.resize((round(im.width * k), round(im.height * k)), Image.BILINEAR)
+        x, y = (im.width - W) // 2, im.height - H          # волны внизу кадра — оставляем низ
+        return im.crop((x, y, x + W, y + H))
+
+    def _frame(self, n):
+        with zipfile.ZipFile(self.path) as z:
+            return self._fit(Image.open(io.BytesIO(z.read(f"frames/{n}.png"))))
+
+    def _load(self):
+        try:
+            with zipfile.ZipFile(self.path) as z:
+                names = sorted((n for n in z.namelist() if n.startswith("frames/")), key=lambda n: int(n[7:-4]))
+                for n in names[::2]:
+                    buf = io.BytesIO()
+                    self._fit(Image.open(io.BytesIO(z.read(n)))).save(buf, "JPEG", quality=90)
+                    self.frames.append(buf.getvalue())
+        except Exception:
+            pass
+
+    def next(self):
+        if not self.frames:
+            return self.first
+        self.i = (self.i + 1) % len(self.frames)
+        return Image.open(io.BytesIO(self.frames[self.i]))
+
+
+# ---------------------------------------------------------------- окно
+class Button:
+    def __init__(self, app, x, y, w, h, text, cmd, big=False):
+        self.app, self.cmd, self.enabled = app, cmd, True
+        c = app.canvas
+        a = (16, 70, 34, 210) if big else (10, 40, 24, 140)
+        self.img_n = pill(w, h, (255, 255, 255, a[0]), (255, 255, 255, a[1]))
+        self.img_h = pill(w, h, (255, 255, 255, a[2]), (255, 255, 255, a[3]))
+        self.img = c.create_image(x, y, image=self.img_n)
+        self.txt = c.create_text(x, y, text=text, fill=TEXT, font=(FONT_B if big else FONT, 12 if big else 10))
+        for item in (self.img, self.txt):
+            c.tag_bind(item, "<Enter>", lambda e: self.hover(True))
+            c.tag_bind(item, "<Leave>", lambda e: self.hover(False))
+            c.tag_bind(item, "<Button-1>", lambda e: self.enabled and self.cmd())
+
+    def hover(self, on):
+        if self.enabled:
+            self.app.canvas.itemconfig(self.img, image=self.img_h if on else self.img_n)
+            self.app.canvas.config(cursor="hand2" if on else "")
+
+    def set(self, text=None, enabled=None, visible=None):
+        c = self.app.canvas
+        if text is not None:
+            c.itemconfig(self.txt, text=text)
+        if enabled is not None:
+            self.enabled = enabled
+            c.itemconfig(self.txt, fill=TEXT if enabled else DIM)
+            c.itemconfig(self.img, image=self.img_n)
+        if visible is not None:
+            for item in (self.img, self.txt):
+                c.itemconfig(item, state="normal" if visible else "hidden")
+
+
 class App(tk.Tk):
+    ROWS, ROW_H, LIST_X, LIST_W, LIST_Y = 5, 44, 200, 560, 228
+
     def __init__(self):
         super().__init__()
+        load_fonts()
         self.title("Anno Mille · установка")
-        self.configure(bg=BG)
-        self.geometry("720x560")
-        self.minsize(640, 520)
+        self.geometry(f"{W}x{H}")
+        self.resizable(False, False)
+        self.configure(bg="#0c0c0d")
         try:
-            self.iconbitmap(os.path.join(install.data_root(), "tools", "icon.ico"))
+            self.iconbitmap(os.path.join(ROOT, "tools", "icon.ico"))
         except tk.TclError:
             pass
-        style = ttk.Style(self)
-        style.theme_use("clam")
-        style.configure("TProgressbar", troughcolor=PANEL, background=ACCENT, bordercolor=BG, lightcolor=ACCENT, darkcolor=ACCENT)
+        self.after(10, self.dark_titlebar)
 
-        tk.Label(self, text="Anno Mille", font=("Segoe UI Semibold", 30), fg=TEXT, bg=BG).pack(pady=(22, 0))
-        tk.Label(self, text="Год тысячный · сборка вокруг Millénaire · Minecraft 1.21.1 + NeoForge",
-                 font=("Segoe UI", 10), fg=MUTED, bg=BG).pack()
+        c = self.canvas = tk.Canvas(self, width=W, height=H, highlightthickness=0, bd=0, bg="#0c0c0d")
+        c.pack()
+        self.bg = Background()
+        self.bg_img = ImageTk.PhotoImage(self.bg.first)
+        self.bg_item = c.create_image(0, 0, anchor="nw", image=self.bg_img)
 
-        tk.Label(self, text="1. Создай в лаунчере профиль Minecraft 1.21.1 + NeoForge 21.1.264 и запусти его один раз.\n"
-                            "2. Выбери этот профиль ниже и нажми «Установить».",
-                 font=("Segoe UI", 10), fg=TEXT, bg=BG, justify="left").pack(anchor="w", padx=28, pady=(18, 8))
+        try:
+            head = Image.open(os.path.join(ROOT, "tools", "installer_header.png"))
+            self.head = ImageTk.PhotoImage(head)
+            c.create_image(W // 2, 92, image=self.head)
+        except OSError:
+            c.create_text(W // 2, 92, text="ANNO MILLE", fill=TEXT, font=("Cinzel", 40))
+        c.create_text(W // 2, 162, text="Г О Д   Т Ы С Я Ч Н Ы Й   ·   M I L L É N A I R E", fill=MUTED, font=(FONT, 9))
 
-        box = tk.Frame(self, bg=PANEL)
-        box.pack(fill="x", padx=28)
-        self.var = tk.StringVar()
-        self.list = tk.Listbox(box, height=6, bg=PANEL, fg=TEXT, selectbackground="#3a3a42", selectforeground=TEXT,
-                               highlightthickness=0, borderwidth=0, font=("Segoe UI", 10), activestyle="none")
-        self.list.pack(fill="x", padx=8, pady=8)
-        self.folders = find_game_folders()
-        for i, (label, path, ok) in enumerate(self.folders):
-            self.list.insert("end", f"  {label}")
-            self.list.itemconfig(i, fg=TEXT if ok else (MUTED if ok is None else "#8a6a6a"))
-        if self.folders:
-            self.list.selection_set(0)
-        self.list.bind("<<ListboxSelect>>", lambda e: self.show_path())
+        c.create_text(self.LIST_X + 4, self.LIST_Y - 20, anchor="w", text="Куда установить", fill=MUTED, font=(FONT, 10))
+        c.create_text(self.LIST_X + self.LIST_W - 4, self.LIST_Y - 20, anchor="e",
+                      text="нужен профиль Minecraft 1.21.1 + NeoForge", fill=DIM, font=(FONT, 9))
+        self.row_imgs = {k: pill(self.LIST_W, self.ROW_H - 8, *v, radius=14) for k, v in {
+            "n": ((255, 255, 255, 8), (255, 255, 255, 26)), "h": ((255, 255, 255, 16), (255, 255, 255, 70)),
+            "s": ((255, 255, 255, 24), (255, 255, 255, 190))}.items()}
+        self.folders, self.sel, self.offset, self.hover_row, self.rows = find_game_folders(), 0, 0, None, []
+        for i in range(self.ROWS):
+            y = self.LIST_Y + i * self.ROW_H + self.ROW_H // 2
+            img = c.create_image(W // 2, y, image=self.row_imgs["n"])
+            dot = c.create_text(self.LIST_X + 22, y, text="", fill=TEXT, font=(FONT_B, 11))
+            lab = c.create_text(self.LIST_X + 40, y, anchor="w", text="", fill=TEXT, font=(FONT, 11))
+            tag = c.create_text(self.LIST_X + self.LIST_W - 22, y, anchor="e", text="", fill=MUTED, font=(FONT, 9))
+            self.rows.append((img, dot, lab, tag))
+            for item in (img, dot, lab, tag):
+                c.tag_bind(item, "<Button-1>", lambda e, i=i: self.choose(i))
+                c.tag_bind(item, "<Enter>", lambda e, i=i: self.set_hover(i))
+                c.tag_bind(item, "<Leave>", lambda e: self.set_hover(None))
+        c.bind("<MouseWheel>", self.wheel)
+        list_bottom = self.LIST_Y + self.ROWS * self.ROW_H
+        self.empty = c.create_text(W // 2, self.LIST_Y + 90, text="Лаунчеры не найдены. Выбери папку игры вручную.",
+                                   fill=MUTED, font=(FONT, 11), state="hidden")
+        self.path_txt = c.create_text(self.LIST_X + 4, list_bottom + 16, anchor="w", text="", fill=DIM, font=(FONT, 9))
+        self.other = Button(self, self.LIST_X + self.LIST_W - 70, list_bottom + 16, 140, 30, "Другая папка…", self.pick)
 
-        row = tk.Frame(self, bg=BG)
-        row.pack(fill="x", padx=28, pady=(6, 0))
-        self.path_label = tk.Label(row, text="", font=("Segoe UI", 9), fg=MUTED, bg=BG, anchor="w")
-        self.path_label.pack(side="left", fill="x", expand=True)
-        self.btn(row, "Другая папка…", self.pick).pack(side="right")
-        self.show_path()
+        self.go = Button(self, W // 2, 526, 240, 50, "Установить", self.start, big=True)
+        self.status = c.create_text(W // 2, 510, text="", fill=MUTED, font=(FONT, 10), state="hidden")
+        self.bar_bg = c.create_rectangle(W // 2 - 220, 532, W // 2 + 220, 534, fill="#2a2a2e", width=0, state="hidden")
+        self.bar = c.create_rectangle(W // 2 - 220, 532, W // 2 - 220, 534, fill=TEXT, width=0, state="hidden")
+        self.details = c.create_text(W // 2, 540, text="", fill=DIM, font=(FONT, 9), state="hidden")
+        c.tag_bind(self.details, "<Button-1>", lambda e: self.show_log())
+        self.close = Button(self, W // 2, 526, 200, 46, "Закрыть", self.destroy, big=True)
+        self.close.set(visible=False)
+        c.create_text(W // 2, H - 14, text="Minecraft 1.21.1  ·  NeoForge 21.1.264  ·  около 190 модов", fill=DIM, font=(FONT, 9))
 
-        self.go = self.btn(self, "Установить", self.start, big=True)
-        self.go.pack(pady=(16, 8))
-        self.bar = ttk.Progressbar(self, mode="determinate")
-        self.bar.pack(fill="x", padx=28)
-        self.log = tk.Text(self, height=8, bg=PANEL, fg=TEXT, borderwidth=0, highlightthickness=0, font=("Consolas", 9),
-                           wrap="word", state="disabled")
-        self.log.pack(fill="both", expand=True, padx=28, pady=(10, 20))
+        self.log_lines, self.busy = [], False
+        self.redraw()
+        self.animate()
 
-    def btn(self, parent, text, cmd, big=False):
-        return tk.Button(parent, text=text, command=cmd, bg="#2a2a30" if not big else ACCENT, fg=TEXT if not big else "#141416",
-                         activebackground="#3a3a42" if not big else "#f2d58e", relief="flat", cursor="hand2",
-                         font=("Segoe UI Semibold", 13 if big else 10), padx=28 if big else 12, pady=8 if big else 4, borderwidth=0)
+    # --- оформление окна
+    def dark_titlebar(self):
+        try:
+            hwnd = ctypes.windll.user32.GetParent(self.winfo_id())
+            ctypes.windll.dwmapi.DwmSetWindowAttribute(hwnd, 20, ctypes.byref(ctypes.c_int(1)), 4)
+            ctypes.windll.dwmapi.DwmSetWindowAttribute(hwnd, 35, ctypes.byref(ctypes.c_int(0x0d0c0c)), 4)  # цвет заголовка
+        except Exception:
+            pass
+
+    def animate(self):
+        self.bg_img = ImageTk.PhotoImage(self.bg.next())
+        self.canvas.itemconfig(self.bg_item, image=self.bg_img)
+        self.after(66, self.animate)
+
+    # --- список профилей
+    def redraw(self):
+        c = self.canvas
+        c.itemconfig(self.empty, state="normal" if not self.folders else "hidden")
+        for i, (img, dot, lab, tag) in enumerate(self.rows):
+            k = self.offset + i
+            visible = k < len(self.folders)
+            for item in (img, dot, lab, tag):
+                c.itemconfig(item, state="normal" if visible and not self.busy_hidden() else "hidden")
+            if not visible:
+                continue
+            label, path, ok = self.folders[k]
+            t, col = tag_of(path, ok)
+            key = "s" if k == self.sel else ("h" if i == self.hover_row else "n")
+            c.itemconfig(img, image=self.row_imgs[key])
+            c.itemconfig(dot, text="◆" if k == self.sel else "◇", fill=TEXT if k == self.sel else DIM)
+            c.itemconfig(lab, text=label if len(label) < 58 else label[:56] + "…", fill=TEXT if ok is not False else MUTED)
+            c.itemconfig(tag, text=t, fill=col)
+        f = self.selected()
+        p = f[1] if f else ""
+        c.itemconfig(self.path_txt, text=p if len(p) < 62 else "…" + p[-60:])
+
+    def busy_hidden(self):
+        return False
 
     def selected(self):
-        sel = self.list.curselection()
-        return self.folders[sel[0]] if sel else None
+        return self.folders[self.sel] if self.folders else None
 
-    def show_path(self):
-        f = self.selected()
-        self.path_label.config(text=f[1] if f else "Папка не выбрана")
+    def choose(self, i):
+        if self.busy or self.offset + i >= len(self.folders):
+            return
+        self.sel = self.offset + i
+        self.redraw()
+
+    def set_hover(self, i):
+        self.hover_row = i
+        self.canvas.config(cursor="hand2" if i is not None else "")
+        self.redraw()
+
+    def wheel(self, e):
+        if len(self.folders) > self.ROWS:
+            self.offset = max(0, min(len(self.folders) - self.ROWS, self.offset + (-1 if e.delta > 0 else 1)))
+            self.redraw()
 
     def pick(self):
+        if self.busy:
+            return
         p = filedialog.askdirectory(title="Папка игры профиля (там, где mods и config)")
         if p:
             p = os.path.normpath(p)
-            self.folders.append(("Выбрано вручную", p, suits(profile_info(p))))
-            self.list.insert("end", "  Выбрано вручную · " + os.path.basename(p))
-            self.list.selection_clear(0, "end")
-            self.list.selection_set("end")
-            self.show_path()
+            self.folders.append(("Выбрано вручную · " + os.path.basename(p), p, suits(profile_info(p))))
+            self.sel = len(self.folders) - 1
+            self.offset = max(0, len(self.folders) - self.ROWS)
+            self.redraw()
 
+    # --- установка
     def write(self, msg):
         def do():
-            self.log.config(state="normal")
-            self.log.insert("end", msg + "\n")
-            self.log.see("end")
-            self.log.config(state="disabled")
+            self.log_lines.append(msg)
+            self.canvas.itemconfig(self.status, text=msg if len(msg) < 90 else msg[:88] + "…")
         self.after(0, do)
 
     def progress(self, done, total):
-        self.after(0, lambda: self.bar.config(maximum=total, value=done))
+        def do():
+            x0 = W // 2 - 220
+            self.canvas.coords(self.bar, x0, 532, x0 + 440 * done / max(total, 1), 534)
+        self.after(0, do)
 
     def start(self):
         f = self.selected()
@@ -172,19 +337,32 @@ class App(tk.Tk):
         game, ok = f[1], f[2]
         if ok is False:
             v, l = profile_info(game)
-            text = (f"Этот профиль на Minecraft {v} ({l}).\n\n"
-                    "Сборке нужен Minecraft 1.21.1 с NeoForge, иначе игра не запустится. "
-                    "Создай в лаунчере такой профиль и выбери его.\n\nВсё равно установить сюда?")
-            if not messagebox.askyesno("Anno Mille", text):
+            if not messagebox.askyesno("Anno Mille", f"Этот профиль на Minecraft {v} ({l}).\n\nСборке нужен Minecraft 1.21.1 с NeoForge, "
+                                                     "иначе игра не запустится. Создай в лаунчере такой профиль и выбери его.\n\nВсё равно установить сюда?"):
                 return
-        self.go.config(state="disabled", text="Устанавливаю…")
+        self.busy = True
+        self.go.set(visible=False)
+        self.other.set(enabled=False)
+        c = self.canvas
+        for item in (self.status, self.bar_bg, self.bar):
+            c.itemconfig(item, state="normal")
+        c.itemconfig(self.status, fill=MUTED)
+        c.itemconfig(self.details, state="hidden")
+        self.progress(0, 1)
         threading.Thread(target=self.work, args=(game,), daemon=True).start()
 
     def work(self, game):
         try:
+            if os.environ.get("ANNO_DEMO"):          # показ вида окна без установки
+                import time
+                self.write("Скачиваю 199 файлов (уже скачанные пропускаю)...")
+                for i in range(0, 200, 5):
+                    self.progress(i, 199); time.sleep(0.05)
+                if os.environ["ANNO_DEMO"] == "done":
+                    self.after(0, self.done)
+                return
             install.run(game, log=self.write, progress=self.progress)
-            self.after(0, lambda: messagebox.showinfo("Anno Mille", "Готово! Выдели игре 8 ГБ памяти и запускай."))
-            self.after(0, lambda: self.go.config(text="Установлено ✓"))
+            self.after(0, self.done)
         except Exception as e:
             import socket, urllib.error
             if isinstance(e, (urllib.error.URLError, socket.timeout, ConnectionError, TimeoutError)):
@@ -192,11 +370,56 @@ class App(tk.Tk):
             elif isinstance(e, PermissionError):
                 hint = "Windows не дала записать файл. Закрой игру и лаунчер и попробуй ещё раз."
             else:
-                hint = "Попробуй ещё раз. Если ошибка повторится, пришли этот текст автору сборки."
+                hint = "Что-то пошло не так. Попробуй ещё раз, а если не выйдет, пришли подробности автору."
             self.write(f"Ошибка: {e}")
-            self.after(0, lambda: messagebox.showerror("Anno Mille", f"{hint}\n\nПодробности: {e}"))
-            self.after(0, lambda: self.go.config(state="normal", text="Попробовать ещё раз"))
+            self.after(0, lambda: self.failed(hint))
+
+    def done(self):
+        c = self.canvas
+        self.progress(1, 1)
+        c.itemconfig(self.status, text="Готово. Открой лаунчер, выбери этот профиль и выдели игре 8 ГБ памяти.", fill=TEXT)
+        c.itemconfig(self.bar_bg, state="hidden")
+        c.itemconfig(self.bar, state="hidden")
+        c.coords(self.status, W // 2, 494)
+        self.close.set(visible=True)
+        self.show_details_link()
+
+    def failed(self, hint):
+        c = self.canvas
+        c.itemconfig(self.status, text=hint, fill=BAD)
+        c.itemconfig(self.bar_bg, state="hidden")
+        c.itemconfig(self.bar, state="hidden")
+        c.coords(self.status, W // 2, 494)
+        self.busy = False
+        self.other.set(enabled=True)
+        self.go.set(text="Попробовать ещё раз", visible=True)
+        self.show_details_link()
+
+    def show_details_link(self):
+        self.canvas.itemconfig(self.details, text="подробности установки", state="normal")
+        self.canvas.coords(self.details, W // 2, 562)
+
+    def show_log(self):
+        top = tk.Toplevel(self, bg="#0c0c0d")
+        top.title("Anno Mille · подробности")
+        top.geometry("720x420")
+        t = tk.Text(top, bg="#121214", fg=TEXT, insertbackground=TEXT, borderwidth=0, highlightthickness=0,
+                    font=("Consolas", 9), wrap="word", padx=14, pady=12)
+        t.pack(fill="both", expand=True)
+        t.insert("end", "\n".join(self.log_lines))
+        t.config(state="disabled")
 
 
 if __name__ == "__main__":
-    App().mainloop()
+    app = App()
+    shot = os.environ.get("ANNO_SHOT")          # для проверки вида: снимок окна и выход
+    if shot:
+        def snap():
+            from PIL import ImageGrab
+            x, y = app.canvas.winfo_rootx(), app.canvas.winfo_rooty()
+            ImageGrab.grab((x, y, x + W, y + H)).save(shot)
+            app.destroy()
+        if os.environ.get("ANNO_DEMO"):
+            app.after(800, app.start)
+        app.after(int(os.environ.get("ANNO_SHOT_MS", "2500")), snap)
+    app.mainloop()

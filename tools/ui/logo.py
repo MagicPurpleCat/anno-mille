@@ -7,8 +7,9 @@ import math, os, sys
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-CINZEL = os.path.join(HERE, "src", "Cinzel.ttf")
-INTER = os.path.join(HERE, "src", "Inter-Medium.ttf")
+_FD = os.path.join(HERE, "src") if os.path.isdir(os.path.join(HERE, "src")) else os.path.join(HERE, "fonts")
+CINZEL = os.path.join(_FD, "Cinzel.ttf")
+INTER = os.path.join(_FD, "Inter-Medium.ttf")
 TEXT, GOLD, MUTED, BG = (244, 244, 245), (232, 194, 106), (160, 160, 168), (14, 14, 16)
 
 

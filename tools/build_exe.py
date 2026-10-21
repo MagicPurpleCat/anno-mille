@@ -11,6 +11,8 @@ T = os.path.join(ROOT, "tools")
 icon = os.path.join(T, "icon.ico")
 Image.open(os.path.join(T, "icon.png")).save(icon, sizes=[(16, 16), (32, 32), (48, 48), (64, 64), (128, 128), (256, 256)])
 sep = os.pathsep
+import runpy
+runpy.run_path(os.path.join(T, "ui", "installer_header.py"))  # шапка окна из логотипа
 PyInstaller.__main__.run([
     os.path.join(T, "installer_gui.py"), "--onefile", "--windowed", "--noconfirm", "--clean",
     "--name", "AnnoMille-Setup", "--icon", icon,
@@ -19,6 +21,9 @@ PyInstaller.__main__.run([
     "--add-data", f"{os.path.join(T, 'manifest.txt')}{sep}tools",
     "--add-data", f"{os.path.join(T, 'expected_mods.txt')}{sep}tools",
     "--add-data", f"{icon}{sep}tools",
+    "--add-data", f"{os.path.join(T, 'installer_header.png')}{sep}tools",
+    "--add-data", f"{os.path.join(T, 'ui', 'fonts')}{sep}tools/ui/fonts",
+    "--hidden-import", "PIL.ImageTk",
     "--hidden-import", "PIL.Image",
 ])
 print("ok:", os.path.join(ROOT, "dist", "AnnoMille-Setup.exe"))
