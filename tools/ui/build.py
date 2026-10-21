@@ -203,8 +203,8 @@ def text_image(size, text, font_path, max_w, max_h, color, glow=True):
     return im
 
 
-logo = Image.new("RGBA", (1024, 256), (0, 0, 0, 0))
-logo.alpha_composite(text_image((1024, 176), "Anno Mille", FONT_SEMI, 940, 120, (*TEXT, 255)), (0, 0))
+import logo as LOGO  # знак-ромб с M + надпись ANNO MILLE (Cinzel), см. logo.py
+logo = LOGO.menu_logo("C")
 for f in ("minecraft.png", "minceraft.png"):
     logo.save(out_path(*G, "title", f))
     shutil.copy(os.path.join(VAN, "textures", "gui", "title", "minecraft.png.mcmeta"), out_path(*G, "title", f + ".mcmeta"))
@@ -267,7 +267,7 @@ report.append("white titles: " + ", ".join(f"{k if isinstance(k, str) else k[0] 
 json.dump({"pack": {"pack_format": 34, "description": "§fAnno Mille §7— интерфейс"}},
           open(out_path("pack.mcmeta"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 icon = Image.new("RGBA", (128, 128), (*BG, 255))
-icon.alpha_composite(text_image((128, 128), "1000", FONT_SEMI, 110, 60, (*TEXT, 255)))
+icon.alpha_composite(LOGO.emblem(120, "C"), (4, 4))
 icon.save(out_path("pack.png"))
 
 open(os.path.join(HERE, "out", "report.txt"), "w", encoding="utf-8").write("\n".join(report) + "\n")

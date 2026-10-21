@@ -37,7 +37,9 @@ def glow_text(img, xy, text, font, fill=TEXT, blur=14):
 # 1. Баннер
 W, H = 1600, 520
 b = cover(bgframe, W, H).convert("RGBA")
-glow_text(b, (W // 2, 205), "Anno Mille", F(150))
+lg = Image.open(os.path.join(PACK, "minecraft/textures/gui/title/minecraft.png")).convert("RGBA").crop((0, 0, 1024, 176))
+lg = lg.resize((1100, 189), Image.LANCZOS)
+b.alpha_composite(lg, ((W - 1100) // 2, 110))
 d = ImageDraw.Draw(b)
 center_text(d, (W // 2, 318), "Год тысячный · сборка вокруг Millénaire", F(36, True), (210, 210, 216))
 center_text(d, (W // 2, 372), "Minecraft 1.21.1  ·  NeoForge  ·  185 модов  ·  145 квестов  ·  4 дерева навыков", F(24, True), MUTED)

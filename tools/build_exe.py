@@ -9,7 +9,7 @@ import PyInstaller.__main__
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 T = os.path.join(ROOT, "tools")
 icon = os.path.join(T, "icon.ico")
-Image.open(os.path.join(ROOT, "pack", "resourcepacks", "MillenaireUI", "pack.png")).save(icon, sizes=[(16, 16), (32, 32), (48, 48), (128, 128)])
+Image.open(os.path.join(T, "icon.png")).save(icon, sizes=[(16, 16), (32, 32), (48, 48), (64, 64), (128, 128), (256, 256)])
 sep = os.pathsep
 PyInstaller.__main__.run([
     os.path.join(T, "installer_gui.py"), "--onefile", "--windowed", "--noconfirm", "--clean",
