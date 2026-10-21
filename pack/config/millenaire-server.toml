@@ -11,15 +11,15 @@
 	#Minimum distance between two villages (blocks)
 	# Default: 500
 	# Range: 300 ~ 1000
-	minVillageDistance = 500
+	minVillageDistance = 1000
 	#Minimum distance between two lone buildings (blocks)
 	# Default: 500
 	# Range: 300 ~ 1000
-	minLoneBuildingDistance = 500
+	minLoneBuildingDistance = 800
 	#Minimum distance between a village and a lone building (blocks)
 	# Default: 250
 	# Range: 100 ~ 800
-	minVillageLoneBuildingDistance = 250
+	minVillageLoneBuildingDistance = 400
 	#Protected area around world spawn where nothing generates (blocks)
 	# Default: 250
 	# Range: 0 ~ 500

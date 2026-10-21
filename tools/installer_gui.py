@@ -394,6 +394,8 @@ class App(tk.Tk):
             import socket, urllib.error
             if isinstance(e, (urllib.error.URLError, socket.timeout, ConnectionError, TimeoutError)):
                 hint = "Не удалось скачать файлы. Проверь интернет и попробуй ещё раз."
+            elif isinstance(e, install.GameRunning):
+                hint = "Игра сейчас открыта. Закрой Minecraft и нажми «Установить» ещё раз."
             elif isinstance(e, PermissionError):
                 hint = "Windows не дала записать файл. Закрой игру и лаунчер и попробуй ещё раз."
             else:

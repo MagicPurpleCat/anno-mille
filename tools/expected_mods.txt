@@ -137,6 +137,7 @@ mcw-mcwstairs-1.0.2-mc1.21.1neoforge.jar
 mcw-mcwwindows-2.4.2-mc1.21.1neoforge.jar
 mcw-roofs-2.3.2-mc1.21.1neoforge.jar
 mcw-trapdoors-1.1.5-mc1.21.1neoforge.jar
+mcwifipnp-1.9.0-1.21-neoforge.jar
 medieval_buildings-1.21.1-1.1.1-neoforge.jar
 medieval_paintings-1.21.1-7.0.jar
 melody_neoforge_1.0.10_MC_1.21.jar

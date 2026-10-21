@@ -2,7 +2,7 @@
 
 Minecraft 1.21.1, NeoForge 21.1.264. Точные версии файлов, которые ставит установщик. Ссылки ведут на страницы авторов.
 
-## Моды (187)
+## Моды (188)
 
 | Мод | Версия | Файл | Источник |
 |---|---|---|---|
@@ -114,6 +114,7 @@ Minecraft 1.21.1, NeoForge 21.1.264. Точные версии файлов, к�
 | macaws-stairs | 1.0.2 | `mcw-mcwstairs-1.0.2-mc1.21.1neoforge.jar` | https://modrinth.com/project/macaws-stairs |
 | macaws-trapdoors | 1.1.5 | `mcw-trapdoors-1.1.5-mc1.21.1neoforge.jar` | https://modrinth.com/project/macaws-trapdoors |
 | macaws-windows | 2.4.2 | `mcw-mcwwindows-2.4.2-mc1.21.1neoforge.jar` | https://modrinth.com/project/macaws-windows |
+| mcwifipnp | 1.9.0 | `mcwifipnp-1.9.0-1.21-neoforge.jar` | https://modrinth.com/project/mcwifipnp |
 | medieval-buildings | 1.1.1 | `medieval_buildings-1.21.1-1.1.1-neoforge.jar` | https://modrinth.com/project/medieval-buildings |
 | medieval-paintings | 7.0 | `medieval_paintings-1.21.1-7.0.jar` | https://modrinth.com/project/medieval-paintings |
 | melody | 1.0.10-1.21-neoforge | `melody_neoforge_1.0.10_MC_1.21.jar` | https://modrinth.com/project/melody |

@@ -193,6 +193,9 @@ def _fix_animations(game, pack):
         if isinstance(o, str) and o.strip() == "-":
             changed = True
             return "0"
+        if isinstance(o, str) and re.search(r"\bnan\b", o):  # «nan» GeckoLib тоже не понимает
+            changed = True
+            return re.sub(r"\bnan\b", "0", o)
         return o
     for jar in os.listdir(os.path.join(game, "mods")):
         if not jar.endswith(".jar"):
@@ -218,8 +221,61 @@ def _fix_animations(game, pack):
     return fixed
 
 
+# Что оставляем от Excalibur в textures/entity и optifine/random/entity: блоки-сущности и снаряды, но не мобов.
+EXCALIBUR_KEEP = {"banner", "banner_base.png", "bed", "bell", "chest", "decorated_pot", "shield", "shield_base.png",
+                  "shield_base_nopattern.png", "signs", "conduit", "enchanting_table_book.png", "beacon_beam.png",
+                  "end_portal.png", "end_gateway_beam.png", "boat", "chest_boat", "minecart.png", "arrow.png",
+                  "trident.png", "trident_riptide.png", "projectiles", "experience_orb.png", "explosion.png",
+                  "fishing_hook.png", "lead_knot.png", "elytra.png", "armorstand", "end_crystal"}
+EXCALIBUR_CEM = re.compile(r"(chest|chest_large|ender_chest|trapped_chest|trapped_chest_large|enchanting_book|lectern_book)\.jem$")
+
+
+def _excalibur_mob_file(name):
+    m = re.match(r"assets/minecraft/(?:textures|optifine/random)/entity/([^/]+)", name)
+    if m:
+        return m.group(1) not in EXCALIBUR_KEEP
+    m = re.match(r"assets/minecraft/optifine/cem/(.+)", name)
+    return bool(m) and not EXCALIBUR_CEM.match(m.group(1))
+
+
+def _fix_excalibur(game):
+    """Excalibur перекрашивает мобов под свои модели, а модели мобов задаёт Fresh Animations.
+    Вместе получаются мобы с текстурой не на своих местах, поэтому мобов из Excalibur убираем."""
+    path = os.path.join(game, "resourcepacks", "Excalibur_V1.21.1.zip")
+    if not os.path.exists(path):
+        return 0
+    with zipfile.ZipFile(path) as z:
+        drop = [n for n in z.namelist() if _excalibur_mob_file(n) and not n.endswith("/")]
+        if not drop:
+            return 0
+        tmp = path + ".tmp"
+        with zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED) as out:
+            for info in z.infolist():
+                if not _excalibur_mob_file(info.filename):
+                    out.writestr(info, z.read(info))
+    _make_writable(path)
+    os.replace(tmp, path)
+    return len(drop)
+
+
+class GameRunning(RuntimeError):
+    pass
+
+
+def game_running(game):
+    """Пока игра открыта, её лог занят. Открытая игра при выходе перезапишет квесты старой копией из памяти."""
+    p = os.path.join(game, "logs", "latest.log")
+    try:
+        os.rename(p, p)
+    except OSError as e:
+        return getattr(e, "winerror", None) == 32
+    return False
+
+
 def run(game, log=print, progress=lambda done, total: None):
     root = data_root()
+    if game_running(game):
+        raise GameRunning("игра с этим профилем сейчас запущена. Закрой Minecraft и запусти установку ещё раз.")
     os.makedirs(game, exist_ok=True)
 
     log("Ищу файлы модов...")
@@ -241,6 +297,9 @@ def run(game, log=print, progress=lambda done, total: None):
             progress(done, len(items))
     log(f"Готово: новых файлов {new}, уже было {len(items) - new}.")
     remove_duplicates(game, log)
+    n = _fix_excalibur(game)
+    if n:
+        log(f"Excalibur: убрал {n} текстур мобов, чтобы не спорили с Fresh Animations.")
 
     log("Копирую настройки, квесты, интерфейс и навыки...")
     skipped = []
