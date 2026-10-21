@@ -79,7 +79,7 @@ def find_game_folders():
     return [(NEW, os.path.join(APPDATA, ".minecraft"), True)] + sorted(found, key=lambda f: order[f[2]])
 
 
-NEW = "Новый: NeoForge 1.21.1 · TLauncher / официальный лаунчер"
+NEW = "Новый профиль Minecraft 1.21.1 + NeoForge"
 
 
 def tag_of(path, ok):
@@ -301,7 +301,7 @@ class App(tk.Tk):
             if not visible:
                 continue
             label, path, ok = self.folders[k]
-            t, col = ("скачаю NeoForge", MUTED) if label == NEW else tag_of(path, ok)
+            t, col = ("выбор лаунчера", MUTED) if label == NEW else tag_of(path, ok)
             key = "s" if k == self.sel else ("h" if i == self.hover_row else "n")
             c.itemconfig(img, image=self.row_imgs[key])
             c.itemconfig(dot, text="◆" if k == self.sel else "◇", fill=TEXT if k == self.sel else DIM)
@@ -362,8 +362,20 @@ class App(tk.Tk):
         if not f:
             messagebox.showwarning("Anno Mille", "Выбери папку игры.")
             return
-        game, ok = f[1], f[2]
-        if ok is False:
+        game, ok, neo = f[1], f[2], False
+        self.done_msg = "Готово. Открой лаунчер, выбери этот профиль и выдели игре 8 ГБ памяти."
+        if f[0] == NEW:
+            found = install.launchers() or [("Официальный лаунчер / TLauncher", "mc")]
+            choice = found[0] if len(found) == 1 else self.ask_launcher(found)
+            if not choice:
+                return
+            if choice[1] == "prism":
+                game = install.prism_instance()
+                self.done_msg = "Готово. В Prism Launcher запусти профиль «Anno Mille»."
+            else:
+                neo = True
+                self.done_msg = f"Готово. В {choice[0]} выбери версию {install.NEO_ID} и выдели игре 8 ГБ памяти."
+        elif ok is False:
             v, l = profile_info(game)
             if not messagebox.askyesno("Anno Mille", f"Этот профиль на Minecraft {v} ({l}).\n\nСборке нужен Minecraft 1.21.1 с NeoForge, "
                                                      "иначе игра не запустится. Создай в лаунчере такой профиль и выбери его.\n\nВсё равно установить сюда?"):
@@ -379,7 +391,27 @@ class App(tk.Tk):
         self.progress(0, 1)
         gc.collect()
         gc.disable()      # чтобы сборщик мусора не запускался в потоке установки (см. animate)
-        threading.Thread(target=self.work, args=(game, f[0] == NEW), daemon=True).start()
+        threading.Thread(target=self.work, args=(game, neo), daemon=True).start()
+
+    def ask_launcher(self, found):
+        """Окно «В какой лаунчер установить?»: кнопка на каждый найденный лаунчер. Возвращает выбор или None."""
+        top = tk.Toplevel(self, bg="#0c0c0d", padx=28, pady=22)
+        top.title("Anno Mille")
+        top.resizable(False, False)
+        top.transient(self)
+        res = []
+        tk.Label(top, text="В какой лаунчер установить?", bg="#0c0c0d", fg=TEXT, font=(FONT_B, 12)).pack(pady=(0, 14))
+        for item in found:
+            tk.Button(top, text=item[0], width=34, bg="#1c1c20", fg=TEXT, activebackground="#2a2a30", activeforeground=TEXT,
+                      relief="flat", font=(FONT, 11), cursor="hand2",
+                      command=lambda item=item: (res.append(item), top.destroy())).pack(pady=4, ipady=4)
+        tk.Button(top, text="Отмена", bg="#0c0c0d", fg=MUTED, activebackground="#0c0c0d", activeforeground=TEXT,
+                  relief="flat", font=(FONT, 10), cursor="hand2", command=top.destroy).pack(pady=(10, 0))
+        top.update_idletasks()
+        top.geometry(f"+{self.winfo_rootx() + (W - top.winfo_width()) // 2}+{self.winfo_rooty() + (H - top.winfo_height()) // 2}")
+        top.grab_set()
+        self.wait_window(top)
+        return res[0] if res else None
 
     def work(self, game, neo=False):
         try:
@@ -413,7 +445,7 @@ class App(tk.Tk):
         self.busy = False
         c = self.canvas
         self.progress(1, 1)
-        c.itemconfig(self.status, text="Готово. Открой лаунчер, выбери этот профиль и выдели игре 8 ГБ памяти.", fill=TEXT)
+        c.itemconfig(self.status, text=self.done_msg, fill=TEXT)
         c.itemconfig(self.bar_bg, state="hidden")
         c.itemconfig(self.bar, state="hidden")
         c.coords(self.status, W // 2, 494)

@@ -323,6 +323,40 @@ def install_neoforge(mc, log=print):
     log(f"NeoForge {NEOFORGE} установлен: в лаунчере выбери версию {NEO_ID}.")
 
 
+def launchers():
+    """Найденные лаунчеры, где установщик сам создаёт профиль NeoForge 1.21.1: (название, способ)."""
+    appdata, local = os.environ.get("APPDATA", ""), os.environ.get("LOCALAPPDATA", "")
+    found = []
+    if os.path.isdir(os.path.join(appdata, ".tlauncher")):
+        found.append(("TLauncher", "mc"))
+    if os.path.exists(os.path.join(appdata, ".minecraft", "launcher_profiles.json")) or \
+            os.path.isdir(os.path.join(local, "Packages", "Microsoft.4297127D64EC6_8wekyb3d8bbwe")):
+        found.append(("Официальный лаунчер Minecraft", "mc"))
+    if os.path.isdir(os.path.join(appdata, "PrismLauncher")):
+        found.append(("Prism Launcher", "prism"))
+    return found
+
+
+def prism_instance(name="Anno Mille"):
+    """Создаёт (или находит) экземпляр Prism с Minecraft 1.21.1 + NeoForge; сам NeoForge Prism скачает при запуске."""
+    base, inst = os.path.join(os.environ.get("APPDATA", ""), "PrismLauncher"), "instances"
+    cfg = os.path.join(base, "prismlauncher.cfg")
+    if os.path.exists(cfg):
+        m = re.search(r"^InstanceDir=(.+)$", open(cfg, encoding="utf-8", errors="replace").read(), re.M)
+        inst = m.group(1).strip() if m else inst
+    d = os.path.join(base, inst, name)
+    os.makedirs(os.path.join(d, "minecraft"), exist_ok=True)
+    if not os.path.exists(os.path.join(d, "mmc-pack.json")):
+        json.dump({"formatVersion": 1, "components": [{"uid": "net.minecraft", "version": "1.21.1", "important": True},
+                                                      {"uid": "net.neoforged", "version": NEOFORGE}]},
+                  open(os.path.join(d, "mmc-pack.json"), "w", encoding="utf-8"), indent=2)
+    if not os.path.exists(os.path.join(d, "instance.cfg")):
+        open(os.path.join(d, "instance.cfg"), "w", encoding="utf-8").write(
+            f"[General]\nConfigVersion=1.2\nInstanceType=OneSix\nname={name}\niconKey=default\n"
+            "OverrideMemory=true\nMinMemAlloc=1024\nMaxMemAlloc=8192\n")
+    return os.path.join(d, "minecraft")
+
+
 class GameRunning(RuntimeError):
     pass
 
