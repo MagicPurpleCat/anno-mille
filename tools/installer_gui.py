@@ -1,6 +1,6 @@
 """Окно установщика Anno Mille в стиле фона главного меню: тёмный фон с живыми волнами, белый текст,
 полупрозрачные кнопки-«таблетки» с тонкой обводкой. Собирается в AnnoMille-Setup.exe командой tools/build_exe.py."""
-import ctypes, glob, io, json, os, sys, threading, zipfile, tkinter as tk
+import ctypes, glob, io, json, os, queue, sys, threading, zipfile, tkinter as tk
 from tkinter import filedialog, messagebox
 from PIL import Image, ImageDraw, ImageTk
 
@@ -244,8 +244,12 @@ class App(tk.Tk):
         c.create_text(W // 2, H - 14, text="Minecraft 1.21.1  ·  NeoForge 21.1.264  ·  около 190 модов", fill=DIM, font=(FONT, 9))
 
         self.log_lines, self.busy = [], False
+        # Фоновый поток установки не трогает окно сам: он кладёт действия в очередь, а главный поток их выполняет.
+        # Вызов Tk из другого потока приводит к падению «alloc: invalid block».
+        self.ui_queue = queue.Queue()
         self.redraw()
         self.animate()
+        self.pump()
 
     # --- оформление окна
     def dark_titlebar(self):
@@ -255,6 +259,17 @@ class App(tk.Tk):
             ctypes.windll.dwmapi.DwmSetWindowAttribute(hwnd, 35, ctypes.byref(ctypes.c_int(0x0d0c0c)), 4)  # цвет заголовка
         except Exception:
             pass
+
+    def ui(self, fn):
+        self.ui_queue.put(fn)
+
+    def pump(self):
+        try:
+            while True:
+                self.ui_queue.get_nowait()()
+        except queue.Empty:
+            pass
+        self.after(40, self.pump)
 
     def animate(self):
         self.bg_img = ImageTk.PhotoImage(self.bg.next())
@@ -321,13 +336,13 @@ class App(tk.Tk):
         def do():
             self.log_lines.append(msg)
             self.canvas.itemconfig(self.status, text=msg if len(msg) < 90 else msg[:88] + "…")
-        self.after(0, do)
+        self.ui(do)
 
     def progress(self, done, total):
         def do():
             x0 = W // 2 - 220
             self.canvas.coords(self.bar, x0, 532, x0 + 440 * done / max(total, 1), 534)
-        self.after(0, do)
+        self.ui(do)
 
     def start(self):
         f = self.selected()
@@ -359,10 +374,10 @@ class App(tk.Tk):
                 for i in range(0, 200, 5):
                     self.progress(i, 199); time.sleep(0.05)
                 if os.environ["ANNO_DEMO"] == "done":
-                    self.after(0, self.done)
+                    self.ui(self.done)
                 return
             install.run(game, log=self.write, progress=self.progress)
-            self.after(0, self.done)
+            self.ui(self.done)
         except Exception as e:
             import socket, urllib.error
             if isinstance(e, (urllib.error.URLError, socket.timeout, ConnectionError, TimeoutError)):
@@ -372,7 +387,7 @@ class App(tk.Tk):
             else:
                 hint = "Что-то пошло не так. Попробуй ещё раз, а если не выйдет, пришли подробности автору."
             self.write(f"Ошибка: {e}")
-            self.after(0, lambda: self.failed(hint))
+            self.ui(lambda: self.failed(hint))
 
     def done(self):
         c = self.canvas
