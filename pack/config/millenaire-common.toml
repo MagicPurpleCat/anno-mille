@@ -1,0 +1,52 @@
+#Per-category log levels (0=none, 1=basic, 2=detailed, 3=verbose).
+#Iso-legacy: individual Log* fields in MillConfigValues.
+#Change these at runtime by editing the TOML file — values reload automatically.
+[log]
+	#General AI, goal scheduling
+	# Default: 0
+	# Range: 0 ~ 3
+	ai = 0
+	#Navigation, waypoints, A*
+	# Default: 0
+	# Range: 0 ~ 3
+	pathfinding = 0
+	#Building, placement, paths
+	# Default: 0
+	# Range: 0 ~ 3
+	construction = 0
+	#All gathering handlers
+	# Default: 0
+	# Range: 0 ~ 3
+	gathering = 0
+	#Trade, selling
+	# Default: 0
+	# Range: 0 ~ 3
+	commerce = 0
+	#Village lifecycle, children, spawning
+	# Default: 0
+	# Range: 0 ~ 3
+	village = 0
+	#World generation, site validation
+	# Default: 0
+	# Range: 0 ~ 3
+	worldGen = 0
+	#Culture loading, translations
+	# Default: 0
+	# Range: 0 ~ 3
+	culture = 0
+	#Network packets
+	# Default: 0
+	# Range: 0 ~ 3
+	network = 0
+	#Chunk loading/unloading
+	# Default: 0
+	# Range: 0 ~ 3
+	chunkLoading = 0
+	#Inter-village relations
+	# Default: 0
+	# Range: 0 ~ 3
+	diplomacy = 0
+	#Miscellaneous
+	# Default: 0
+	# Range: 0 ~ 3
+	other = 0

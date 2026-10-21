@@ -1,0 +1,9 @@
+{
+ "container.farmersdelight.recipe_book.cookable": "§fShowing Cookable",
+ "container.farmersdelight.cooking_pot": "§fCooking Pot",
+ "container.farmersdelight.cooking_pot.served_on": "§fServed on: %s",
+ "container.farmersdelight.cooking_pot.not_heated": "§fNeeds heat from below",
+ "container.farmersdelight.cooking_pot.heated": "§fHeated",
+ "container.farmersdelight.basket": "§fBasket",
+ "container.farmersdelight.cabinet": "§fCabinet"
+}

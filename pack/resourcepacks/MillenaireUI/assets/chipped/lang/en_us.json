@@ -1,0 +1,10 @@
+{
+ "container.chipped.alchemy_bench": "§fAlchemy Bench",
+ "container.chipped.botanist_workbench": "§fBotanist's Workbench",
+ "container.chipped.carpenters_table": "§fCarpenter's Workbench",
+ "container.chipped.glassblower": "§fGlassblower's Workbench",
+ "container.chipped.loom_table": "§fShepherd's Workbench",
+ "container.chipped.mason_table": "§fMason's Workbench",
+ "container.chipped.tinkering_table": "§fTinkering Table",
+ "container.chipped.workbench": "§fWorkbench"
+}

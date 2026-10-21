@@ -1,0 +1,225 @@
+[general]
+	#Set to true to have only Vanilla-based shields enabled. Note that this removes mod-based Shield recipes from the game!
+	vanilla_only = false
+	#Will force the uncraftable shield tooltip (highlighted in red) that show on some shields to not appear. Useful for modpack makers who wish to change recipes
+	force_disable_uncraftable_tooltips = false
+	#Durability Multiplier for Tower Shield variants compared to their basic Shield counterparts
+	# Default: 1.25
+	# Range: 1.0 ~ 10.0
+	tower_shield_durability_multiplier = 1.25
+
+[shield_bash]
+	#Cooldown period for Shield Bashes
+	# Default: 30
+	# Range: 1 ~ 1000
+	cooldown = 30
+	#Cooldown period for Shield Bashes for Tower Shields
+	# Default: 50
+	# Range: 1 ~ 1000
+	cooldown_tower = 50
+	#Set to true to disable the Shield Bash feature. Shield bash enchantments will no longer have any effect
+	disabled = false
+
+	[vanilla.wood]
+		#Durability for Wood Shields
+		# Default: 104
+		# Range: 0 ~ 100000
+		durability = 104
+
+	[vanilla.stone]
+		#Durability for Stone Shields
+		# Default: 230
+		# Range: 0 ~ 100000
+		durability = 230
+
+	[vanilla.copper]
+		#Durability for Copper Shields
+		# Default: 400
+		# Range: 0 ~ 100000
+		durability = 400
+
+	[vanilla.iron]
+		#Durability for Iron Shields
+		# Default: 538
+		# Range: 0 ~ 100000
+		durability = 538
+
+	[vanilla.gold]
+		#Durability for Gold Shields
+		# Default: 192
+		# Range: 0 ~ 100000
+		durability = 192
+
+	[vanilla.diamond]
+		#Durability for Diamond Shields
+		# Default: 2560
+		# Range: 0 ~ 100000
+		durability = 2560
+
+	[vanilla.netherite]
+		#Durability for Netherite Shields
+		# Default: 3554
+		# Range: 0 ~ 100000
+		durability = 3554
+
+	[vanilla.obsidian]
+		#Durability for Obsidian Shields
+		# Default: 1600
+		# Range: 0 ~ 100000
+		durability = 1600
+		#Set to true to disable Obsidian Shields
+		disable = false
+
+	[modded_common.tin]
+		#Durability for Tin Shields
+		# Default: 320
+		# Range: 0 ~ 100000
+		durability = 320
+		#Set to true to disable Tin Shields
+		disable = false
+
+	[modded_common.bronze]
+		#Durability for Bronze Shields
+		# Default: 680
+		# Range: 0 ~ 100000
+		durability = 680
+		#Set to true to disable Bronze Shields
+		disable = false
+
+	[modded_common.steel]
+		#Durability for Steel Shields
+		# Default: 800
+		# Range: 0 ~ 100000
+		durability = 800
+		#Set to true to disable Steel Shields
+		disable = false
+
+	[modded_common.silver]
+		#Durability for Silver Shields
+		# Default: 216
+		# Range: 0 ~ 100000
+		durability = 216
+		#Set to true to disable Silver Shields
+		disable = false
+
+	[modded_common.electrum]
+		#Durability for Electrum Shields
+		# Default: 320
+		# Range: 0 ~ 100000
+		durability = 320
+		#Set to true to disable Electrum Shields
+		disable = false
+
+	[modded_common.lead]
+		#Durability for Lead Shields
+		# Default: 480
+		# Range: 0 ~ 100000
+		durability = 480
+		#Set to true to disable Lead Shields
+		disable = false
+
+	[modded_common.nickel]
+		#Durability for Nickel Shields
+		# Default: 420
+		# Range: 0 ~ 100000
+		durability = 420
+		#Set to true to disable Nickel Shields
+		disable = false
+
+	[modded_common.invar]
+		#Durability for Invar Shields
+		# Default: 720
+		# Range: 0 ~ 100000
+		durability = 720
+		#Set to true to disable Invar Shields
+		disable = false
+
+	[modded_common.constantan]
+		#Durability for Constantan Shields
+		# Default: 640
+		# Range: 0 ~ 100000
+		durability = 640
+		#Set to true to disable Constantan Shields
+		disable = false
+
+	[modded_common.platinum]
+		#Durability for Platinum Shields
+		# Default: 1536
+		# Range: 0 ~ 100000
+		durability = 1536
+		#Set to true to disable Platinum Shields
+		disable = false
+
+	[modded_common.aluminum]
+		#Durability for Aluminum Shields
+		# Default: 720
+		# Range: 0 ~ 100000
+		durability = 720
+		#Set to true to disable Aluminum Shields
+		disable = false
+
+	[modded_botania.manasteel]
+		#Durability for Manasteel Shields
+		# Default: 450
+		# Range: 0 ~ 100000
+		durability = 450
+
+	[modded_botania.terrasteel]
+		#Durability for Terrasteel Shields
+		# Default: 2920
+		# Range: 0 ~ 100000
+		durability = 2920
+
+	[modded_botania.elementium]
+		#Durability for Elementium Shields
+		# Default: 1080
+		# Range: 0 ~ 100000
+		durability = 1080
+
+	[modded_mekanism.osmium]
+		#Durability for Osmium Shields
+		# Default: 750
+		# Range: 0 ~ 100000
+		durability = 750
+
+	[modded_mekanism.lapis_lazuli]
+		#Durability for Lapis Lazuli Shields
+		# Default: 300
+		# Range: 0 ~ 100000
+		durability = 300
+
+	[modded_mekanism.refined_glowstone]
+		#Durability for Refined Glowstone Shields
+		# Default: 450
+		# Range: 0 ~ 100000
+		durability = 450
+
+	[modded_mekanism.refined_obsidian]
+		#Durability for Refined Obsidian Shields
+		# Default: 3750
+		# Range: 0 ~ 100000
+		durability = 3750
+
+	[modded_thermal.signalum]
+		#Durability for Signalum Shields
+		# Default: 2048
+		# Range: 0 ~ 100000
+		durability = 2048
+
+	[modded_thermal.lumium]
+		#Durability for Lumium Shields
+		# Default: 1280
+		# Range: 0 ~ 100000
+		durability = 1280
+
+	[modded_thermal.enderium]
+		#Durability for Enderium Shields
+		# Default: 3120
+		# Range: 0 ~ 100000
+		durability = 3120
+
+[modded_powered]
+	#Damage to FE Multiplier
+	# Default: 50
+	# Range: 0 ~ 1000000
+	damageToFEMultpier = 50

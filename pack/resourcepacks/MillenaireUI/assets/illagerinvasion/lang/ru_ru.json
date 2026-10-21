@@ -1,0 +1,8 @@
+{
+ "container.imbue": "§fНаполнить",
+ "container.imbue.atWrongLevel": "§fНеверный уровень зачарования предмета!",
+ "container.imbue.invalidEnchantment": "§fЗачарование на книге не может быть наполнено!",
+ "container.imbue.invalidItem": "§fПредмет не совместим с этим зачарованием!",
+ "container.imbue.notAtMaxLevel": "§fУровень зачарования книги слишком низок!",
+ "container.imbue.tooManyEnchantments": "§fВ книге слишком много зачарований!"
+}

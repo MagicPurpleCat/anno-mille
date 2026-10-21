@@ -1,0 +1,41 @@
+[general]
+	#Requires game restart! Set to true to remove the uncraftable tooltips for any uncraftable weapon (highlighted in red). Useful for modpack makers who wish to change recipes.|需要重启游戏！设置为 true 可移除所有不可合成武器（红色高亮）的提示，适合需要修改配方的整合包制作者。
+	force_disable_uncraftable_tooltips = false
+
+[integration]
+	#Set to true to fully disable integration with Shoulder Surfing Reloaded|设为 true 以完全禁用与 Shoulder Surfing Reloaded 的联动
+	disable_shoulder_surfing_integration = false
+
+[hud]
+	#Set to true to disable a new Crosshair for the Crossbow which visually shows inaccuracy, using the default Crosshair instead; false otherwise|设为 true 禁用弩的新版准星（显示散布），改用默认准星
+	disable_new_crosshairs_crossbow = false
+	#Set to true to disable a new Crosshair for Throwing Weapons which show the charge for them, using the default Crosshair instead; false otherwise|设为 true 禁用投掷武器的新版准星（显示蓄力），改用默认准星
+	disable_new_crosshairs_throwing_weapons = false
+	#Set to force compatibility crosshairs for Crosshairs and Throwing Weapons. This won't work if the new crosshairs are disabled|设为 true 强制使用兼容准星（十字准星与投掷武器）。若已禁用新版准星则无效
+	force_compatibility_crosshairs = false
+
+	[hud.quiver]
+		#Sets where the Quiver HUD Element should be aligned|设置箭袋 HUD 的对齐位置
+		#Allowed Values: TOP_LEFT, TOP_CENTER, TOP_RIGHT, CENTER_LEFT, CENTER, CENTER_RIGHT, BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT
+		quiver_hud_alignment = "BOTTOM_CENTER"
+		#Sets where on the X-axis the Quiver HUD element should be off-set from it's alignment point|设置箭袋 HUD 在 X 轴相对对齐点的偏移
+		# Default: -138
+		# Range: -400 ~ 400
+		quiver_hud_offset_x = -138
+		#Sets where on the Y-axis the Quiver HUD element should be off-set from it's alignment point|设置箭袋 HUD 在 Y 轴相对对齐点的偏移
+		# Default: 65
+		# Range: -400 ~ 400
+		quiver_hud_offset_y = 65
+
+	[hud.oil_uses]
+		#Sets where the Oil Uses HUD Element should be aligned|设置油使用次数 HUD 的对齐位置
+		#Allowed Values: TOP_LEFT, TOP_CENTER, TOP_RIGHT, CENTER_LEFT, CENTER, CENTER_RIGHT, BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT
+		oil_uses_alignment = "CENTER"
+		#Sets where on the X-axis the Oil Uses HUD element should be off-set from it's alignment point|设置油使用次数 HUD 在 X 轴相对对齐点的偏移
+		# Default: 0
+		# Range: -400 ~ 400
+		oil_uses_hud_offset_x = 0
+		#Sets where on the Y-axis the Oil Uses HUD element should be off-set from it's alignment point|设置油使用次数 HUD 在 Y 轴相对对齐点的偏移
+		# Default: 0
+		# Range: -400 ~ 400
+		oil_uses_hud_offset_y = 0

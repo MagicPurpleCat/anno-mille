@@ -1,0 +1,44 @@
+{
+	"shields": {
+		"republicScutum": {
+			"baseDurability": 420,
+			"materialFactor": 0.8999999761581421,
+			"weight": 6.0,
+			"maxBlockDamage": 11.0,
+			"repairable": false,
+			"enabled": true
+		},
+		"imperialScutum": {
+			"baseDurability": 420,
+			"materialFactor": 0.8999999761581421,
+			"weight": 6.0,
+			"maxBlockDamage": 11.0,
+			"repairable": false,
+			"enabled": true
+		},
+		"tureos": {
+			"baseDurability": 420,
+			"materialFactor": 0.8999999761581421,
+			"weight": 6.0,
+			"maxBlockDamage": 11.0,
+			"repairable": false,
+			"enabled": true
+		},
+		"hoplon": {
+			"baseDurability": 440,
+			"materialFactor": 1.5,
+			"weight": 7.0,
+			"maxBlockDamage": 12.0,
+			"repairable": false,
+			"enabled": true
+		},
+		"pelta": {
+			"baseDurability": 380,
+			"materialFactor": 0.800000011920929,
+			"weight": 3.0,
+			"maxBlockDamage": 7.0,
+			"repairable": false,
+			"enabled": true
+		}
+	}
+}

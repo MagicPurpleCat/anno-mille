@@ -1,0 +1,184 @@
+# || =========== [Horse Care] =========== ||
+[horse_care]
+	# || Do horses need to eat? (Default = True = Yes)
+	needFood = true
+	# || Do horses need to drink? (Default = True = Yes)
+	needWater = true
+	# || Enable Poop ticking on swem horses? (Default = True = Yes)
+	poopTick = true
+	# || Specify range (radius) that the horses search for food/water. The larger the  radius, the more lag it can cause per horse.
+	# || We recommend "15" (30b diameter) for servers.
+	# Default: 15
+	# Range: 5 ~ 40
+	intakeSearchRadius = 15
+	# || Specify in seconds the interval between each poop cycle.
+	# || We recommend '1800' (30min) for singleplayer, and '2700' (45min) for multiplayer.
+	# Default: 1800
+	# Range: > 1
+	poopInterval = 1800
+	# || Enable Pee ticking on swem horses? (Default = True = Yes)
+	peeTick = true
+	# || Specify in seconds the interval between each pee cycle.
+	# || We recommend '1500' (25min) for singleplayer, and '2700' (45min) for multiplayer.
+	# Default: 1500
+	# Range: > 1
+	peeInterval = 1500
+	# || Specify how many seconds it takes for the foal to growp up?
+	# || We recommend '1800' (30min) for singleplayer, and '28800' (8hr) for multiplayer.
+	# Default: 1800
+	# Range: > 1
+	foalAgeInSeconds = 1800
+	# || Specify how many minutes the Health Booster lasts for?
+	# || We recommend '600' ~(30mc days) for singleplayer, and '10,000' ~(504mc days / 7irl days) for multiplayer.
+	# Default: 600
+	# Range: > 1
+	healthBoosterTime = 600
+
+# || =========== [Horse Breeding] =========== ||
+[horse_breeding]
+	# || Enable Breeding Tokens? This limits breeding of horses to Tokens, prevents feed from escalating foal growth time, and limits use of canatazarite potions.
+	# || Enable if the server is multiplayer and has an economy.
+	tokensBreeding = false
+	#
+	# || Do horses stay in love mode forever? (Default = False = No)
+	# || If false, horses will only be in love mode for the amount of seconds specified in stallionLoveTime and mareLoveTime.
+	permanentLoveMode = false
+	#
+	# || Specify how many seconds the stallion stays in love mode (Only has an effect if permanentLoveMode is false).
+	# || We recommend '1800' (30min) for singleplayer, and '28800' (8hr) for multiplayer.
+	# Default: 1800
+	# Range: > 1
+	stallionLoveTimeInSeconds = 1800
+	#
+	# || Specify how many seconds the mare stays in love mode (Only has an effect if permanentLoveMode is false).
+	# || We recommend '1800' (30min) for singleplayer, and '28800' (8hr) for multiplayer.
+	# Default: 1800
+	# Range: > 1
+	mareLoveTimeInSeconds = 1800
+	#
+	# || Specify how many seconds it takes for the mare to give birth
+	# || Set to 1 to disable gestation period, and making the birth instant.
+	# || We recommend '1800' (30min) for singleplayer, and '28800' (8hr) for multiplayer.
+	# Default: 1800
+	# Range: > 1
+	mareGestationTimeInSeconds = 1800
+	#
+	# || Specify how many seconds it takes for the stallion to be able to breed again.
+	# || We recommend '900' (15min) for singleplayer, and '14400' (4hr) for multiplayer.
+	# Default: 900
+	# Range: > 1
+	stallionBreedingCooldownInSeconds = 900
+	#
+	# || Specify how many seconds it takes for the mare to be able to breed again.
+	# || We recommend '1800' (30min) for singleplayer, and '28800' (8hr) for multiplayer.
+	# Default: 1800
+	# Range: > 1
+	mareBreedingCooldownInSeconds = 1800
+	#
+	# || Specify how many times a stallion can breed before it is infertile.
+	# || Disable infertility option by setting it to '0'.
+	# Default: 0
+	# Range: > 0
+	maxStallionCovers = 0
+	#
+	# || Specify how many times a mare can breed before it is infertile.
+	# || Disable infertility option by setting it to '0'.
+	# Default: 0
+	# Range: > 0
+	maxMareCovers = 0
+	#
+	# || Specify the chance of a mare giving birth to twins (Default = 1,000 = 0.1%)
+	# || If the value is higher than 1,000 the odds go down, if the value is lower than 1,000 the odds go up.
+	# || We recommend '1000' (1/1000 chance) for singleplayer, and '15000' (1/15000 chance) for multiplayer.
+	# Default: 1000
+	# Range: > 1
+	twinBirthChance = 1000
+	#
+	# || Should infertile horses be able to be made fertile again (by giving a male/female/random potion)?
+	refertile_horses = true
+	#
+	# || If enabled, a Stallion will look for a fertile Mare to breed without need of items.
+	natural_breed_chance = false
+
+# || =========== [Tack Dependencies] =========== ||
+[tack_dependencies]
+	# || Is the Bridle slot required before equipping a Blanket? (Default = True = Yes)
+	needBridle = true
+	# || Is the Blanket slot required before equipping a Saddle? (Default = True = Yes)
+	needBlanket = true
+	# || Is the Saddle slot required before equipping the Girth Strap,  Breast Collar, and/or Saddlebag? (Default = True = Yes)
+	needSaddle = true
+	# || The Rider and Saddle should fall off if there is no Girth Strap equipped. (Default = True = Yes)
+	needGirthStrap = true
+	# || Are all Tack slots required before equipping Horse Armor? (Default = True = Yes)
+	needAll = true
+	# || The Bridle is needed to steer the horse. (If disabled, you would still need a saddle). (Default = True = Yes)
+	needBridleToSteer = true
+
+# || =========== [Horse Experience Levels] =========== ||
+[horse_experience_levels]
+	# || Amount of XP required to max a horse's Speed stat.
+	# || We recommend '13500' for singleplayer, and '100000' for multiplayer.
+	# Default: 13500
+	# Range: > 1
+	maxSpeedXP = 13500
+	# || Amount of XP required to max a horse's Jump stat.
+	# || We recommend '13500' for singleplayer, and '100000' for multiplayer.
+	# Default: 13500
+	# Range: > 1
+	maxJumpXP = 13500
+	# || Amount of XP required to max a horse's Health  stat.
+	# || We recommend '13500' for singleplayer, and '100000' for multiplayer.
+	# Default: 13500
+	# Range: > 1
+	maxHealthXP = 13500
+	# || Amount of XP required to max a horse's Affinity stat.
+	# || We recommend '17000' for singleplayer, and '50000' for multiplayer.
+	# Default: 17000
+	# Range: > 1
+	maxAffinityXP = 17000
+
+# || =========== [Server Admin] =========== ||
+[server_admin]
+	# || Enable Coat Cycling (via lapis lazuli and redstone)?
+	# || Do not enable if the server is multiplayer and has an economy.
+	allowCoatCycling = true
+	# || Can Secret Coats be obtained via Secret Items? (Default = True = Yes)
+	# || Do not enable if the server is multiplayer and has an economy.
+	allowSecretCoats = true
+	# || Enable the horse's food/water systems to be based off the 24 hour day?
+	# || This is recommended for servers ONLY.
+	serverTime = false
+	# || Required only is 'serverTime' config is enabled.
+	# || The hour at which morning hungy time triggers (Local to the server).
+	# Default: 7
+	# Range: 0 ~ 23
+	morningHungyTime = 7
+	# || Required only is 'serverTime' config is enabled.
+	# || The hour at which evening hungy time triggers (Local to the server).
+	# Default: 20
+	# Range: 0 ~ 23
+	eveningHungyTime = 20
+	# || Should xp cost for renaming items in an cantazarite anvil be removed?
+	removeXpRenameCost = true
+	# || Should the perks provided by the Amethyst Armor (excluding Amethyst Riding Boots) be disabled?
+	disableAmethystPerks = false
+	# || Should the rider be teleported with the horse if the horse should fall into the void whilst the horse is wearing Amethyst Tier Armor.
+	voidTP = true
+	# || List of coats ids that should not be obtainable
+	# || Example: ["swem:salamarty_arishant_cytris", "swem:mr_ed", "swem:joey_this_esme", "swem:delta_malli"]
+	blacklistedCoatIds = []
+	# || Enable SWEM's built-in permission node system for controlling player use of commands.
+	# || This is recommended for servers ONLY.
+	enableKeyPermission = false
+	# || What horses should spawn? Vanilla horses only, SWEM horses only, or Both?
+	#Allowed Values: VANILLA_ONLY, SWEM_ONLY, BOTH
+	horseSpawn = "BOTH"
+	# || Enables fireworks to be shot out of jumps and barrels when horses touch them.
+	fireworkDisplay = false
+	# || Should winged horse fly without requirement of Amethyst Horse Armor?
+	wingedHorseFly = true
+	#|| How much to heal the player wearing Netherite+ Riding Boots as a percentage of damage dealt.
+	# Default: 0.05
+	# Range: 0.01 ~ 1.0
+	lifesteal = 0.05

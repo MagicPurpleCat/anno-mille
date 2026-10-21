@@ -1,0 +1,10 @@
+#Display settings
+[display]
+	#Display Millenaire version at startup (not yet wired)
+	showStartMessage = true
+	#Display names and occupations above villagers
+	showNames = true
+	#Distance from which villager names are visible (blocks)
+	# Default: 12
+	# Range: 5 ~ 50
+	namesDistance = 12

@@ -1,0 +1,17 @@
+#Common Configs
+[common]
+
+	# || =========== [Block o Water] =========== ||
+	[common.block_o_water]
+		# || Do the hose and the spigot require a Block O Water?
+		needBlockOWater = true
+
+#SWEM Ore Generation Settings
+[oregen]
+
+	# || =========== [Shining Amethyst] =========== ||
+	[oregen.amethyst]
+		# || What is the spawn chance (%) for Shining Amethyst?
+		# Default: 25
+		# Range: 0 ~ 100
+		amethystSpawnChance = 25

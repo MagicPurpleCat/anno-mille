@@ -1,0 +1,125 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "arms"
+	group: ""
+	icon: { id: "magistuarmory:iron_kiteshield" }
+	id: "1EA1EF42407649CE"
+	order_index: 7
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["8CCB8EF3D1DC55F4"]
+			id: "C0DBA13DC4BC1DAC"
+			rewards: [{ id: "CD401105C63164A2", type: "xp", xp: 60 }]
+			tasks: [{ count: 1L, id: "FF6C6A1389E70160", item: { count: 1, id: "magistuarmory:iron_kiteshield" }, type: "item" }]
+			x: 0.0d
+			y: -9.625d
+		}
+		{
+			dependencies: ["8CCB8EF3D1DC55F4"]
+			id: "3065236FA872C84F"
+			rewards: [{ id: "89786A0C94BDE7C9", type: "xp", xp: 100 }]
+			tasks: [{ count: 1L, id: "A8FB2DA4E31CD353", item: { count: 1, id: "magistuarmory:steel_bastardsword" }, type: "item" }]
+			x: 0.0d
+			y: -7.875d
+		}
+		{
+			dependencies: ["A50CFF48479D9998"]
+			id: "5F864EE550CFAAAE"
+			rewards: [{ id: "992E5325E5FB4397", type: "xp", xp: 40 }]
+			tasks: [{ count: 1L, id: "C82A2B3E45A398AC", item: { count: 1, id: "magistuarmory:kettlehat" }, type: "item" }]
+			x: 0.0d
+			y: -6.125d
+		}
+		{
+			dependencies: ["A50CFF48479D9998"]
+			id: "A686B6DB86A8A40C"
+			rewards: [{ id: "82B0CF2CA2641583", type: "xp", xp: 80 }]
+			tasks: [{ count: 1L, id: "D0F324A6BE9D908F", item: { count: 1, id: "magistuarmory:norman_helmet" }, type: "item" }]
+			x: 0.0d
+			y: -4.375d
+		}
+		{
+			dependencies: ["8CCB8EF3D1DC55F4"]
+			id: "B499685FB433E41F"
+			rewards: [{ count: 32, id: "C630DC6577CA0FD1", item: { count: 1, id: "minecraft:arrow" }, type: "item" }]
+			tasks: [{ count: 1L, id: "E9440244777A0095", item: { count: 1, id: "magistuarmory:heavy_crossbow" }, type: "item" }]
+			x: 0.0d
+			y: -2.625d
+		}
+		{
+			dependencies: ["A50CFF48479D9998"]
+			id: "D0BBF388B5682E6D"
+			rewards: [{ id: "1CB04E83B3EACEC1", type: "xp", xp: 100 }]
+			tasks: [{ count: 1L, id: "92FC7E96A2403DE3", item: { count: 1, id: "magistuarmory:lamellar_chestplate" }, type: "item" }]
+			x: 0.0d
+			y: -0.875d
+		}
+		{
+			dependencies: ["A50CFF48479D9998"]
+			id: "D949B53253D226E1"
+			rewards: [{ id: "7BA1F00BDE254AB6", type: "xp", xp: 120 }]
+			tasks: [{ count: 1L, id: "7E53A565F787FA9E", item: { count: 1, id: "slavicarmory:rus_chainmail_chestplate" }, type: "item" } { count: 1L, id: "C0BA1352D54FA10C", item: { count: 1, id: "slavicarmory:gnezdovo_helmet" }, type: "item" }]
+			x: 0.0d
+			y: 0.875d
+		}
+		{
+			dependencies: ["D949B53253D226E1", "D0BBF388B5682E6D"]
+			id: "599B537C7521B311"
+			rewards: [{ id: "281FA039E4A703AD", type: "xp", xp: 150 }]
+			tasks: [{ count: 1L, id: "E7BAF37D2134CAB9", item: { count: 1, id: "slavicarmory:byzantine_lamellar_chestplate" }, type: "item" }]
+			x: 2.0d
+			y: -0.875d
+		}
+		{
+			dependencies: ["8CCB8EF3D1DC55F4"]
+			id: "9A3D7925C2ADFA2B"
+			rewards: [{ id: "66B32F59D6A2BECB", type: "xp", xp: 60 }]
+			tasks: [{ count: 1L, id: "AC532DF7738AFE03", item: { count: 1, id: "spartan_weaponry_unofficial:steel_spear" }, type: "item" }]
+			x: 0.0d
+			y: 2.625d
+		}
+		{
+			dependencies: ["8C030A7C352ED111"]
+			id: "1E51206D8F3EF9DA"
+			rewards: [{ id: "3F7726D556F26AFA", type: "xp", xp: 60 }]
+			tasks: [{ count: 1L, id: "9718E6E873EFC6ED", item: { count: 1, id: "spartanshieldsunofficial:iron_tower_shield" }, type: "item" }]
+			x: 0.0d
+			y: 4.375d
+		}
+		{
+			dependencies: ["8C030A7C352ED111"]
+			id: "EBFF2F5F8BF247A2"
+			rewards: [{ id: "3126B26F41212626", type: "xp", xp: 80 }]
+			tasks: [{ count: 1L, id: "D902CA1533C01096", item: { count: 1, id: "antiquelegacy:iron_ridge_helmet" }, type: "item" }]
+			x: 0.0d
+			y: 6.125d
+		}
+		{
+			dependencies: ["8CCB8EF3D1DC55F4"]
+			id: "219FFAF378BF62CE"
+			rewards: [{ id: "4064C948BE358C35", type: "xp", xp: 100 }]
+			tasks: [{ count: 1L, id: "1BA5BF44F5AC936A", item: { count: 1, id: "samurai_dynasty:katana" }, type: "item" }]
+			x: 0.0d
+			y: 7.875d
+		}
+		{
+			dependencies: ["219FFAF378BF62CE"]
+			id: "9D94E429C620092F"
+			rewards: [{ id: "26119BB519139077", type: "xp", xp: 120 }]
+			tasks: [{ count: 1L, id: "EBB9DD79BC873EE2", item: { count: 1, id: "samurai_dynasty:steel_samurai_chestplate" }, type: "item" }]
+			x: 2.0d
+			y: 0.875d
+		}
+		{
+			dependencies: ["A50CFF48479D9998"]
+			id: "FAF4C5806EE7FC66"
+			optional: true
+			rewards: [{ id: "BBB7F5DCFF1F3ABE", type: "xp", xp: 150 }]
+			tasks: [{ count: 1L, id: "C39897CB09DDE8A1", item: { count: 1, id: "magistuarmoryaddon:xiii_century_knight_chestplate" }, type: "item" }]
+			x: 0.0d
+			y: 9.625d
+		}
+	]
+}

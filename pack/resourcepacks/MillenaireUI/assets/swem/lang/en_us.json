@@ -1,0 +1,12 @@
+{
+ "container.swem.bedroll": "§fBed Roll",
+ "container.swem.inventory.tank_controls": "§fPress %s to toggle Tank Controls",
+ "container.swem.locker.left": "§fLeft Locker",
+ "container.swem.locker.right": "§fRight Locker",
+ "container.swem.saddlebag": "§fSaddle Bag",
+ "container.swem.shop": "§fEquestrian Shop",
+ "container.swem.tack_box": "§fTack and Training",
+ "container.swem.tack_box_certificate": "§fBirth Certificate",
+ "container.swem.tack_box_genetics": "§fLineage and Genetics",
+ "container.swem.tack_box_progression": "§fProgression"
+}

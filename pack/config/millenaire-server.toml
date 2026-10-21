@@ -1,0 +1,152 @@
+#World generation settings
+[generation]
+	#Generate Millenaire villages in new chunks
+	generateVillages = true
+	#Generate lone buildings (inns, shrines, ruins) in new chunks
+	generateLoneBuildings = true
+	#Generate hamlet satellite villages around parent village types (e.g. Gros Bourg).
+	#When disabled, parent types that define hamlets are excluded from natural spawn.
+	#iso-legacy: disabled by default (hamlets take a lot of space)
+	generateHamlets = false
+	#Minimum distance between two villages (blocks)
+	# Default: 500
+	# Range: 300 ~ 1000
+	minVillageDistance = 500
+	#Minimum distance between two lone buildings (blocks)
+	# Default: 500
+	# Range: 300 ~ 1000
+	minLoneBuildingDistance = 500
+	#Minimum distance between a village and a lone building (blocks)
+	# Default: 250
+	# Range: 100 ~ 800
+	minVillageLoneBuildingDistance = 250
+	#Protected area around world spawn where nothing generates (blocks)
+	# Default: 250
+	# Range: 0 ~ 500
+	spawnProtectionRadius = 250
+
+	#Progressive completion for distant villages
+	[generation.completion]
+		#Maximum initial progress % for distant villages
+		# Default: 25
+		# Range: 0 ~ 100
+		maxPercentage = 25
+		#Distance from spawn where initial progress starts (blocks)
+		# Default: 2000
+		# Range: 0 ~ 25000
+		minDistance = 2000
+		#Distance from spawn where max initial progress is reached (blocks)
+		# Default: 10000
+		# Range: 0 ~ 100000
+		maxDistance = 10000
+
+#Debug and logging settings
+[debug]
+	#Log every village/lone building spawn attempt with rejection reasons
+	logSpawnAttempts = false
+
+#Village behaviour settings
+[village]
+	#When false, Millénaire does not force-load village chunks; villages only tick
+	#while a player keeps their chunks loaded. Reduces server load at the cost of
+	#villages pausing when no player is nearby. Applies live via /reload: turning it
+	#off releases currently force-loaded village chunks; turning it back on re-forces
+	#them on the next activation tick.
+	#iso-legacy: default true preserves the always-force-load behavior; false is a new perf opt-out.
+	forceLoadVillages = true
+	#Radius for keeping village chunks loaded (blocks). 0 = disabled.
+	# Default: 200
+	# Range: 0 ~ 2000
+	keepActiveRadius = 200
+	#Override all village type radii with this value (blocks).
+	#-1 = use per-type JSON value. Requires world restart to take effect.
+	# Default: -1
+	# Range: -1 ~ 120
+	villageRadiusOverride = -1
+	#Minimum spacing between buildings in a village (blocks)
+	# Default: 5
+	# Range: 0 ~ 10
+	minBuildingSpacing = 5
+	#Generate and upgrade paths between village buildings (lateral paths Pass 3)
+	buildPaths = true
+	#Maximum number of children per village
+	# Default: 10
+	# Range: 2 ~ 20
+	maxChildren = 10
+	#Radius for inter-village relations: diplomacy, trade, raids (blocks). 0 = disabled.
+	# Default: 2000
+	# Range: 0 ~ 3000
+	backgroundRadius = 2000
+	#Villager navigation driver (EXPERIMENTAL toggle for A/B testing).
+	#WAYPOINT (default): the current driver — vanilla micro A* + a macro
+	#  waypoint graph with a DIRECT->REPATH->MACRO->TELEPORT escalation.
+	#LOCAL_RECOVERY: experimental port of the Millenaire 1.15 movement
+	#  controller — vanilla A* with soft re-path, a perpendicular door/gate
+	#  nudge to clear chokepoints, and teleport only as a last resort.
+	#Applies to villagers spawned/loaded after the change. Default: WAYPOINT.
+	#Allowed Values: WAYPOINT, LOCAL_RECOVERY
+	navDriver = "WAYPOINT"
+
+#Gameplay settings
+[gameplay]
+	#Whether NPC languages need to be learned through interaction
+	languageLearning = true
+	#Whether Travel Book content needs to be discovered through interaction (nearby villagers, buildings, trade)
+	travelBookLearning = true
+	#Distance for villager sentences in chat — singleplayer (blocks). 0 = disabled.
+	# Default: 6
+	# Range: 0 ~ 10
+	sentenceDistanceSingleplayer = 6
+	#Distance for villager sentences in chat — multiplayer (blocks). 0 = disabled.
+	# Default: 0
+	# Range: 0 ~ 10
+	sentenceDistanceMultiplayer = 0
+	#Villages build and upgrade for free, ignoring resource requirements (creative-style).
+	#iso-legacy: MillConfigValues.ignoreResourceCost. Default: false.
+	ignoreResourceCost = false
+
+#Anonymous usage statistics sent to millenaire.org
+[statistics]
+	#Send Millénaire statistics to millenaire.org. Master switch: when off, nothing is sent.
+	#The session ping carries no personally identifiable information (anonymous world UID,
+	#version, OS, locale, player count). Advancement progress is reported per player using a
+	#pseudonymous (non re-identifiable) identifier, and only attaches the username (login)
+	#when sendPlayerName is enabled. Note: the donor check sends the username out of
+	#functional necessity, independently of these two flags.
+	sendStatistics = true
+	#Attach the player's Minecraft username to the per-player advancement report.
+	#When off, that report uses only the pseudonymous identifier. Off by default.
+	sendPlayerName = false
+	#Override the millenaire.org API base URL the mod contacts (stats, version, donor).
+	#Empty = use the URLs baked in at build time (primary, then fallback). A non-empty
+	#value forces a single URL with no fallback, e.g. http://localhost:4000 for local testing.
+	apiBaseUrlOverride = ""
+
+#Raid settings (combat AI not yet implemented — values reserved)
+[raids]
+	#TODO: Radius for bandit raids (blocks). 0 = disabled.
+	# Default: 1500
+	# Range: 0 ~ 2000
+	banditRaidRadius = 1500
+	#TODO: % chance per night of a raid attempt. 0 = disabled.
+	# Default: 20
+	# Range: 0 ~ 100
+	raidingRate = 20
+
+#Automatic conversion of legacy 1.12 content packs dropped into millenaire-custom/
+[legacy]
+	#Enable automatic conversion of legacy 1.12 Millenaire content packs
+	#dropped into millenaire-custom/. When true, TXT/PNG files are detected
+	#at server start, converted to JSON/NBT in place, and originals renamed
+	#to .legacy. Set to false if you prefer running /millenaire dev convert-addon
+	#manually (required for read-only filesystems, large packs, or custom
+	#staging workflows).
+	legacyAutoConvert = true
+	#Per-boot cap on PNG file count before auto-conversion refuses to run.
+	#Large packs should use /millenaire dev convert-addon during a maintenance
+	#window to avoid boot freezes. Measured cold-JVM cost is ~2-4s per 800 PNGs;
+	#the default absorbs every legacy culture at once (~2100 PNGs in total,
+	#the Norman culture alone being 454).
+	# Default: 2500
+	# Range: 0 ~ 5000
+	legacyAutoConvertMaxPngs = 2500

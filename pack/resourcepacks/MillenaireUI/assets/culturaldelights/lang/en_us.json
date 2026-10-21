@@ -1,0 +1,7 @@
+{
+ "container.culturaldelights.vat.hot": "§fHot Temperature for Distilling",
+ "container.culturaldelights.vat.cold": "§fCold Temperature for Chilling",
+ "container.culturaldelights.vat.normal": "§fNormal Temperature for Fermenting",
+ "container.culturaldelights.oven.heated": "§fHeated",
+ "container.culturaldelights.oven.not_heated": "§fNeeds heat from below"
+}

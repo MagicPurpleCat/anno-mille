@@ -1,0 +1,10 @@
+{
+ "container.swem.bedroll": "§fСпальный мешок",
+ "container.swem.locker.left": "§fЛевый шкафчик",
+ "container.swem.locker.right": "§fПравый шкафчик",
+ "container.swem.saddlebag": "§fСедельная сумка",
+ "container.swem.tack_box": "§fТактика и обучение",
+ "container.swem.tack_box_certificate": "§fСертификат о рождении",
+ "container.swem.tack_box_genetics": "§fРодословная и генетика",
+ "container.swem.tack_box_progression": "§fПрогрессия"
+}

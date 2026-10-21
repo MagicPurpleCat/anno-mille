@@ -1,0 +1,867 @@
+[dagger]
+	#Disables all recipes for all Daggers.|禁用所有Daggers的配方。
+	disable = false
+	#Attack speed of Daggers.|Daggers的攻击速度
+	# Default: 2.5
+	# Range: 0.0 ~ 4.0
+	speed = 2.5
+	#Base Damage of Daggers.|Daggers的基础伤害
+	# Default: 2.5
+	# Range: 0.1 ~ 100.0
+	base_damage = 2.5
+	#Damage Multiplier for Daggers.|Daggers的伤害倍率
+	# Default: 1.0
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 1.0
+
+[parrying_dagger]
+	#Disables all recipes for all Parrying Daggers.|禁用所有Parrying Daggers的配方。
+	disable = false
+	#Attack speed of Parrying Daggers.|Parrying Daggers的攻击速度
+	# Default: 2.5
+	# Range: 0.0 ~ 4.0
+	speed = 2.5
+	#Base Damage of Parrying Daggers.|Parrying Daggers的基础伤害
+	# Default: 2.5
+	# Range: 0.1 ~ 100.0
+	base_damage = 2.5
+	#Damage Multiplier for Parrying Daggers.|Parrying Daggers的伤害倍率
+	# Default: 1.0
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 1.0
+
+[longsword]
+	#Disables all recipes for all Longswords.|禁用所有Longswords的配方。
+	disable = false
+	#Attack speed of Longswords.|Longswords的攻击速度
+	# Default: 1.399999976158142
+	# Range: 0.0 ~ 4.0
+	speed = 1.399999976158142
+	#Base Damage of Longswords.|Longswords的基础伤害
+	# Default: 4.5
+	# Range: 0.1 ~ 100.0
+	base_damage = 4.5
+	#Damage Multiplier for Longswords.|Longswords的伤害倍率
+	# Default: 1.5
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 1.5
+
+[katana]
+	#Disables all recipes for all Katanas.|禁用所有Katanas的配方。
+	disable = false
+	#Attack speed of Katanas.|Katanas的攻击速度
+	# Default: 2.0
+	# Range: 0.0 ~ 4.0
+	speed = 2.0
+	#Base Damage of Katanas.|Katanas的基础伤害
+	# Default: 3.5
+	# Range: 0.1 ~ 100.0
+	base_damage = 3.5
+	#Damage Multiplier for Katanas.|Katanas的伤害倍率
+	# Default: 0.5
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 0.5
+
+[saber]
+	#Disables all recipes for all Sabers.|禁用所有Sabers的配方。
+	disable = false
+	#Attack speed of Sabers.|Sabers的攻击速度
+	# Default: 1.600000023841858
+	# Range: 0.0 ~ 4.0
+	speed = 1.600000023841858
+	#Base Damage of Sabers.|Sabers的基础伤害
+	# Default: 3.5
+	# Range: 0.1 ~ 100.0
+	base_damage = 3.5
+	#Damage Multiplier for Sabers.|Sabers的伤害倍率
+	# Default: 0.5
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 0.5
+
+[rapier]
+	#Disables all recipes for all Rapiers.|禁用所有Rapiers的配方。
+	disable = false
+	#Attack speed of Rapiers.|Rapiers的攻击速度
+	# Default: 2.4000000953674316
+	# Range: 0.0 ~ 4.0
+	speed = 2.4000000953674316
+	#Base Damage of Rapiers.|Rapiers的基础伤害
+	# Default: 2.0
+	# Range: 0.1 ~ 100.0
+	base_damage = 2.0
+	#Damage Multiplier for Rapiers.|Rapiers的伤害倍率
+	# Default: 0.5
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 0.5
+
+[greatsword]
+	#Disables all recipes for all Greatswords.|禁用所有Greatswords的配方。
+	disable = false
+	#Attack speed of Greatswords.|Greatswords的攻击速度
+	# Default: 1.399999976158142
+	# Range: 0.0 ~ 4.0
+	speed = 1.399999976158142
+	#Base Damage of Greatswords.|Greatswords的基础伤害
+	# Default: 4.0
+	# Range: 0.1 ~ 100.0
+	base_damage = 4.0
+	#Damage Multiplier for Greatswords.|Greatswords的伤害倍率
+	# Default: 1.5
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 1.5
+
+[club]
+	#Disables all recipes for all Clubs.|禁用所有Clubs的配方。
+	disable = false
+	#Attack speed of Clubs.|Clubs的攻击速度
+	# Default: 1.2999999523162842
+	# Range: 0.0 ~ 4.0
+	speed = 1.2999999523162842
+	#Base Damage of Clubs.|Clubs的基础伤害
+	# Default: 4.0
+	# Range: 0.1 ~ 100.0
+	base_damage = 4.0
+	#Damage Multiplier for Clubs.|Clubs的伤害倍率
+	# Default: 1.0
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 1.0
+
+[cestus]
+	#Disables all recipes for all Cestusae.|禁用所有Cestusae的配方。
+	disable = false
+	#Attack speed of Cestusae.|Cestusae的攻击速度
+	# Default: 3.5
+	# Range: 0.0 ~ 4.0
+	speed = 3.5
+	#Base Damage of Cestusae.|Cestusae的基础伤害
+	# Default: 2.0
+	# Range: 0.1 ~ 100.0
+	base_damage = 2.0
+	#Damage Multiplier for Cestusae.|Cestusae的伤害倍率
+	# Default: 0.5
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 0.5
+
+[battle_hammer]
+	#Disables all recipes for all Battle Hammers.|禁用所有Battle Hammers的配方。
+	disable = false
+	#Attack speed of Battle Hammers.|Battle Hammers的攻击速度
+	# Default: 0.800000011920929
+	# Range: 0.0 ~ 4.0
+	speed = 0.800000011920929
+	#Base Damage of Battle Hammers.|Battle Hammers的基础伤害
+	# Default: 5.0
+	# Range: 0.1 ~ 100.0
+	base_damage = 5.0
+	#Damage Multiplier for Battle Hammers.|Battle Hammers的伤害倍率
+	# Default: 2.0
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 2.0
+
+[warhammer]
+	#Disables all recipes for all Warhammers.|禁用所有Warhammers的配方。
+	disable = false
+	#Attack speed of Warhammers.|Warhammers的攻击速度
+	# Default: 1.100000023841858
+	# Range: 0.0 ~ 4.0
+	speed = 1.100000023841858
+	#Base Damage of Warhammers.|Warhammers的基础伤害
+	# Default: 4.0
+	# Range: 0.1 ~ 100.0
+	base_damage = 4.0
+	#Damage Multiplier for Warhammers.|Warhammers的伤害倍率
+	# Default: 1.5
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 1.5
+
+[spear]
+	#Disables all recipes for all Spears.|禁用所有Spears的配方。
+	disable = false
+	#Attack speed of Spears.|Spears的攻击速度
+	# Default: 1.399999976158142
+	# Range: 0.0 ~ 4.0
+	speed = 1.399999976158142
+	#Base Damage of Spears.|Spears的基础伤害
+	# Default: 5.5
+	# Range: 0.1 ~ 100.0
+	base_damage = 5.5
+	#Damage Multiplier for Spears.|Spears的伤害倍率
+	# Default: 0.5
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 0.5
+
+[halberd]
+	#Disables all recipes for all Halberds.|禁用所有Halberds的配方。
+	disable = false
+	#Attack speed of Halberds.|Halberds的攻击速度
+	# Default: 1.2000000476837158
+	# Range: 0.0 ~ 4.0
+	speed = 1.2000000476837158
+	#Base Damage of Halberds.|Halberds的基础伤害
+	# Default: 5.0
+	# Range: 0.1 ~ 100.0
+	base_damage = 5.0
+	#Damage Multiplier for Halberds.|Halberds的伤害倍率
+	# Default: 1.5
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 1.5
+
+[pike]
+	#Disables all recipes for all Pikes.|禁用所有Pikes的配方。
+	disable = false
+	#Attack speed of Pikes.|Pikes的攻击速度
+	# Default: 1.399999976158142
+	# Range: 0.0 ~ 4.0
+	speed = 1.399999976158142
+	#Base Damage of Pikes.|Pikes的基础伤害
+	# Default: 4.0
+	# Range: 0.1 ~ 100.0
+	base_damage = 4.0
+	#Damage Multiplier for Pikes.|Pikes的伤害倍率
+	# Default: 1.0
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 1.0
+
+[lance]
+	#Disables all recipes for all Lances.|禁用所有Lances的配方。
+	disable = false
+	#Attack speed of Lances.|Lances的攻击速度
+	# Default: 1.0
+	# Range: 0.0 ~ 4.0
+	speed = 1.0
+	#Base Damage of Lances.|Lances的基础伤害
+	# Default: 4.0
+	# Range: 0.1 ~ 100.0
+	base_damage = 4.0
+	#Damage Multiplier for Lances.|Lances的伤害倍率
+	# Default: 1.0
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 1.0
+
+[longbow]
+	#Disables all recipes for all Longbows.|禁用所有Longbows的配方。
+	disable = false
+
+[heavy_crossbow]
+	#Disables all recipes for all Heavy Crossbows.|禁用所有Heavy Crossbows的配方。
+	disable = false
+
+[throwing_knife]
+	#Disables all recipes for all Throwing Knives.|禁用所有Throwing Knives的配方。
+	disable = false
+	#Attack speed of Throwing Knives.|Throwing Knives的攻击速度
+	# Default: 2.5
+	# Range: 0.0 ~ 4.0
+	speed = 2.5
+	#Base Damage of Throwing Knives.|Throwing Knives的基础伤害
+	# Default: 1.5
+	# Range: 0.1 ~ 100.0
+	base_damage = 1.5
+	#Damage Multiplier for Throwing Knives.|Throwing Knives的伤害倍率
+	# Default: 1.0
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 1.0
+	#Charge time in ticks for Throwing Knives.|Throwing Knives的蓄力时间（tick）
+	# Default: 15
+	# Range: 1 ~ 1000
+	charge_ticks = 15
+
+[tomahawk]
+	#Disables all recipes for all Tomahawks.|禁用所有Tomahawks的配方。
+	disable = false
+	#Attack speed of Tomahawks.|Tomahawks的攻击速度
+	# Default: 0.8999999761581421
+	# Range: 0.0 ~ 4.0
+	speed = 0.8999999761581421
+	#Base Damage of Tomahawks.|Tomahawks的基础伤害
+	# Default: 2.0
+	# Range: 0.1 ~ 100.0
+	base_damage = 2.0
+	#Damage Multiplier for Tomahawks.|Tomahawks的伤害倍率
+	# Default: 1.5
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 1.5
+	#Charge time in ticks for Tomahawks.|Tomahawks的蓄力时间（tick）
+	# Default: 8
+	# Range: 1 ~ 1000
+	charge_ticks = 8
+
+[javelin]
+	#Disables all recipes for all Javelins.|禁用所有Javelins的配方。
+	disable = false
+	#Attack speed of Javelins.|Javelins的攻击速度
+	# Default: 1.2000000476837158
+	# Range: 0.0 ~ 4.0
+	speed = 1.2000000476837158
+	#Base Damage of Javelins.|Javelins的基础伤害
+	# Default: 1.5
+	# Range: 0.1 ~ 100.0
+	base_damage = 1.5
+	#Damage Multiplier for Javelins.|Javelins的伤害倍率
+	# Default: 1.0
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 1.0
+	#Charge time in ticks for Javelins.|Javelins的蓄力时间（tick）
+	# Default: 10
+	# Range: 1 ~ 1000
+	charge_ticks = 10
+
+[boomerang]
+	#Disables all recipes for all Boomerangs.|禁用所有Boomerangs的配方。
+	disable = false
+	#Attack speed of Boomerangs.|Boomerangs的攻击速度
+	# Default: 2.0
+	# Range: 0.0 ~ 4.0
+	speed = 2.0
+	#Base Damage of Boomerangs.|Boomerangs的基础伤害
+	# Default: 4.0
+	# Range: 0.1 ~ 100.0
+	base_damage = 4.0
+	#Damage Multiplier for Boomerangs.|Boomerangs的伤害倍率
+	# Default: 1.0
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 1.0
+	#Charge time in ticks for Boomerangs.|Boomerangs的蓄力时间（tick）
+	# Default: 5
+	# Range: 1 ~ 1000
+	charge_ticks = 5
+
+[battleaxe]
+	#Disables all recipes for all Battleaxes.|禁用所有Battleaxes的配方。
+	disable = false
+	#Attack speed of Battleaxes.|Battleaxes的攻击速度
+	# Default: 1.0
+	# Range: 0.0 ~ 4.0
+	speed = 1.0
+	#Base Damage of Battleaxes.|Battleaxes的基础伤害
+	# Default: 4.0
+	# Range: 0.1 ~ 100.0
+	base_damage = 4.0
+	#Damage Multiplier for Battleaxes.|Battleaxes的伤害倍率
+	# Default: 2.0
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 2.0
+
+[flanged_mace]
+	#Disables all recipes for all Flanged Maces.|禁用所有Flanged Maces的配方。
+	disable = false
+	#Attack speed of Flanged Maces.|Flanged Maces的攻击速度
+	# Default: 1.2000000476837158
+	# Range: 0.0 ~ 4.0
+	speed = 1.2000000476837158
+	#Base Damage of Flanged Maces.|Flanged Maces的基础伤害
+	# Default: 3.0
+	# Range: 0.1 ~ 100.0
+	base_damage = 3.0
+	#Damage Multiplier for Flanged Maces.|Flanged Maces的伤害倍率
+	# Default: 1.5
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 1.5
+
+[glaive]
+	#Disables all recipes for all Glaives.|禁用所有Glaives的配方。
+	disable = false
+	#Attack speed of Glaives.|Glaives的攻击速度
+	# Default: 1.0
+	# Range: 0.0 ~ 4.0
+	speed = 1.0
+	#Base Damage of Glaives.|Glaives的基础伤害
+	# Default: 4.0
+	# Range: 0.1 ~ 100.0
+	base_damage = 4.0
+	#Damage Multiplier for Glaives.|Glaives的伤害倍率
+	# Default: 1.5
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 1.5
+
+[quarterstaff]
+	#Disables all recipes for all Quarterstaves.|禁用所有Quarterstaves的配方。
+	disable = false
+	#Attack speed of Quarterstaves.|Quarterstaves的攻击速度
+	# Default: 1.399999976158142
+	# Range: 0.0 ~ 4.0
+	speed = 1.399999976158142
+	#Base Damage of Quarterstaves.|Quarterstaves的基础伤害
+	# Default: 3.0
+	# Range: 0.1 ~ 100.0
+	base_damage = 3.0
+	#Damage Multiplier for Quarterstaves.|Quarterstaves的伤害倍率
+	# Default: 1.5
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 1.5
+
+[scythes]
+	#Disables all recipes for all Scythes.|禁用所有Scythes的配方。
+	disable = false
+	#Attack speed of Scythes.|Scythes的攻击速度
+	# Default: 1.0
+	# Range: 0.0 ~ 4.0
+	speed = 1.0
+	#Base Damage of Scythes.|Scythes的基础伤害
+	# Default: 5.0
+	# Range: 0.1 ~ 100.0
+	base_damage = 5.0
+	#Damage Multiplier for Scythes.|Scythes的伤害倍率
+	# Default: 1.0
+	# Range: 0.1 ~ 10.0
+	damage_multiplier = 1.0
+
+[copper]
+	#Base Damage for copper weapons|copper武器的基础伤害
+	# Default: 1.5
+	# Range: 0.1 ~ 100.0
+	base_damage = 1.5
+	#Durability for copper weapons|copper武器的耐久度
+	# Default: 200
+	# Range: 1 ~ 100000
+	durability = 200
+	#Set to true to disable copper weapons|设为 true 禁用copper武器
+	disable = false
+
+[tin]
+	#Base Damage for tin weapons|tin武器的基础伤害
+	# Default: 1.75
+	# Range: 0.1 ~ 100.0
+	base_damage = 1.75
+	#Durability for tin weapons|tin武器的耐久度
+	# Default: 180
+	# Range: 1 ~ 100000
+	durability = 180
+	#Set to true to disable tin weapons|设为 true 禁用tin武器
+	disable = false
+
+[bronze]
+	#Base Damage for bronze weapons|bronze武器的基础伤害
+	# Default: 2.0
+	# Range: 0.1 ~ 100.0
+	base_damage = 2.0
+	#Durability for bronze weapons|bronze武器的耐久度
+	# Default: 320
+	# Range: 1 ~ 100000
+	durability = 320
+	#Set to true to disable bronze weapons|设为 true 禁用bronze武器
+	disable = false
+
+[steel]
+	#Base Damage for steel weapons|steel武器的基础伤害
+	# Default: 2.5
+	# Range: 0.1 ~ 100.0
+	base_damage = 2.5
+	#Durability for steel weapons|steel武器的耐久度
+	# Default: 480
+	# Range: 1 ~ 100000
+	durability = 480
+	#Set to true to disable steel weapons|设为 true 禁用steel武器
+	disable = false
+
+[silver]
+	#Base Damage for silver weapons|silver武器的基础伤害
+	# Default: 1.5
+	# Range: 0.1 ~ 100.0
+	base_damage = 1.5
+	#Durability for silver weapons|silver武器的耐久度
+	# Default: 48
+	# Range: 1 ~ 100000
+	durability = 48
+	#Set to true to disable silver weapons|设为 true 禁用silver武器
+	disable = false
+
+[electrum]
+	#Base Damage for electrum weapons|electrum武器的基础伤害
+	# Default: 2.0
+	# Range: 0.1 ~ 100.0
+	base_damage = 2.0
+	#Durability for electrum weapons|electrum武器的耐久度
+	# Default: 180
+	# Range: 1 ~ 100000
+	durability = 180
+	#Set to true to disable electrum weapons|设为 true 禁用electrum武器
+	disable = false
+
+[lead]
+	#Base Damage for lead weapons|lead武器的基础伤害
+	# Default: 2.0
+	# Range: 0.1 ~ 100.0
+	base_damage = 2.0
+	#Durability for lead weapons|lead武器的耐久度
+	# Default: 240
+	# Range: 1 ~ 100000
+	durability = 240
+	#Set to true to disable lead weapons|设为 true 禁用lead武器
+	disable = false
+
+[nickel]
+	#Base Damage for nickel weapons|nickel武器的基础伤害
+	# Default: 2.0
+	# Range: 0.1 ~ 100.0
+	base_damage = 2.0
+	#Durability for nickel weapons|nickel武器的耐久度
+	# Default: 200
+	# Range: 1 ~ 100000
+	durability = 200
+	#Set to true to disable nickel weapons|设为 true 禁用nickel武器
+	disable = false
+
+[invar]
+	#Base Damage for invar weapons|invar武器的基础伤害
+	# Default: 2.25
+	# Range: 0.1 ~ 100.0
+	base_damage = 2.25
+	#Durability for invar weapons|invar武器的耐久度
+	# Default: 440
+	# Range: 1 ~ 100000
+	durability = 440
+	#Set to true to disable invar weapons|设为 true 禁用invar武器
+	disable = false
+
+[constantan]
+	#Base Damage for constantan weapons|constantan武器的基础伤害
+	# Default: 2.25
+	# Range: 0.1 ~ 100.0
+	base_damage = 2.25
+	#Durability for constantan weapons|constantan武器的耐久度
+	# Default: 300
+	# Range: 1 ~ 100000
+	durability = 300
+	#Set to true to disable constantan weapons|设为 true 禁用constantan武器
+	disable = false
+
+[platinum]
+	#Base Damage for platinum weapons|platinum武器的基础伤害
+	# Default: 3.5
+	# Range: 0.1 ~ 100.0
+	base_damage = 3.5
+	#Durability for platinum weapons|platinum武器的耐久度
+	# Default: 1024
+	# Range: 1 ~ 100000
+	durability = 1024
+	#Set to true to disable platinum weapons|设为 true 禁用platinum武器
+	disable = false
+
+[aluminum]
+	#Base Damage for aluminum weapons|aluminum武器的基础伤害
+	# Default: 2.125
+	# Range: 0.1 ~ 100.0
+	base_damage = 2.125
+	#Durability for aluminum weapons|aluminum武器的耐久度
+	# Default: 400
+	# Range: 1 ~ 100000
+	durability = 400
+	#Set to true to disable aluminum weapons|设为 true 禁用aluminum武器
+	disable = false
+
+[explosives]
+	#Disables all recipes for explosive related items|禁用所有爆炸物相关物品的配方
+	disable_recipe = false
+	#Disables terrain damage for explosives in this mod such as Dynamite and Explosive Arrows. Is overridden by the 'mobGriefing' gamerule.|禁用本模组爆炸物（如炸药、爆炸箭）对地形的破坏。会被 'mobGriefing' 游戏规则覆盖。
+	disable_terrain_damage = false
+	#Time (in ticks) it takes for Dynamite to explode|炸药引爆所需时间（tick）
+	# Default: 60
+	# Range: 20 ~ 600
+	fuse_ticks_dynamite = 60
+	#Explosion strength for Dynamite|炸药的爆炸强度
+	# Default: 2.0
+	# Range: 0.10000000149011612 ~ 10.0
+	explosion_strength_dynamite = 2.0
+
+[projectiles]
+	#Disables Recipes for all new Arrows.|禁用所有新增箭矢的配方。
+	disable_new_arrow_recipes = false
+	#Disables Recipes for both Copper Arrows and Copper Bolts.|禁用铜箭与铜弩箭的配方。
+	disable_copper_ammo_recipes = false
+	#Disables Recipes for both Diamond Arrows and Diamond Bolts.|禁用钻石箭与钻石弩箭的配方。
+	disable_diamond_ammo_recipes = false
+	#Disables Recipes for both Netherite Arrows and Netherite Bolts.|禁用下界合金箭与下界合金弩箭的配方。
+	disable_netherite_ammo_recipes = false
+	#Disables all variants of the Arrow Quiver and the Bolt Quiver in this mod|禁用本模组所有箭袋与弩箭袋的配方。
+	disable_quiver_recipes = false
+	#Bows in this blacklist will not get Arrows pulled out of the Arrow Quiver. Use the registry ID of the bow to add to this. e.g. "minecraft:bow"|黑名单中的弓不会从箭袋中取箭。使用弓的注册 ID 添加，例如 "minecraft:bow"
+	quiver_bow_blacklist = ["botania:crystal_bow", "iceandfire:dragonbone_bow"]
+
+	[projectiles.wood_arrow]
+		#Base damage for wood arrows|wood arrow的基础伤害
+		# Default: 0.20000000298023224
+		# Range: 0.1 ~ 100.0
+		base_damage = 0.20000000298023224
+		#Range muliplier for wood arrows|wood arrow的射程倍率
+		# Default: 1.5
+		# Range: 0.1 ~ 100.0
+		range_multiplier = 1.5
+
+	[projectiles.copper_arrow]
+		#Base damage for copper arrows|copper arrow的基础伤害
+		# Default: 2.5
+		# Range: 0.1 ~ 100.0
+		base_damage = 2.5
+		#Range muliplier for copper arrows|copper arrow的射程倍率
+		# Default: 0.8500000238418579
+		# Range: 0.1 ~ 100.0
+		range_multiplier = 0.8500000238418579
+
+	[projectiles.iron_arrow]
+		#Base damage for iron arrows|iron arrow的基础伤害
+		# Default: 3.0
+		# Range: 0.1 ~ 100.0
+		base_damage = 3.0
+		#Range muliplier for iron arrows|iron arrow的射程倍率
+		# Default: 0.75
+		# Range: 0.1 ~ 100.0
+		range_multiplier = 0.75
+
+	[projectiles.diamond_arrow]
+		#Base damage for diamond arrows|diamond arrow的基础伤害
+		# Default: 3.5
+		# Range: 0.1 ~ 100.0
+		base_damage = 3.5
+		#Range muliplier for diamond arrows|diamond arrow的射程倍率
+		# Default: 1.25
+		# Range: 0.1 ~ 100.0
+		range_multiplier = 1.25
+
+	[projectiles.netherite_arrow]
+		#Base damage for netherite arrows|netherite arrow的基础伤害
+		# Default: 4.0
+		# Range: 0.1 ~ 100.0
+		base_damage = 4.0
+		#Range muliplier for netherite arrows|netherite arrow的射程倍率
+		# Default: 1.25
+		# Range: 0.1 ~ 100.0
+		range_multiplier = 1.25
+
+	[projectiles.bolt]
+		#Base damage for bolts|bolt的基础伤害
+		# Default: 4.0
+		# Range: 0.1 ~ 100.0
+		base_damage = 4.0
+		#Range muliplier for bolts|bolt的射程倍率
+		# Default: 1.0
+		# Range: 0.1 ~ 100.0
+		range_multiplier = 1.0
+		#Armor Piercing factor for bolts|bolt的破甲系数
+		# Default: 0.25
+		# Range: 0.0 ~ 1.0
+		armor_piercing_factor = 0.25
+
+	[projectiles.copper_bolt]
+		#Base damage for copper bolts|copper bolt的基础伤害
+		# Default: 3.5
+		# Range: 0.1 ~ 100.0
+		base_damage = 3.5
+		#Range muliplier for copper bolts|copper bolt的射程倍率
+		# Default: 1.0
+		# Range: 0.1 ~ 100.0
+		range_multiplier = 1.0
+		#Armor Piercing factor for copper bolts|copper bolt的破甲系数
+		# Default: 0.125
+		# Range: 0.0 ~ 1.0
+		armor_piercing_factor = 0.125
+
+	[projectiles.diamond_bolt]
+		#Base damage for diamond bolts|diamond bolt的基础伤害
+		# Default: 5.0
+		# Range: 0.1 ~ 100.0
+		base_damage = 5.0
+		#Range muliplier for diamond bolts|diamond bolt的射程倍率
+		# Default: 1.0
+		# Range: 0.1 ~ 100.0
+		range_multiplier = 1.0
+		#Armor Piercing factor for diamond bolts|diamond bolt的破甲系数
+		# Default: 0.5
+		# Range: 0.0 ~ 1.0
+		armor_piercing_factor = 0.5
+
+	[projectiles.netherite_bolt]
+		#Base damage for netherite bolts|netherite bolt的基础伤害
+		# Default: 5.5
+		# Range: 0.1 ~ 100.0
+		base_damage = 5.5
+		#Range muliplier for netherite bolts|netherite bolt的射程倍率
+		# Default: 1.0
+		# Range: 0.1 ~ 100.0
+		range_multiplier = 1.0
+		#Armor Piercing factor for netherite bolts|netherite bolt的破甲系数
+		# Default: 0.5
+		# Range: 0.0 ~ 1.0
+		armor_piercing_factor = 0.5
+
+	[projectiles.explosive]
+		#Base damage for explosive arrows|爆炸箭基础伤害
+		# Default: 2.0
+		# Range: 0.1 ~ 10.0
+		base_damage = 2.0
+		#Range muliplier for explosive arrows|爆炸箭射程倍率
+		# Default: 1.0
+		# Range: 0.1 ~ 100.0
+		range_multiplier = 1.0
+
+[loot]
+	#Set to false to disable spawning Iron Weapons in Village Weaponsmith chests via loot table injection|设为 false 禁用通过战利品表注入在村庄铁匠箱中生成铁制武器
+	add_iron_weapons_to_village_blacksmith = true
+	#Set to false to disable spawning Longbow and Heavy Crossbow-related loot in Village Fletcher chests via loot table injection|设为 false 禁用通过战利品表注入在村庄制箭师箱中生成长弓/重弩相关战利品
+	add_bow_and_crossbow_loot_to_village_fletcher = true
+	#Set to false to disable spawning Diamond Weapons in End City chests via loot table injection|设为 false 禁用通过战利品表注入在末地城箱中生成钻石武器
+	add_diamond_weapons_to_end_city = true
+	#Chance for Zombies to spawn with Iron Melee Weapons on all difficulties apart from Hard and Hardcore|僵尸在除困难/极限外难度生成时手持铁制近战武器的概率
+	# Default: 0.05000000074505806
+	# Range: 0.0 ~ 1.0
+	zombie_with_melee_spawn_chance_normal = 0.05000000074505806
+	#Chance for Zombies to spawn with Iron Melee Weapons on Hard or Hardcore difficulty|僵尸在困难/极限难度生成时手持铁制近战武器的概率
+	# Default: 0.25
+	# Range: 0.0 ~ 1.0
+	zombie_with_melee_spawn_chance_hard = 0.25
+	#Set to true to disable spawning a Zombie with any weapons from this mod|设为 true 禁用僵尸手持本模组武器生成
+	disable_spawning_zombie_with_weapon = false
+	#Chance for Skeletons to spawn with various Longbows on all difficulties apart from Hard and Hardcore|骷髅在除困难/极限外难度生成时手持各类长弓的概率
+	# Default: 0.05000000074505806
+	# Range: 0.0 ~ 1.0
+	skeleton_with_longbow_spawn_chance_normal = 0.05000000074505806
+	#Chance for Skeletons to spawn with various Longbows on Hard or Hardcore difficulty|骷髅在困难/极限难度生成时手持各类长弓的概率
+	# Default: 0.25
+	# Range: 0.0 ~ 1.0
+	skeleton_with_longbow_spawn_chance_hard = 0.25
+	#Set to true to disable spawning a Skeleton with any Longbow from this mod|设为 true 禁用骷髅手持本模组长弓生成
+	disable_spawning_skeleton_with_longbow = false
+	#Chance for Piglins and Piglin Brutes to spawn with Golden Melee Weapons on all difficulties apart from Hard and Hardcore|猪灵与猪灵蛮兵在除困难/极限外难度生成时手持金制近战武器的概率
+	# Default: 0.05000000074505806
+	# Range: 0.0 ~ 1.0
+	piglin_with_melee_spawn_chance_normal = 0.05000000074505806
+	#Chance for Piglins and Piglin Brutes to spawn with Golden Melee Weapons on Hard or Hardcore difficulty|猪灵与猪灵蛮兵在困难/极限难度生成时手持金制近战武器的概率
+	# Default: 0.25
+	# Range: 0.0 ~ 1.0
+	piglin_with_melee_spawn_chance_hard = 0.25
+	#Set to true to disable spawning a Piglin or Piglin Brute with any weapons from this mod|设为 true 禁用猪灵/猪灵蛮兵手持本模组武器生成
+	disable_spawning_piglin_with_weapon = false
+	#Chance for Wither Skeletons to spawn with Stone Melee Weapons on all difficulties apart from Hard and Hardcore|凋灵骷髅在除困难/极限外难度生成时手持石制近战武器的概率
+	# Default: 0.05000000074505806
+	# Range: 0.0 ~ 1.0
+	wither_skeleton_with_melee_spawn_chance_normal = 0.05000000074505806
+	#Chance for Wither Skeletons to spawn with Stone Melee Weapons on Hard or Hardcore difficulty|凋灵骷髅在困难/极限难度生成时手持石制近战武器的概率
+	# Default: 0.25
+	# Range: 0.0 ~ 1.0
+	wither_skeleton_with_melee_spawn_chance_hard = 0.25
+	#Set to true to disable spawning a Wither Skeleton with any weapons from this mod|设为 true 禁用凋灵骷髅手持本模组武器生成
+	disable_spawning_wither_skeleton_with_weapon = false
+	#Set to true to disable the new mob heads from being dropped from mobs using the Decapitate Weapon Trait from this mod.|设为 true 禁用拥有“斩首”特性的武器掉落新头颅
+	disable_new_head_drops = false
+
+[trading]
+	#Set to true to disable Villagers (Weaponsmiths and Fletchers) from trading weapons from this mod|设为 true 禁用村民（武器匠、制箭师）交易本模组武器
+	disable = false
+
+	[traits.damage_bonus]
+		#Changes the "Chest Damage Bonus" Weapon Trait multiplier value|调整“胸部伤害加成”特性的倍率
+		# Default: 2.0
+		# Range: 1.0 ~ 50.0
+		chest_multiplier = 2.0
+		#Changes the "Head Damage Bonus" Weapon Trait multiplier value|调整“头部伤害加成”特性的倍率
+		# Default: 1.5
+		# Range: 1.0 ~ 50.0
+		head_multiplier = 1.5
+		#Changes the "Riding Damage Bonus" Weapon Trait multiplier value|调整“骑乘伤害加成”特性的倍率
+		# Default: 2.0
+		# Range: 1.0 ~ 50.0
+		riding_multiplier = 2.0
+		#Changes the "Throwing Damage Bonus" Weapon Trait multiplier value|调整“投掷伤害加成”特性的倍率
+		# Default: 2.0
+		# Range: 1.0 ~ 50.0
+		throw_multiplier = 2.0
+		#Changes the "Chest Damage Bonus" Weapon Trait multiplier value|调整“标枪投掷伤害加成”特性的倍率
+		# Default: 3.0
+		# Range: 1.0 ~ 50.0
+		throw_javelin_multiplier = 3.0
+		#Changes the "Unarmored Damage Bonus" Weapon Trait multiplier value|调整“无甲伤害加成”特性的倍率
+		# Default: 3.0
+		# Range: 1.0 ~ 50.0
+		unarmored_multiplier = 3.0
+		#If set to true, any damage bonus that checks for armor will only apply if the hit mob has less than the total armor value threshold, while still checking for armor|设为 true 时，任何基于护甲判定的伤害加成仅在目标护甲值低于阈值时生效（仍会检查护甲）
+		check_armor_value = false
+		#Max armor value allowed for any damage bonus that checks for armor to apply, without any armor equipped|允许触发护甲判定伤害加成的最大护甲值
+		# Default: 0.0
+		# Range: 1.0 ~ 50.0
+		max_armor_value = 1.0
+		#Changes the "Undead Damage Bonus" Weapon Trait multiplier value|调整“亡灵伤害加成”特性的倍率
+		# Default: 1.5
+		# Range: 1.0 ~ 50.0
+		undead_multiplier = 1.5
+		#Changes the "Backstab Damage Bonus" Weapon Trait multiplier value|调整“背刺伤害加成”特性的倍率
+		# Default: 3.0
+		# Range: 1.0 ~ 50.0
+		backstab_multiplier = 3.0
+
+	[traits.damage_absorption]
+		#Changes the percentage of damage absorbed by the "Damage Absorption" Weapon Trait|调整“伤害吸收”特性的吸收比例
+		# Default: 0.25
+		# Range: 0.0 ~ 1.0
+		damage_absorption_factor = 0.25
+
+	[traits.reach]
+		#Changes the reach of any weapons with the "Reach I" Weapon Trait|调整“攻击距离 I”特性的攻击距离
+		# Default: 6.0
+		# Range: 5.0 ~ 15.0
+		reach1_value = 6.0
+		#Changes the reach of any weapons with the "Reach II" Weapon Trait|调整“攻击距离 II”特性的攻击距离
+		# Default: 7.0
+		# Range: 5.0 ~ 15.0
+		reach2_value = 7.0
+
+	[traits.sweep]
+		#Changes the factor of damage inflicted to enemies when sweep attacked on weapons with the "Sweep II" Weapon Trait|调整拥有“横扫 II”特性的武器横扫时对敌人造成的伤害系数
+		# Default: 0.5
+		# Range: 0.0 ~ 1.0
+		sweep2_percentage = 0.5
+		#Changes the factor of damage inflicted to enemies when sweep attacked on weapons with the "Sweep III" Weapon Trait|调整拥有“横扫 III”特性的武器横扫时对敌人造成的伤害系数
+		# Default: 1.0
+		# Range: 0.0 ~ 1.0
+		sweep3_percentage = 1.0
+
+	[traits.armor_pierce]
+		#Changes the percentage of damage that ignores armor on weapons with the "Armor Piercing" Weapon Trait|调整拥有“破甲”特性的武器无视护甲的伤害百分比
+		# Default: 50.0
+		# Range: 0.0 ~ 100.0
+		percentage = 50.0
+
+	[traits.quick_strike]
+		#Tweaks the hurt resistance ticks for weapons that use the "Quick Strike" Weapon Trait|调整拥有“快速打击”特性的武器造成的无敌帧时长（tick）
+		# Default: 14
+		# Range: 10 ~ 20
+		hurt_resistance_ticks = 14
+
+	[traits.decapitate]
+		#Tweaks the percentage of Skull drops from weapons with the "Decapitate" Weapon Trait|调整拥有“斩首”特性的武器掉落头颅的概率
+		# Default: 25.0
+		# Range: 0.0 ~ 100.0
+		skull_drop_percentage = 25.0
+
+[oil]
+	#Master switch for Weapon Oil. Set to true to enable oil recipes, creative tab oil variants, oil application, combat effects, and client oil displays. Disabled by default for modpack compatibility.|武器油总开关。设为 true 后才会启用油配方、创造标签页油变体、涂油、攻击效果和客户端油显示。默认关闭以便整合包按需启用。
+	enable_weapon_oil = false
+	#Only applies when enable_weapon_oil is true. Set to true to disable oil recipes while leaving the rest of the enabled Weapon Oil mechanic available.|仅在 enable_weapon_oil 为 true 时生效。设为 true 会禁用油配方，但保留已启用的其他武器油机制。
+	disable_oil_recipes = false
+	#Max uses for standard oils before the effect wears off|普通油的最大使用次数
+	# Default: 20
+	# Range: 1 ~ 1000
+	oil_uses_normal = 20
+	#Max uses for sustained oils before the effect wears off|持续型油的最大使用次数
+	# Default: 30
+	# Range: 1 ~ 1000
+	oil_uses_long = 30
+	#Damage modifier that standard oils inflict|普通油的伤害倍率
+	# Default: 0.20000000298023224
+	# Range: 1.0E-4 ~ 1.0
+	oil_damage_modifier_normal = 0.20000000298023224
+	#Damage modifier that potent oils inflict|强效油的伤害倍率
+	# Default: 0.4000000059604645
+	# Range: 1.0E-4 ~ 1.0
+	oil_damage_modifier_strong = 0.4000000059604645
+	#Duration modifier for potion oils, based on the original potion effects|药水油的持续时间倍率（基于原药水效果）
+	# Default: 0.25
+	# Range: 1.0E-4 ~ 1.0
+	potion_oil_duration_modifier = 0.25
+	#Blacklist for potions to prevent them to be made into oils. By default, only potions with negative effects can be made into oils. Adding already disabled potions to this blacklist will do nothing|药水黑名单，阻止被制作成油。默认仅负面药水可制成油；已被禁用的药水加入黑名单不会产生效果
+	potion_oil_blacklist = []
+	#Whitelist for potions to allow them to be made into oils. By default, only potions with negative effects can be made into oils. Adding already enabled potions to this whitelist will do nothing|药水白名单，允许被制作成油。默认仅负面药水可制成油；已被允许的药水加入白名单不会产生效果
+	potion_oil_whitelist = []
+
+[jei]
+	#Set to true to forcibly show disabled items in JEI, even if they cannot be crafted. Should be useful for modpack makers defining their own recipes.|设为 true 在 JEI 中强制显示已禁用物品，即使无法合成。对整合包作者自定义配方有用。
+	force_show_disabled_items = false

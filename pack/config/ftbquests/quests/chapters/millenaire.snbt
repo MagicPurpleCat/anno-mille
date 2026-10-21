@@ -1,0 +1,76 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "millenaire"
+	group: ""
+	icon: { id: "millenaire:denier" }
+	id: "447F75A68F355B87"
+	order_index: 4
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["C12283B890CC6405"]
+			id: "0464DCC814261E4B"
+			rewards: [{ id: "003471486F8D7C31", type: "xp", xp: 60 }]
+			tasks: [{ advancement: "millenaire:explorer", criterion: "", id: "5673BED8E95BA5F7", type: "advancement" }]
+			x: 0.0d
+			y: -4.375d
+		}
+		{
+			dependencies: ["BC207F770B11B2D5"]
+			id: "CA21969E3E6C4151"
+			rewards: [{ count: 32, id: "9DEF6180C7BDA228", item: { count: 1, id: "minecraft:bone_meal" }, type: "item" }]
+			tasks: [{ advancement: "millenaire:masterfarmer", criterion: "", id: "735B744359F7FB5F", type: "advancement" }]
+			x: 0.0d
+			y: -2.625d
+		}
+		{
+			dependencies: ["BC207F770B11B2D5"]
+			id: "18311D438F597439"
+			rewards: [{ id: "366633DB12614EE1", type: "xp", xp: 50 }]
+			tasks: [{ advancement: "millenaire:cheers", criterion: "", id: "5E37544C05E95F77", type: "advancement" }]
+			x: 0.0d
+			y: -0.875d
+		}
+		{
+			dependencies: ["0464DCC814261E4B"]
+			id: "876C2A1E9273D0DF"
+			rewards: [{ id: "BE43FC1990884FF3", type: "xp", xp: 100 }]
+			tasks: [{ advancement: "millenaire:maitreapenser", criterion: "", id: "3E90DDECD3AB8A69", type: "advancement" }]
+			x: 2.0d
+			y: -0.875d
+		}
+		{
+			dependencies: ["0464DCC814261E4B"]
+			id: "F3E3C16AA70D78F8"
+			rewards: [{ count: 1, id: "01153BC6EB385CBE", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
+			tasks: [{ advancement: "millenaire:selfdefense", criterion: "", id: "90EDF75DDFD0EEFA", type: "advancement" }]
+			x: 2.0d
+			y: 0.875d
+		}
+		{
+			dependencies: ["458EA928F633AB0B"]
+			id: "E2FEE13E41AB4697"
+			rewards: [{ id: "57080A1759EAD0AF", type: "xp", xp: 80 }]
+			tasks: [{ id: "9D0179AD2EF6B073", type: "checkmark" }]
+			x: 0.0d
+			y: 0.875d
+		}
+		{
+			dependencies: ["458EA928F633AB0B"]
+			id: "2890B110539D053F"
+			rewards: [{ id: "1DACEC0D8F5BAC5A", type: "xp", xp: 80 }]
+			tasks: [{ count: 1L, id: "723888E48EF50DD0", item: { count: 1, id: "millenaire:village_scroll" }, type: "item" }]
+			x: 0.0d
+			y: 2.625d
+		}
+		{
+			dependencies: ["EA15E6430373F811"]
+			id: "91AB585EDD20E9F1"
+			rewards: [{ id: "04F69C5344D2B726", type: "xp", xp: 400 }]
+			tasks: [{ advancement: "millenaire:viking", criterion: "", id: "F478128B6C837B89", type: "advancement" }]
+			x: 0.0d
+			y: 4.375d
+		}
+	]
+}

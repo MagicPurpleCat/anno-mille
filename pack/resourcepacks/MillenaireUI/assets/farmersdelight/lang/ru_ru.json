@@ -1,0 +1,9 @@
+{
+ "container.farmersdelight.recipe_book.cookable": "§fДоступно к готовке",
+ "container.farmersdelight.cooking_pot": "§fКухонный котёл",
+ "container.farmersdelight.cooking_pot.served_on": "§fПодаётся: %s",
+ "container.farmersdelight.cooking_pot.not_heated": "§fНужен нагрев снизу",
+ "container.farmersdelight.cooking_pot.heated": "§fНагрето",
+ "container.farmersdelight.basket": "§fКорзина",
+ "container.farmersdelight.cabinet": "§fКладовая"
+}

@@ -1,0 +1,301 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "cultures"
+	group: ""
+	icon: { id: "millenaire:norman_sword" }
+	id: "AF80BFAD16341605"
+	order_index: 5
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["C12283B890CC6405"]
+			icon: { id: "millenaire:calva" }
+			id: "365FBC4B45F4FE21"
+			rewards: [{ count: 32, id: "1ED8E34C49C36A57", item: { count: 1, id: "millenaire:denier" }, type: "item" }]
+			tasks: [{ count: 1L, id: "A7F56DA3EBFB4385", item: { count: 1, id: "millenaire:calva" }, type: "item" }]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["365FBC4B45F4FE21"]
+			id: "51B13530DA1BBEDD"
+			rewards: [{ count: 2, id: "08FF47BB83AEC90A", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
+			tasks: [{ advancement: "millenaire:rep_norman", criterion: "", id: "7BC6CFC0DC2DE78D", type: "advancement" }]
+			x: 0.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["51B13530DA1BBEDD"]
+			id: "3539720530BE837B"
+			optional: true
+			rewards: [{ id: "A633FBB089F70C13", type: "xp", xp: 400 }]
+			tasks: [{ advancement: "millenaire:complete_norman", criterion: "", id: "0421879148C3CA02", type: "advancement" }]
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["51B13530DA1BBEDD"]
+			id: "655F64DC754188C9"
+			optional: true
+			rewards: [{ count: 1, id: "4DBA10D722B911E1", item: { count: 1, id: "millenaire:denier_or" }, type: "item" }]
+			size: 1.5d
+			tasks: [{ advancement: "millenaire:leader_norman", criterion: "", id: "72DABCF7470982E9", type: "advancement" }]
+			x: 0.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["C12283B890CC6405"]
+			icon: { id: "millenaire:feta" }
+			id: "15405D20447CB245"
+			rewards: [{ count: 32, id: "6805FFA956951F5F", item: { count: 1, id: "millenaire:denier" }, type: "item" }]
+			tasks: [{ count: 1L, id: "36A062BD93BE5B4B", item: { count: 1, id: "millenaire:feta" }, type: "item" }]
+			x: 2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["15405D20447CB245"]
+			id: "2401B3251A743883"
+			rewards: [{ count: 2, id: "FF7880CBDA29FAFE", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
+			tasks: [{ advancement: "millenaire:rep_byzantines", criterion: "", id: "EEC1BF035F54DD9D", type: "advancement" }]
+			x: 2.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["2401B3251A743883"]
+			id: "9A7B87DEB9E1E3F7"
+			optional: true
+			rewards: [{ id: "F49F1594D8DE6F4D", type: "xp", xp: 400 }]
+			tasks: [{ advancement: "millenaire:complete_byzantines", criterion: "", id: "CA10D42FB9826E63", type: "advancement" }]
+			x: 2.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["2401B3251A743883"]
+			id: "03CB60A82F0AC883"
+			optional: true
+			rewards: [{ count: 1, id: "AA755CA2D0BB1880", item: { count: 1, id: "millenaire:denier_or" }, type: "item" }]
+			size: 1.5d
+			tasks: [{ advancement: "millenaire:leader_byzantines", criterion: "", id: "1F68740E54E51E21", type: "advancement" }]
+			x: 2.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["C12283B890CC6405"]
+			icon: { id: "millenaire:lokum" }
+			id: "06AD5461732DE6C0"
+			rewards: [{ count: 32, id: "1E80482DC18C13FB", item: { count: 1, id: "millenaire:denier" }, type: "item" }]
+			tasks: [{ count: 1L, id: "8313D707F9314DBD", item: { count: 1, id: "millenaire:lokum" }, type: "item" }]
+			x: 5.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["06AD5461732DE6C0"]
+			id: "1591B08C034E5DA9"
+			rewards: [{ count: 2, id: "6EF2E5B19CF159D8", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
+			tasks: [{ advancement: "millenaire:rep_seljuk", criterion: "", id: "E46E34BC1ABA7FF6", type: "advancement" }]
+			x: 5.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["1591B08C034E5DA9"]
+			id: "574E236A8DFC6E4B"
+			optional: true
+			rewards: [{ id: "560BC35D23A1B41D", type: "xp", xp: 400 }]
+			tasks: [{ advancement: "millenaire:complete_seljuk", criterion: "", id: "3287483F9D251D5D", type: "advancement" }]
+			x: 5.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["1591B08C034E5DA9"]
+			id: "A957B1B70B183F71"
+			optional: true
+			rewards: [{ count: 1, id: "538620D4577C3927", item: { count: 1, id: "millenaire:denier_or" }, type: "item" }]
+			size: 1.5d
+			tasks: [{ advancement: "millenaire:leader_seljuk", criterion: "", id: "027CE86ACC613968", type: "advancement" }]
+			x: 5.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["C12283B890CC6405"]
+			icon: { id: "millenaire:vegcurry" }
+			id: "1FEA0AD548339918"
+			rewards: [{ count: 32, id: "D2AF2FC258A4CC1C", item: { count: 1, id: "millenaire:denier" }, type: "item" }]
+			tasks: [{ count: 1L, id: "53BFE688A505A6EE", item: { count: 1, id: "millenaire:vegcurry" }, type: "item" }]
+			x: 7.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1FEA0AD548339918"]
+			id: "326A1B190C927AB8"
+			rewards: [{ count: 2, id: "9DA55AEFB1C99008", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
+			tasks: [{ advancement: "millenaire:rep_indian", criterion: "", id: "6DD5B100E3D08EF8", type: "advancement" }]
+			x: 7.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["326A1B190C927AB8"]
+			id: "E837EDABC9413E93"
+			optional: true
+			rewards: [{ id: "00B336BD11619EBA", type: "xp", xp: 400 }]
+			tasks: [{ advancement: "millenaire:complete_indian", criterion: "", id: "BCF4CFAE8D0AE059", type: "advancement" }]
+			x: 7.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["326A1B190C927AB8"]
+			id: "CCE3A73FBEF3504B"
+			optional: true
+			rewards: [{ count: 1, id: "11D7BB486CF3900D", item: { count: 1, id: "millenaire:denier_or" }, type: "item" }]
+			size: 1.5d
+			tasks: [{ advancement: "millenaire:leader_indian", criterion: "", id: "6971BF51BA76D78C", type: "advancement" }]
+			x: 7.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["C12283B890CC6405"]
+			icon: { id: "millenaire:sake" }
+			id: "08249FC5507D0611"
+			rewards: [{ count: 32, id: "3CAB56BB3320116C", item: { count: 1, id: "millenaire:denier" }, type: "item" }]
+			tasks: [{ count: 1L, id: "EFBBBF92D90091B9", item: { count: 1, id: "millenaire:sake" }, type: "item" }]
+			x: 10.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["08249FC5507D0611"]
+			id: "880F8A50D950357A"
+			rewards: [{ count: 2, id: "3AA8BEBDC18C74E8", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
+			tasks: [{ advancement: "millenaire:rep_japanese", criterion: "", id: "9E5510511B32B0C2", type: "advancement" }]
+			x: 10.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["880F8A50D950357A"]
+			id: "A537117487A8CB6A"
+			optional: true
+			rewards: [{ id: "BE7757B55D4A9C61", type: "xp", xp: 400 }]
+			tasks: [{ advancement: "millenaire:complete_japanese", criterion: "", id: "27FA6685478D8465", type: "advancement" }]
+			x: 10.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["880F8A50D950357A"]
+			id: "790995692B00085D"
+			optional: true
+			rewards: [{ count: 1, id: "3D04825A7654497C", item: { count: 1, id: "millenaire:denier_or" }, type: "item" }]
+			size: 1.5d
+			tasks: [{ advancement: "millenaire:leader_japanese", criterion: "", id: "E6F07A87FAC154A6", type: "advancement" }]
+			x: 10.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["C12283B890CC6405"]
+			icon: { id: "millenaire:cacauhaa" }
+			id: "75A91A0CBB880646"
+			rewards: [{ count: 32, id: "A58995503986381E", item: { count: 1, id: "millenaire:denier" }, type: "item" }]
+			tasks: [{ count: 1L, id: "27621CEFC5856510", item: { count: 1, id: "millenaire:cacauhaa" }, type: "item" }]
+			x: 12.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["75A91A0CBB880646"]
+			id: "CB0CA1333F2CAB4E"
+			rewards: [{ count: 2, id: "6D9E1673A503753E", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
+			tasks: [{ advancement: "millenaire:rep_mayan", criterion: "", id: "717656AABAC97492", type: "advancement" }]
+			x: 12.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["CB0CA1333F2CAB4E"]
+			id: "64CD3656B4E7B312"
+			optional: true
+			rewards: [{ id: "3972F83A928ADB2C", type: "xp", xp: 400 }]
+			tasks: [{ advancement: "millenaire:complete_mayan", criterion: "", id: "5C151E3538160305", type: "advancement" }]
+			x: 12.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["CB0CA1333F2CAB4E"]
+			id: "23373062921E9B7B"
+			optional: true
+			rewards: [{ count: 1, id: "FBC2E50FF48FC07D", item: { count: 1, id: "millenaire:denier_or" }, type: "item" }]
+			size: 1.5d
+			tasks: [{ advancement: "millenaire:leader_mayan", criterion: "", id: "FAE65D7AE4226850", type: "advancement" }]
+			x: 12.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["C12283B890CC6405"]
+			icon: { id: "millenaire:inuitbearstew" }
+			id: "B45B95866C09B596"
+			rewards: [{ count: 32, id: "C06BD4229AE4D1EA", item: { count: 1, id: "millenaire:denier" }, type: "item" }]
+			tasks: [{ count: 1L, id: "86025E48251A405B", item: { count: 1, id: "millenaire:inuitbearstew" }, type: "item" }]
+			x: 15.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["B45B95866C09B596"]
+			id: "48492452BBE0B148"
+			rewards: [{ count: 2, id: "A9626BC2046E8562", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
+			tasks: [{ advancement: "millenaire:rep_inuits", criterion: "", id: "2CF2362CEDA6B951", type: "advancement" }]
+			x: 15.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["48492452BBE0B148"]
+			id: "636E6A705B512077"
+			optional: true
+			rewards: [{ id: "6A4B087FAD10A8D2", type: "xp", xp: 400 }]
+			tasks: [{ advancement: "millenaire:complete_inuits", criterion: "", id: "CA0D95964B1A3C13", type: "advancement" }]
+			x: 15.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["48492452BBE0B148"]
+			id: "E14EFA4F9665D1DD"
+			optional: true
+			rewards: [{ count: 1, id: "59F04D3B737F9967", item: { count: 1, id: "millenaire:denier_or" }, type: "item" }]
+			size: 1.5d
+			tasks: [{ advancement: "millenaire:leader_inuits", criterion: "", id: "345D5CBAD487C9B8", type: "advancement" }]
+			x: 15.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["3539720530BE837B"]
+			id: "25489C153E2F9127"
+			optional: true
+			rewards: [{ count: 1, id: "87A7021E551F8C36", item: { count: 1, id: "millenaire:denier_or" }, type: "item" }]
+			size: 1.5d
+			tasks: [{ advancement: "millenaire:marvel_norman", criterion: "", id: "B62ACEDA78B645EE", type: "advancement" }]
+			x: 0.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["03CB60A82F0AC883"]
+			id: "DB52C78431B2EA3E"
+			optional: true
+			rewards: [{ id: "B522137674D1CF51", type: "xp", xp: 500 }]
+			tasks: [{ advancement: "millenaire:byzantines_nottoday", criterion: "", id: "38D201609620001D", type: "advancement" }]
+			x: 2.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["326A1B190C927AB8"]
+			id: "B2D80D7DD6FFBAF1"
+			optional: true
+			rewards: [{ id: "24DEA72C1B2F71E1", type: "xp", xp: 150 }]
+			tasks: [{ advancement: "millenaire:rainbow", criterion: "", id: "CD623A1B347DB250", type: "advancement" }]
+			x: 7.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["48492452BBE0B148"]
+			id: "CE6BE20C5230D677"
+			optional: true
+			rewards: [{ id: "F6678E8A04241BBD", type: "xp", xp: 200 }]
+			tasks: [{ advancement: "millenaire:greathunter", criterion: "", id: "73A1EBC45D744900", type: "advancement" }]
+			x: 15.0d
+			y: 6.0d
+		}
+	]
+}

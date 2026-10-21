@@ -1,0 +1,504 @@
+#Kneading, rolling, cutting and the tools of the Baker Station.
+[Baking]
+	#Dough can be kneaded flat with empty hands.
+	enableKneading = true
+	#Clicks it takes to knead dough flat with empty hands.
+	# Default: 8
+	# Range: 1 ~ 50
+	kneadPresses = 8
+	#Clicks it takes to flatten dough with a Rolling Pin.
+	# Default: 5
+	# Range: 1 ~ 50
+	rollingPinPresses = 5
+	#Ticks it takes to cut dough with a knife.
+	# Default: 10
+	# Range: 1 ~ 400
+	knifeDuration = 10
+	#Ticks it takes jam to spread over cakes, cupcakes and cookies.
+	# Default: 16
+	# Range: 1 ~ 400
+	jamDuration = 16
+	#Attacks per second of the Bread Knife. Changes need a game restart.
+	# Default: 2.0
+	# Range: 0.1 ~ 4.0
+	knifeAttackSpeed = 2.0
+	#Attacks per second of the Rolling Pin. Changes need a game restart.
+	# Default: 1.2
+	# Range: 0.1 ~ 4.0
+	rollingPinAttackSpeed = 1.2
+
+#Info tooltips that appear when looking at a block. Only affects your own screen.
+["Info Tooltips"]
+	#Info tooltips only show while wearing Dungarees from Farm & Charm.
+	needDungarees = false
+	#Shows an info tooltip when looking at the Baker Station or the dough on it.
+	showBakerStationInfo = true
+	#Shows an info tooltip when looking at the Jam Pot.
+	showJamPotInfo = true
+	#Shows what lies on the Wall, Cake and Cupcake Display, the Tray and the Cake Stand and what is in the Bread Box.
+	showDisplayInfo = true
+
+#Fine-tuning of the effects.
+[Effects]
+
+	[Effects."Vitality Effect"]
+		#Ticks between two exhaustion reductions.
+		# Default: 10
+		# Range: 1 ~ 200
+		vitalityEffectInterval = 10
+		#Exhaustion removed each interval. Grows with the effect level.
+		# Default: 0.08
+		# Range: 0.0 ~ 10.0
+		vitalityEffectExhaustionReduction = 0.08
+
+	[Effects."Sugar Rush Effect"]
+		#How many times Sugar Rush can stack.
+		# Default: 10
+		# Range: 1 ~ 50
+		sugarRushMaxStacks = 10
+		#Speed bonus per stack. 0.02 = 2%.
+		# Default: 0.02
+		# Range: 0.0 ~ 1.0
+		sugarRushBonusPerStack = 0.02
+		#Stacks up to this number add movement speed. Every stack above adds attack speed.
+		# Default: 5
+		# Range: 1 ~ 50
+		sugarRushAttackSpeedStacks = 5
+		#High Sugar Rush stacks also increase attack speed.
+		sugarRushAttackSpeed = true
+
+	[Effects."Completionist Banner Effect"]
+		#The Completionist Banner grants Resistance to players nearby.
+		bannerGiveEffect = true
+		#Radius in blocks in which the Completionist Banner grants Resistance.
+		# Default: 8
+		# Range: 1 ~ 32
+		bannerEffectRadius = 8
+		#Resistance level of the Completionist Banner. 0 = Resistance I.
+		# Default: 1
+		# Range: 0 ~ 4
+		bannerEffectAmplifier = 1
+		#Shows the thank-you tooltip on the Completionist Banner.
+		bannerShowTooltip = true
+
+#Block animations.
+[Misc]
+	#Blocks of this mod are animated. Without animations every step finishes instantly.
+	animations = true
+	#Kneading dough plays an animation. Without it the dough is flattened instantly.
+	kneadingAnimation = true
+
+#Hunger, saturation and effect duration in ticks of the food items. Changes need a game restart.
+[Food]
+	#Hunger points restored by Cake Dough. 2 points = 1 drumstick.
+	# Default: 2
+	# Range: 0 ~ 20
+	cakeDoughNutrition = 2
+	#Saturation given by Cake Dough, multiplied with its hunger points.
+	# Default: 0.1
+	# Range: 0.0 ~ 2.0
+	cakeDoughSaturation = 0.1
+	#Hunger points restored by Sweet Dough. 2 points = 1 drumstick.
+	# Default: 2
+	# Range: 0 ~ 20
+	sweetDoughNutrition = 2
+	#Saturation given by Sweet Dough, multiplied with its hunger points.
+	# Default: 0.1
+	# Range: 0.0 ~ 2.0
+	sweetDoughSaturation = 0.1
+	#Hunger points restored by Croissant. 2 points = 1 drumstick.
+	# Default: 4
+	# Range: 0 ~ 20
+	croissantNutrition = 4
+	#Saturation given by Croissant, multiplied with its hunger points.
+	# Default: 0.5
+	# Range: 0.0 ~ 2.0
+	croissantSaturation = 0.5
+	#How long the effect of Croissant lasts in ticks. 20 ticks = 1 second.
+	# Default: 900
+	# Range: 0 ~ 72000
+	croissantEffectDuration = 900
+	#Hunger points restored by Crusty Bread. 2 points = 1 drumstick.
+	# Default: 5
+	# Range: 0 ~ 20
+	crustyBreadNutrition = 5
+	#Saturation given by Crusty Bread, multiplied with its hunger points.
+	# Default: 0.6
+	# Range: 0.0 ~ 2.0
+	crustyBreadSaturation = 0.6
+	#How long the effect of Crusty Bread lasts in ticks. 20 ticks = 1 second.
+	# Default: 4800
+	# Range: 0 ~ 72000
+	crustyBreadEffectDuration = 4800
+	#Hunger points restored by Bread. 2 points = 1 drumstick.
+	# Default: 5
+	# Range: 0 ~ 20
+	breadNutrition = 5
+	#Saturation given by Bread, multiplied with its hunger points.
+	# Default: 0.6
+	# Range: 0.0 ~ 2.0
+	breadSaturation = 0.6
+	#How long the effect of Bread lasts in ticks. 20 ticks = 1 second.
+	# Default: 4200
+	# Range: 0 ~ 72000
+	breadEffectDuration = 4200
+	#Hunger points restored by Baguette. 2 points = 1 drumstick.
+	# Default: 6
+	# Range: 0 ~ 20
+	baguetteNutrition = 6
+	#Saturation given by Baguette, multiplied with its hunger points.
+	# Default: 0.6
+	# Range: 0.0 ~ 2.0
+	baguetteSaturation = 0.6
+	#How long the effect of Baguette lasts in ticks. 20 ticks = 1 second.
+	# Default: 4200
+	# Range: 0 ~ 72000
+	baguetteEffectDuration = 4200
+	#Hunger points restored by Toast. 2 points = 1 drumstick.
+	# Default: 3
+	# Range: 0 ~ 20
+	toastNutrition = 3
+	#Saturation given by Toast, multiplied with its hunger points.
+	# Default: 0.5
+	# Range: 0.0 ~ 2.0
+	toastSaturation = 0.5
+	#How long the effect of Toast lasts in ticks. 20 ticks = 1 second.
+	# Default: 5400
+	# Range: 0 ~ 72000
+	toastEffectDuration = 5400
+	#Hunger points restored by Braided Bread. 2 points = 1 drumstick.
+	# Default: 6
+	# Range: 0 ~ 20
+	braidedBreadNutrition = 6
+	#Saturation given by Braided Bread, multiplied with its hunger points.
+	# Default: 0.6
+	# Range: 0.0 ~ 2.0
+	braidedBreadSaturation = 0.6
+	#How long the effect of Braided Bread lasts in ticks. 20 ticks = 1 second.
+	# Default: 4200
+	# Range: 0 ~ 72000
+	braidedBreadEffectDuration = 4200
+	#Hunger points restored by Sandwich. 2 points = 1 drumstick.
+	# Default: 9
+	# Range: 0 ~ 20
+	sandwichNutrition = 9
+	#Saturation given by Sandwich, multiplied with its hunger points.
+	# Default: 0.8
+	# Range: 0.0 ~ 2.0
+	sandwichSaturation = 0.8
+	#How long the effect of Sandwich lasts in ticks. 20 ticks = 1 second.
+	# Default: 1500
+	# Range: 0 ~ 72000
+	sandwichEffectDuration = 1500
+	#Hunger points restored by Vegetable Sandwich. 2 points = 1 drumstick.
+	# Default: 7
+	# Range: 0 ~ 20
+	vegetableSandwichNutrition = 7
+	#Saturation given by Vegetable Sandwich, multiplied with its hunger points.
+	# Default: 0.6
+	# Range: 0.0 ~ 2.0
+	vegetableSandwichSaturation = 0.6
+	#How long the effect of Vegetable Sandwich lasts in ticks. 20 ticks = 1 second.
+	# Default: 1800
+	# Range: 0 ~ 72000
+	vegetableSandwichEffectDuration = 1800
+	#Hunger points restored by Grilled Salmon Sandwich. 2 points = 1 drumstick.
+	# Default: 8
+	# Range: 0 ~ 20
+	grilledSalmonSandwichNutrition = 8
+	#Saturation given by Grilled Salmon Sandwich, multiplied with its hunger points.
+	# Default: 0.8
+	# Range: 0.0 ~ 2.0
+	grilledSalmonSandwichSaturation = 0.8
+	#How long the effect of Grilled Salmon Sandwich lasts in ticks. 20 ticks = 1 second.
+	# Default: 1200
+	# Range: 0 ~ 72000
+	grilledSalmonSandwichEffectDuration = 1200
+	#Hunger points restored by Grilled Bacon Sandwich. 2 points = 1 drumstick.
+	# Default: 8
+	# Range: 0 ~ 20
+	grilledBaconSandwichNutrition = 8
+	#Saturation given by Grilled Bacon Sandwich, multiplied with its hunger points.
+	# Default: 0.8
+	# Range: 0.0 ~ 2.0
+	grilledBaconSandwichSaturation = 0.8
+	#How long the effect of Grilled Bacon Sandwich lasts in ticks. 20 ticks = 1 second.
+	# Default: 1200
+	# Range: 0 ~ 72000
+	grilledBaconSandwichEffectDuration = 1200
+	#Hunger points restored by Bread With Jam. 2 points = 1 drumstick.
+	# Default: 3
+	# Range: 0 ~ 20
+	breadWithJamNutrition = 3
+	#Saturation given by Bread With Jam, multiplied with its hunger points.
+	# Default: 0.5
+	# Range: 0.0 ~ 2.0
+	breadWithJamSaturation = 0.5
+	#How long the effect of Bread With Jam lasts in ticks. 20 ticks = 1 second.
+	# Default: 400
+	# Range: 0 ~ 72000
+	breadWithJamEffectDuration = 400
+	#Hunger points restored by Strawberry Cake Slice. 2 points = 1 drumstick.
+	# Default: 4
+	# Range: 0 ~ 20
+	strawberryCakeSliceNutrition = 4
+	#Saturation given by Strawberry Cake Slice, multiplied with its hunger points.
+	# Default: 0.6
+	# Range: 0.0 ~ 2.0
+	strawberryCakeSliceSaturation = 0.6
+	#How long the effect of Strawberry Cake Slice lasts in ticks. 20 ticks = 1 second.
+	# Default: 600
+	# Range: 0 ~ 72000
+	strawberryCakeSliceEffectDuration = 600
+	#Hunger points restored by Sweet Berry Cake Slice. 2 points = 1 drumstick.
+	# Default: 4
+	# Range: 0 ~ 20
+	sweetberryCakeSliceNutrition = 4
+	#Saturation given by Sweet Berry Cake Slice, multiplied with its hunger points.
+	# Default: 0.6
+	# Range: 0.0 ~ 2.0
+	sweetberryCakeSliceSaturation = 0.6
+	#How long the effect of Sweet Berry Cake Slice lasts in ticks. 20 ticks = 1 second.
+	# Default: 600
+	# Range: 0 ~ 72000
+	sweetberryCakeSliceEffectDuration = 600
+	#Hunger points restored by Chocolate Cake Slice. 2 points = 1 drumstick.
+	# Default: 4
+	# Range: 0 ~ 20
+	chocolateCakeSliceNutrition = 4
+	#Saturation given by Chocolate Cake Slice, multiplied with its hunger points.
+	# Default: 0.7
+	# Range: 0.0 ~ 2.0
+	chocolateCakeSliceSaturation = 0.7
+	#How long the effect of Chocolate Cake Slice lasts in ticks. 20 ticks = 1 second.
+	# Default: 600
+	# Range: 0 ~ 72000
+	chocolateCakeSliceEffectDuration = 600
+	#Hunger points restored by Chocolate Gateau Slice. 2 points = 1 drumstick.
+	# Default: 4
+	# Range: 0 ~ 20
+	chocolateGateauSliceNutrition = 4
+	#Saturation given by Chocolate Gateau Slice, multiplied with its hunger points.
+	# Default: 0.7
+	# Range: 0.0 ~ 2.0
+	chocolateGateauSliceSaturation = 0.7
+	#How long the effect of Chocolate Gateau Slice lasts in ticks. 20 ticks = 1 second.
+	# Default: 600
+	# Range: 0 ~ 72000
+	chocolateGateauSliceEffectDuration = 600
+	#Hunger points restored by Bundt Cake Slice. 2 points = 1 drumstick.
+	# Default: 3
+	# Range: 0 ~ 20
+	bundtCakeSliceNutrition = 3
+	#Saturation given by Bundt Cake Slice, multiplied with its hunger points.
+	# Default: 0.6
+	# Range: 0.0 ~ 2.0
+	bundtCakeSliceSaturation = 0.6
+	#How long the effect of Bundt Cake Slice lasts in ticks. 20 ticks = 1 second.
+	# Default: 600
+	# Range: 0 ~ 72000
+	bundtCakeSliceEffectDuration = 600
+	#Hunger points restored by Linzer Tart Slice. 2 points = 1 drumstick.
+	# Default: 4
+	# Range: 0 ~ 20
+	linzerTartSliceNutrition = 4
+	#Saturation given by Linzer Tart Slice, multiplied with its hunger points.
+	# Default: 0.6
+	# Range: 0.0 ~ 2.0
+	linzerTartSliceSaturation = 0.6
+	#How long the effect of Linzer Tart Slice lasts in ticks. 20 ticks = 1 second.
+	# Default: 600
+	# Range: 0 ~ 72000
+	linzerTartSliceEffectDuration = 600
+	#Hunger points restored by Apple Pie Slice. 2 points = 1 drumstick.
+	# Default: 4
+	# Range: 0 ~ 20
+	applePieSliceNutrition = 4
+	#Saturation given by Apple Pie Slice, multiplied with its hunger points.
+	# Default: 0.6
+	# Range: 0.0 ~ 2.0
+	applePieSliceSaturation = 0.6
+	#How long the effect of Apple Pie Slice lasts in ticks. 20 ticks = 1 second.
+	# Default: 600
+	# Range: 0 ~ 72000
+	applePieSliceEffectDuration = 600
+	#Hunger points restored by Glowberry Pie Slice. 2 points = 1 drumstick.
+	# Default: 4
+	# Range: 0 ~ 20
+	glowberryPieSliceNutrition = 4
+	#Saturation given by Glowberry Pie Slice, multiplied with its hunger points.
+	# Default: 0.6
+	# Range: 0.0 ~ 2.0
+	glowberryPieSliceSaturation = 0.6
+	#How long the effect of Glowberry Pie Slice lasts in ticks. 20 ticks = 1 second.
+	# Default: 600
+	# Range: 0 ~ 72000
+	glowberryPieSliceEffectDuration = 600
+	#Hunger points restored by Chocolate Tart Slice. 2 points = 1 drumstick.
+	# Default: 4
+	# Range: 0 ~ 20
+	chocolateTartSliceNutrition = 4
+	#Saturation given by Chocolate Tart Slice, multiplied with its hunger points.
+	# Default: 0.7
+	# Range: 0.0 ~ 2.0
+	chocolateTartSliceSaturation = 0.7
+	#How long the effect of Chocolate Tart Slice lasts in ticks. 20 ticks = 1 second.
+	# Default: 600
+	# Range: 0 ~ 72000
+	chocolateTartSliceEffectDuration = 600
+	#Hunger points restored by Pudding Slice. 2 points = 1 drumstick.
+	# Default: 3
+	# Range: 0 ~ 20
+	puddingSliceNutrition = 3
+	#Saturation given by Pudding Slice, multiplied with its hunger points.
+	# Default: 0.6
+	# Range: 0.0 ~ 2.0
+	puddingSliceSaturation = 0.6
+	#How long the effect of Pudding Slice lasts in ticks. 20 ticks = 1 second.
+	# Default: 600
+	# Range: 0 ~ 72000
+	puddingSliceEffectDuration = 600
+	#Hunger points restored by Strawberry Glazed Cookie. 2 points = 1 drumstick.
+	# Default: 3
+	# Range: 0 ~ 20
+	strawberryGlazedCookieNutrition = 3
+	#Saturation given by Strawberry Glazed Cookie, multiplied with its hunger points.
+	# Default: 0.4
+	# Range: 0.0 ~ 2.0
+	strawberryGlazedCookieSaturation = 0.4
+	#How long the effect of Strawberry Glazed Cookie lasts in ticks. 20 ticks = 1 second.
+	# Default: 400
+	# Range: 0 ~ 72000
+	strawberryGlazedCookieEffectDuration = 400
+	#Hunger points restored by Sweet Berry Glazed Cookie. 2 points = 1 drumstick.
+	# Default: 3
+	# Range: 0 ~ 20
+	sweetberryGlazedCookieNutrition = 3
+	#Saturation given by Sweet Berry Glazed Cookie, multiplied with its hunger points.
+	# Default: 0.4
+	# Range: 0.0 ~ 2.0
+	sweetberryGlazedCookieSaturation = 0.4
+	#How long the effect of Sweet Berry Glazed Cookie lasts in ticks. 20 ticks = 1 second.
+	# Default: 400
+	# Range: 0 ~ 72000
+	sweetberryGlazedCookieEffectDuration = 400
+	#Hunger points restored by Chocolate Glazed Cookie. 2 points = 1 drumstick.
+	# Default: 3
+	# Range: 0 ~ 20
+	chocolateGlazedCookieNutrition = 3
+	#Saturation given by Chocolate Glazed Cookie, multiplied with its hunger points.
+	# Default: 0.4
+	# Range: 0.0 ~ 2.0
+	chocolateGlazedCookieSaturation = 0.4
+	#How long the effect of Chocolate Glazed Cookie lasts in ticks. 20 ticks = 1 second.
+	# Default: 400
+	# Range: 0 ~ 72000
+	chocolateGlazedCookieEffectDuration = 400
+	#Hunger points restored by Strawberry Cupcake. 2 points = 1 drumstick.
+	# Default: 3
+	# Range: 0 ~ 20
+	strawberryCupcakeNutrition = 3
+	#Saturation given by Strawberry Cupcake, multiplied with its hunger points.
+	# Default: 0.5
+	# Range: 0.0 ~ 2.0
+	strawberryCupcakeSaturation = 0.5
+	#How long the effect of Strawberry Cupcake lasts in ticks. 20 ticks = 1 second.
+	# Default: 400
+	# Range: 0 ~ 72000
+	strawberryCupcakeEffectDuration = 400
+	#Hunger points restored by Sweet Berry Cupcake. 2 points = 1 drumstick.
+	# Default: 3
+	# Range: 0 ~ 20
+	sweetberryCupcakeNutrition = 3
+	#Saturation given by Sweet Berry Cupcake, multiplied with its hunger points.
+	# Default: 0.5
+	# Range: 0.0 ~ 2.0
+	sweetberryCupcakeSaturation = 0.5
+	#How long the effect of Sweet Berry Cupcake lasts in ticks. 20 ticks = 1 second.
+	# Default: 400
+	# Range: 0 ~ 72000
+	sweetberryCupcakeEffectDuration = 400
+	#Hunger points restored by Apple Cupcake. 2 points = 1 drumstick.
+	# Default: 3
+	# Range: 0 ~ 20
+	appleCupcakeNutrition = 3
+	#Saturation given by Apple Cupcake, multiplied with its hunger points.
+	# Default: 0.5
+	# Range: 0.0 ~ 2.0
+	appleCupcakeSaturation = 0.5
+	#How long the effect of Apple Cupcake lasts in ticks. 20 ticks = 1 second.
+	# Default: 400
+	# Range: 0 ~ 72000
+	appleCupcakeEffectDuration = 400
+	#Hunger points restored by Cornet. 2 points = 1 drumstick.
+	# Default: 3
+	# Range: 0 ~ 20
+	cornetNutrition = 3
+	#Saturation given by Cornet, multiplied with its hunger points.
+	# Default: 0.5
+	# Range: 0.0 ~ 2.0
+	cornetSaturation = 0.5
+	#How long the effect of Cornet lasts in ticks. 20 ticks = 1 second.
+	# Default: 400
+	# Range: 0 ~ 72000
+	cornetEffectDuration = 400
+	#Hunger points restored by Jam Roll. 2 points = 1 drumstick.
+	# Default: 3
+	# Range: 0 ~ 20
+	jamRollNutrition = 3
+	#Saturation given by Jam Roll, multiplied with its hunger points.
+	# Default: 0.4
+	# Range: 0.0 ~ 2.0
+	jamRollSaturation = 0.4
+	#How long the effect of Jam Roll lasts in ticks. 20 ticks = 1 second.
+	# Default: 400
+	# Range: 0 ~ 72000
+	jamRollEffectDuration = 400
+	#Hunger points restored by Bun. 2 points = 1 drumstick.
+	# Default: 4
+	# Range: 0 ~ 20
+	bunNutrition = 4
+	#Saturation given by Bun, multiplied with its hunger points.
+	# Default: 0.5
+	# Range: 0.0 ~ 2.0
+	bunSaturation = 0.5
+	#How long the effect of Bun lasts in ticks. 20 ticks = 1 second.
+	# Default: 2800
+	# Range: 0 ~ 72000
+	bunEffectDuration = 2800
+	#Hunger points restored by Waffle. 2 points = 1 drumstick.
+	# Default: 4
+	# Range: 0 ~ 20
+	waffleNutrition = 4
+	#Saturation given by Waffle, multiplied with its hunger points.
+	# Default: 0.5
+	# Range: 0.0 ~ 2.0
+	waffleSaturation = 0.5
+	#How long the effect of Waffle lasts in ticks. 20 ticks = 1 second.
+	# Default: 800
+	# Range: 0 ~ 72000
+	waffleEffectDuration = 800
+	#Hunger points restored by Chocolate Truffle. 2 points = 1 drumstick.
+	# Default: 2
+	# Range: 0 ~ 20
+	chocolateTruffleNutrition = 2
+	#Saturation given by Chocolate Truffle, multiplied with its hunger points.
+	# Default: 0.4
+	# Range: 0.0 ~ 2.0
+	chocolateTruffleSaturation = 0.4
+	#How long the effect of Chocolate Truffle lasts in ticks. 20 ticks = 1 second.
+	# Default: 200
+	# Range: 0 ~ 72000
+	chocolateTruffleEffectDuration = 200
+	#Hunger points restored by MissLilitu Biscuit. 2 points = 1 drumstick.
+	# Default: 3
+	# Range: 0 ~ 20
+	misslilituBiscuitNutrition = 3
+	#Saturation given by MissLilitu Biscuit, multiplied with its hunger points.
+	# Default: 0.5
+	# Range: 0.0 ~ 2.0
+	misslilituBiscuitSaturation = 0.5
+	#How long the effect of MissLilitu Biscuit lasts in ticks. 20 ticks = 1 second.
+	# Default: 900
+	# Range: 0 ~ 72000
+	misslilituBiscuitEffectDuration = 900

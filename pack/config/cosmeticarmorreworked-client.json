@@ -1,0 +1,12 @@
+{
+  "CosArmorGuiButton_Hidden": false,
+  "CosArmorGuiButton_Left": 65,
+  "CosArmorGuiButton_Top": 67,
+  "CosArmorToggleButton_Hidden": false,
+  "CosArmorToggleButton_Left": 59,
+  "CosArmorToggleButton_Top": 72,
+  "CosArmorCreativeGuiButton_Hidden": false,
+  "CosArmorCreativeGuiButton_Left": 95,
+  "CosArmorCreativeGuiButton_Top": 38,
+  "CosArmorStackRendering": false
+}

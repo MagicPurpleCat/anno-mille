@@ -1,0 +1,40 @@
+{
+  "modVersion": "1.8.2.1",
+  "configWiki": "https://fetzis-orga.gitbook.io/fetzis-asian-decoration/config-settings",
+  "chatMessageOnJoin": false,
+  "chatMessageOnce": true,
+  "spawnKois": true,
+  "weightKoi": 5,
+  "minCountKoi": 2,
+  "maxCountKoi": 5,
+  "koiEggMaxBabies": 3,
+  "generateLilyPads": true,
+  "gongAttractRange": 50,
+  "incenseEffectRadius": 5,
+  "incenseEffectDuration": 200,
+  "incenseEffectBlacklist": [
+    "minecraft:poison",
+    "minecraft:wither",
+    "minecraft:instant_damage",
+    "minecraft:instant_health"
+  ],
+  "shojiWallConnectionBlacklist": [
+    "#minecraft:slabs",
+    "#minecraft:stairs",
+    "#minecraft:walls",
+    "#minecraft:fence_gates",
+    "#minecraft:doors",
+    "#minecraft:leaves",
+    "#minecraft:all_signs",
+    "#minecraft:banners",
+    "#minecraft:candles",
+    "#minecraft:buttons",
+    "#minecraft:rails",
+    "#minecraft:flower_pots",
+    "#minecraft:saplings",
+    "#minecraft:wool_carpets",
+    "#minecraft:climbable",
+    "#fetzisasiandeco:shoji_blacklist"
+  ],
+  "shojiWallConnectionWhitelist": []
+}

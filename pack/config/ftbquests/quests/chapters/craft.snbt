@@ -1,0 +1,116 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "craft"
+	group: ""
+	icon: { id: "farmersdelight:cooking_pot" }
+	id: "BEDBF7D139FE6F33"
+	order_index: 6
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["372B75EEE69BDE9F"]
+			id: "76FCE68B995146B9"
+			rewards: [{ id: "B49C2ED3D391743D", type: "xp", xp: 30 }]
+			tasks: [{ count: 1L, id: "4D05B42E6C103865", item: { count: 1, id: "farmersdelight:flint_knife" }, type: "item" }]
+			x: 0.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["76FCE68B995146B9"]
+			id: "DB7F1A143D3688F0"
+			rewards: [{ id: "749A53CD0C730F51", type: "xp", xp: 30 }]
+			tasks: [{ count: 1L, id: "0C6F7A3551D23D0A", item: { count: 1, id: "farmersdelight:cutting_board" }, type: "item" }]
+			x: 2.0d
+			y: -4.375d
+		}
+		{
+			dependencies: ["76FCE68B995146B9"]
+			id: "E04250F4EDF375C0"
+			rewards: [{ id: "907BF5FBFB6D0101", type: "xp", xp: 40 }]
+			tasks: [{ count: 8L, id: "5F558AD1BD17159D", item: { count: 1, id: "farmersdelight:rice" }, type: "item" } { count: 8L, id: "B27E1901EA5113AA", item: { count: 1, id: "farmersdelight:cabbage" }, type: "item" }]
+			x: 2.0d
+			y: -2.625d
+		}
+		{
+			dependencies: ["372B75EEE69BDE9F"]
+			id: "8A8C7D629F3B9F9A"
+			rewards: [{ count: 4, id: "04044038F7E531DF", item: { count: 1, id: "minecraft:honey_bottle" }, type: "item" }]
+			tasks: [{ count: 1L, id: "F3C21A80F8C650E7", item: { count: 1, id: "brewinandchewin:keg" }, type: "item" }]
+			x: 0.0d
+			y: -1.75d
+		}
+		{
+			dependencies: ["8A8C7D629F3B9F9A"]
+			id: "8717AC80A59A5818"
+			rewards: [{ id: "8C7EA9B7D3711A2C", type: "xp", xp: 60 }]
+			tasks: [{ count: 1L, id: "38AE5BB49CCBCF63", item: { count: 1, id: "brewinandchewin:mead" }, type: "item" }]
+			x: 2.0d
+			y: -0.875d
+		}
+		{
+			dependencies: ["8A8C7D629F3B9F9A"]
+			id: "BC4703EA8A9F7164"
+			rewards: [{ id: "CE8FDD688C34CA0D", type: "xp", xp: 60 }]
+			tasks: [{ count: 1L, id: "8277DCA917010478", item: { count: 1, id: "brewinandchewin:flaxen_cheese_wheel" }, type: "item" }]
+			x: 2.0d
+			y: 0.875d
+		}
+		{
+			dependencies: ["372B75EEE69BDE9F"]
+			id: "963FD0CB4CAD4DFA"
+			rewards: [{ id: "E232A29898BE5E17", type: "xp", xp: 80 }]
+			tasks: [{ count: 1L, id: "0E605346F30337FE", item: { count: 1, id: "vinery:grapevine_pot" }, type: "item" } { count: 1L, id: "1182CDDA47264B19", item: { count: 1, id: "vinery:fermentation_barrel" }, type: "item" }]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["372B75EEE69BDE9F"]
+			id: "3F84432EF93192AC"
+			rewards: [{ id: "2EC779E1D8CB8EA7", type: "xp", xp: 40 }]
+			tasks: [{ count: 1L, id: "CE6E41452232BCC4", item: { count: 1, id: "farm_and_charm:mincer" }, type: "item" } { count: 1L, id: "AEE4CE2275570254", item: { count: 1, id: "farm_and_charm:crafting_bowl" }, type: "item" }]
+			x: 0.0d
+			y: 1.75d
+		}
+		{
+			dependencies: ["3F84432EF93192AC"]
+			id: "84586C497AF530BE"
+			rewards: [{ id: "1F440EAA6A9953F6", type: "xp", xp: 60 }]
+			tasks: [{ count: 1L, id: "78E1C952DF9842A9", item: { count: 1, id: "farm_and_charm:stove" }, type: "item" }]
+			x: 2.0d
+			y: 2.625d
+		}
+		{
+			dependencies: ["84586C497AF530BE"]
+			id: "82004F10D81EC3AE"
+			rewards: [{ id: "344723AA9F4F026D", type: "xp", xp: 80 }]
+			tasks: [{ count: 1L, id: "3F339A4A6C9E3738", item: { count: 1, id: "bakery:crusty_bread" }, type: "item" }]
+			x: 4.0d
+			y: -0.875d
+		}
+		{
+			dependencies: ["DB7F1A143D3688F0"]
+			id: "5B4A11C47A52E029"
+			rewards: [{ id: "7662FD9C32E8203D", type: "xp", xp: 40 }]
+			tasks: [{ count: 1L, id: "B87FFD159962A792", item: { count: 1, id: "supplementaries:sack" }, type: "item" } { count: 1L, id: "36FB3F407EBAAE00", item: { count: 1, id: "supplementaries:jar" }, type: "item" }]
+			x: 4.0d
+			y: 0.875d
+		}
+		{
+			dependencies: ["372B75EEE69BDE9F"]
+			id: "9F71E85215C6635A"
+			rewards: [{ id: "2FB95CD4DE52B609", type: "xp", xp: 50 }]
+			tasks: [{ count: 4L, id: "B28550F706DF7ABF", item: { count: 1, id: "culturaldelights:corn_cob" }, type: "item" } { count: 4L, id: "CF761510C3E9A137", item: { count: 1, id: "culturaldelights:eggplant" }, type: "item" }]
+			x: 0.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["8A8C7D629F3B9F9A"]
+			id: "709760646925A2A7"
+			rewards: [{ id: "BD8D845EBF203BC5", type: "xp", xp: 50 }]
+			tasks: [{ count: 1L, id: "A0ADF4F6BD6DEA4B", item: { count: 1, id: "meadow:cheese_form" }, type: "item" }]
+			x: 2.0d
+			y: 4.375d
+		}
+	]
+}

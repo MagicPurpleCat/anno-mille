@@ -1,0 +1,8 @@
+{
+ "container.imbue": "§fImbue",
+ "container.imbue.atWrongLevel": "§fItem enchantment level is wrong!",
+ "container.imbue.invalidEnchantment": "§fBook enchantment cannot be imbued!",
+ "container.imbue.invalidItem": "§fItem is not compatible with this enchantment!",
+ "container.imbue.notAtMaxLevel": "§fBook enchantment level is too low!",
+ "container.imbue.tooManyEnchantments": "§fBook has too many enchantment!"
+}

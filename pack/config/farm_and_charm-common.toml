@@ -1,0 +1,417 @@
+#Everything about growing crops.
+[Farming]
+	#Crops grow faster while it is raining on them.
+	enableRainGrowthEffect = true
+	#Shows fireflies around lit lanterns outdoors at night when it is not raining.
+	enableFireflies = true
+	#How much faster crops grow in rain. 0.5 = 50% faster, 1.0 = twice as fast.
+	# Default: 0.5
+	# Range: 0.0 ~ 2.0
+	rainGrowthMultiplier = 0.5
+	#Chance in percent that a fully grown lettuce or onion grows into a big crop while rain falls on it in bright light. Only some crops can grow big.
+	# Default: 3
+	# Range: 0 ~ 100
+	bigCropChance = 3
+	#Fertilized farmland occasionally acts like bone meal on the crop above it.
+	enableBonemealEffect = true
+	#Fertilizer makes a few crops in a 5×5 area grow like bone meal does.
+	enableFertilizer = true
+	#Radius in blocks around fertilized soil spread with a pitchfork in which plants can grow a stage.
+	# Default: 5
+	# Range: 1 ~ 16
+	fertilizedSoilRange = 5
+	#Every how many seconds a scarecrow helps the crops around it grow.
+	# Default: 25
+	# Range: 1 ~ 600
+	scarecrowGrowthInterval = 25
+	#Radius in blocks around the scarecrow.
+	# Default: 8
+	# Range: 1 ~ 16
+	scarecrowRange = 8
+	#Chance in percent that bone meal on a wild crop drops another wild crop.
+	# Default: 60
+	# Range: 0 ~ 100
+	wildCropDropChance = 60
+
+#Sprinklers and the timber well.
+[Water]
+	#Radius in blocks that a water sprinkler keeps watered.
+	# Default: 8
+	# Range: 1 ~ 16
+	waterSprinklerRange = 8
+	#How many blocks below the well it searches for a water source.
+	# Default: 6
+	# Range: 1 ~ 32
+	wellGroundwaterDepth = 6
+	#Chance in percent per random tick that rain fills the well a bit.
+	# Default: 17
+	# Range: 0 ~ 100
+	wellRainFillChance = 17
+
+#Feeding, taming and animal behaviour.
+[Animals]
+	#How far animals walk to eat from a feeding trough or drink from a water trough.
+	# Default: 8
+	# Range: 1 ~ 16
+	feedingTroughRange = 8
+	#Wolves can be tamed with dog food.
+	enableDogFoodTaming = true
+	#Cats can be tamed with cat food.
+	enableCatTamingChance = true
+	#Horses can be tamed with horse fodder.
+	enableHorseTaming = true
+	#Horse fodder heals horses and gives them a temporary boost.
+	enableHorseEffects = true
+	#Chicken feed makes chickens lay eggs and drop feathers more often.
+	enableChickenEffects = true
+	#How many chickens fit into one chicken coop.
+	# Default: 3
+	# Range: 1 ~ 16
+	chickenCoopMaxChickens = 3
+	#How many eggs a chicken coop can hold before you collect them.
+	# Default: 9
+	# Range: 1 ~ 64
+	chickenCoopMaxEggs = 9
+	#Tamed dogs sit at their empty pet bowl at feeding time and whine.
+	enableDogBegging = true
+	#Tamed cats sit at their empty pet bowl at feeding time and meow.
+	enableCatBegging = true
+	#How far pets look for their bowl at feeding time. Higher values cost more performance.
+	# Default: 16
+	# Range: 4 ~ 32
+	petBowlSearchRange = 16
+	#When tamed pets start begging at their pet bowl around noon. Time of day in ticks. 0 = sunrise, 6000 = noon, 12000 = sunset, 18000 = midnight.
+	# Default: 5800
+	# Range: 0 ~ 23999
+	feedingTimeMiddayStart = 5800
+	#When tamed pets stop begging at their pet bowl around noon. Time of day in ticks. 0 = sunrise, 6000 = noon, 12000 = sunset, 18000 = midnight.
+	# Default: 6200
+	# Range: 0 ~ 23999
+	feedingTimeMiddayEnd = 6200
+	#When tamed pets start begging at their pet bowl in the evening. Time of day in ticks. 0 = sunrise, 6000 = noon, 12000 = sunset, 18000 = midnight.
+	# Default: 11500
+	# Range: 0 ~ 23999
+	feedingTimeEveningStart = 11500
+	#When tamed pets stop begging at their pet bowl in the evening. Time of day in ticks. 0 = sunrise, 6000 = noon, 12000 = sunset, 18000 = midnight.
+	# Default: 12500
+	# Range: 0 ~ 23999
+	feedingTimeEveningEnd = 12500
+
+#Cutting board and cleavers.
+[Kitchen]
+	#How many chops an iron cleaver needs per ingredient.
+	# Default: 5
+	# Range: 1 ~ 20
+	ironCleaverChops = 5
+	#How many chops a diamond cleaver needs per ingredient.
+	# Default: 3
+	# Range: 1 ~ 20
+	diamondCleaverChops = 3
+	#How many chops a netherite cleaver needs per ingredient.
+	# Default: 1
+	# Range: 1 ~ 20
+	netheriteCleaverChops = 1
+	#Mobs killed with a cleaver can drop their head.
+	cleaverHeadDrops = true
+	#Cooking, mincing, cutting, stripping and whisking give experience. The amount per recipe is set in the recipe files.
+	cookingExperience = true
+	#Multiplies all experience from cooking and food processing. 1.0 = as set in the recipes.
+	# Default: 1.0
+	# Range: 0.0 ~ 10.0
+	cookingExperienceMultiplier = 1.0
+
+#Info tooltips that appear when looking at a block. Only affects your own screen.
+["Info Tooltips"]
+	#Shows an info tooltip when looking at the cutting board.
+	showCuttingBoardInfo = true
+	#Shows an info tooltip when looking at the mincer.
+	showMincerInfo = true
+	#Shows an info tooltip when looking at the crafting bowl.
+	showCraftingBowlInfo = true
+	#Shows an info tooltip when looking at the silo.
+	showSiloInfo = true
+	#Shows an info tooltip when looking at the water sprinkler.
+	showWaterSprinklerInfo = true
+	#Shows an info tooltip when looking at the scarecrow.
+	showScarecrowInfo = true
+	#Info tooltips only show while wearing Dungarees.
+	needDungarees = false
+
+#Fine-tuning of the food effects.
+[Effects]
+
+	[Effects."Chicken Effect"]
+		#Every how many ticks the effect tries to drop an egg or feather. 20 ticks = 1 second.
+		# Default: 120
+		# Range: 10 ~ 600
+		chickenEffectTickInterval = 120
+		#Chance in percent to drop an egg.
+		# Default: 20
+		# Range: 0 ~ 100
+		chickenEffectEggChance = 20
+		#Chance in percent to drop a feather.
+		# Default: 20
+		# Range: 0 ~ 100
+		chickenEffectFeatherChance = 20
+
+	[Effects."Feast Effect"]
+		#Every how many ticks you heal while full. 20 ticks = 1 second.
+		# Default: 40
+		# Range: 10 ~ 200
+		feastEffectSatiationInterval = 40
+		#Every how many ticks one hunger point is restored. 20 ticks = 1 second.
+		# Default: 200
+		# Range: 50 ~ 600
+		feastEffectSustenanceInterval = 200
+		#Health points healed each time. 2 points = 1 heart.
+		# Default: 1
+		# Range: 1 ~ 5
+		feastEffectHealAmount = 1
+
+	[Effects."Sustenance Effect"]
+		#Every how many ticks the effect kicks in. 20 ticks = 1 second.
+		# Default: 200
+		# Range: 50 ~ 600
+		sustenanceEffectInterval = 200
+		#Health points healed when your hunger bar is full. 2 points = 1 heart.
+		# Default: 1
+		# Range: 1 ~ 5
+		sustenanceEffectHealAmount = 1
+		#Hunger points restored when you are not full.
+		# Default: 1
+		# Range: 1 ~ 20
+		sustenanceEffectFoodIncrement = 1
+
+	[Effects."Satiation Effect"]
+		#Every how many ticks you heal while full. 20 ticks = 1 second.
+		# Default: 40
+		# Range: 10 ~ 200
+		satiationEffectInterval = 40
+		#Health points healed each time. 2 points = 1 heart.
+		# Default: 1
+		# Range: 1 ~ 5
+		satiationEffectHealAmount = 1
+
+#Block animations.
+[Misc]
+	#Blocks of this mod are animated.
+	animations = true
+
+#Hunger and saturation of the food items. Changes need a game restart.
+[Food]
+	#Hunger points restored by Oat Pancake. 2 points = 1 drumstick.
+	# Default: 5
+	# Range: 0 ~ 20
+	oatPancakeNutrition = 5
+	#Saturation given by Oat Pancake, multiplied with its hunger points.
+	# Default: 0.6
+	# Range: 0.0 ~ 2.0
+	oatPancakeSaturation = 0.6
+	#Hunger points restored by Roasted Corn. 2 points = 1 drumstick.
+	# Default: 6
+	# Range: 0 ~ 20
+	roastedCornNutrition = 6
+	#Saturation given by Roasted Corn, multiplied with its hunger points.
+	# Default: 0.5
+	# Range: 0.0 ~ 2.0
+	roastedCornSaturation = 0.5
+	#Hunger points restored by Potato with Roast Meat. 2 points = 1 drumstick.
+	# Default: 4
+	# Range: 0 ~ 20
+	potatoWithRoastMeatNutrition = 4
+	#Saturation given by Potato with Roast Meat, multiplied with its hunger points.
+	# Default: 0.6
+	# Range: 0.0 ~ 2.0
+	potatoWithRoastMeatSaturation = 0.6
+	#Hunger points restored by Baked Lamb Ham. 2 points = 1 drumstick.
+	# Default: 5
+	# Range: 0 ~ 20
+	bakedLambHamNutrition = 5
+	#Saturation given by Baked Lamb Ham, multiplied with its hunger points.
+	# Default: 0.8
+	# Range: 0.0 ~ 2.0
+	bakedLambHamSaturation = 0.8
+	#Hunger points restored by Farmer's Breakfast. 2 points = 1 drumstick.
+	# Default: 7
+	# Range: 0 ~ 20
+	farmersBreakfastNutrition = 7
+	#Saturation given by Farmer's Breakfast, multiplied with its hunger points.
+	# Default: 0.8
+	# Range: 0.0 ~ 2.0
+	farmersBreakfastSaturation = 0.8
+	#Hunger points restored by Stuffed Chicken. 2 points = 1 drumstick.
+	# Default: 5
+	# Range: 0 ~ 20
+	stuffedChickenNutrition = 5
+	#Saturation given by Stuffed Chicken, multiplied with its hunger points.
+	# Default: 0.7
+	# Range: 0.0 ~ 2.0
+	stuffedChickenSaturation = 0.7
+	#Hunger points restored by Stuffed Rabbit. 2 points = 1 drumstick.
+	# Default: 5
+	# Range: 0 ~ 20
+	stuffedRabbitNutrition = 5
+	#Saturation given by Stuffed Rabbit, multiplied with its hunger points.
+	# Default: 0.7
+	# Range: 0.0 ~ 2.0
+	stuffedRabbitSaturation = 0.7
+	#Hunger points restored by Grandmother's Strawberry Cake. 2 points = 1 drumstick.
+	# Default: 4
+	# Range: 0 ~ 20
+	grandmothersStrawberryCakeNutrition = 4
+	#Saturation given by Grandmother's Strawberry Cake, multiplied with its hunger points.
+	# Default: 0.5
+	# Range: 0.0 ~ 2.0
+	grandmothersStrawberryCakeSaturation = 0.5
+	#Hunger points restored by Farmer's Bread. 2 points = 1 drumstick.
+	# Default: 3
+	# Range: 0 ~ 20
+	farmersBreadNutrition = 3
+	#Saturation given by Farmer's Bread, multiplied with its hunger points.
+	# Default: 0.6
+	# Range: 0.0 ~ 2.0
+	farmersBreadSaturation = 0.6
+	#Hunger points restored by Farmer Salad. 2 points = 1 drumstick.
+	# Default: 6
+	# Range: 0 ~ 20
+	farmerSaladNutrition = 6
+	#Saturation given by Farmer Salad, multiplied with its hunger points.
+	# Default: 0.5
+	# Range: 0.0 ~ 2.0
+	farmerSaladSaturation = 0.5
+	#Hunger points restored by Goulash. 2 points = 1 drumstick.
+	# Default: 14
+	# Range: 0 ~ 20
+	goulashNutrition = 14
+	#Saturation given by Goulash, multiplied with its hunger points.
+	# Default: 0.8
+	# Range: 0.0 ~ 2.0
+	goulashSaturation = 0.8
+	#Hunger points restored by Simple Tomato Soup. 2 points = 1 drumstick.
+	# Default: 7
+	# Range: 0 ~ 20
+	simpleTomatoSoupNutrition = 7
+	#Saturation given by Simple Tomato Soup, multiplied with its hunger points.
+	# Default: 0.6
+	# Range: 0.0 ~ 2.0
+	simpleTomatoSoupSaturation = 0.6
+	#Hunger points restored by Barley Soup. 2 points = 1 drumstick.
+	# Default: 7
+	# Range: 0 ~ 20
+	barleySoupNutrition = 7
+	#Saturation given by Barley Soup, multiplied with its hunger points.
+	# Default: 0.65
+	# Range: 0.0 ~ 2.0
+	barleySoupSaturation = 0.65
+	#Hunger points restored by Onion Soup. 2 points = 1 drumstick.
+	# Default: 9
+	# Range: 0 ~ 20
+	onionSoupNutrition = 9
+	#Saturation given by Onion Soup, multiplied with its hunger points.
+	# Default: 0.5
+	# Range: 0.0 ~ 2.0
+	onionSoupSaturation = 0.5
+	#Hunger points restored by Potato Soup. 2 points = 1 drumstick.
+	# Default: 8
+	# Range: 0 ~ 20
+	potatoSoupNutrition = 8
+	#Saturation given by Potato Soup, multiplied with its hunger points.
+	# Default: 0.55
+	# Range: 0.0 ~ 2.0
+	potatoSoupSaturation = 0.55
+	#Hunger points restored by Pasta with Onion Sauce. 2 points = 1 drumstick.
+	# Default: 5
+	# Range: 0 ~ 20
+	pastaWithOnionSauceNutrition = 5
+	#Saturation given by Pasta with Onion Sauce, multiplied with its hunger points.
+	# Default: 0.6
+	# Range: 0.0 ~ 2.0
+	pastaWithOnionSauceSaturation = 0.6
+	#Hunger points restored by Corn Grits. 2 points = 1 drumstick.
+	# Default: 6
+	# Range: 0 ~ 20
+	cornGritsNutrition = 6
+	#Saturation given by Corn Grits, multiplied with its hunger points.
+	# Default: 0.5
+	# Range: 0.0 ~ 2.0
+	cornGritsSaturation = 0.5
+	#Hunger points restored by Oatmeal with Strawberries. 2 points = 1 drumstick.
+	# Default: 5
+	# Range: 0 ~ 20
+	oatmealWithStrawberriesNutrition = 5
+	#Saturation given by Oatmeal with Strawberries, multiplied with its hunger points.
+	# Default: 0.5
+	# Range: 0.0 ~ 2.0
+	oatmealWithStrawberriesSaturation = 0.5
+	#Hunger points restored by Sausage with Oat Patty. 2 points = 1 drumstick.
+	# Default: 13
+	# Range: 0 ~ 20
+	sausageWithOatPattyNutrition = 13
+	#Saturation given by Sausage with Oat Patty, multiplied with its hunger points.
+	# Default: 0.9
+	# Range: 0.0 ~ 2.0
+	sausageWithOatPattySaturation = 0.9
+	#Hunger points restored by Lamb with Corn. 2 points = 1 drumstick.
+	# Default: 12
+	# Range: 0 ~ 20
+	lambWithCornNutrition = 12
+	#Saturation given by Lamb with Corn, multiplied with its hunger points.
+	# Default: 0.8
+	# Range: 0.0 ~ 2.0
+	lambWithCornSaturation = 0.8
+	#Hunger points restored by Beef Patty with Vegetables. 2 points = 1 drumstick.
+	# Default: 11
+	# Range: 0 ~ 20
+	beefPattyWithVegetablesNutrition = 11
+	#Saturation given by Beef Patty with Vegetables, multiplied with its hunger points.
+	# Default: 0.75
+	# Range: 0.0 ~ 2.0
+	beefPattyWithVegetablesSaturation = 0.75
+	#Hunger points restored by Barley Patties with Potatoes. 2 points = 1 drumstick.
+	# Default: 10
+	# Range: 0 ~ 20
+	barleyPattiesWithPotatoesNutrition = 10
+	#Saturation given by Barley Patties with Potatoes, multiplied with its hunger points.
+	# Default: 0.65
+	# Range: 0.0 ~ 2.0
+	barleyPattiesWithPotatoesSaturation = 0.65
+	#Hunger points restored by Bacon with Eggs. 2 points = 1 drumstick.
+	# Default: 6
+	# Range: 0 ~ 20
+	baconWithEggsNutrition = 6
+	#Saturation given by Bacon with Eggs, multiplied with its hunger points.
+	# Default: 0.75
+	# Range: 0.0 ~ 2.0
+	baconWithEggsSaturation = 0.75
+	#Hunger points restored by Chicken Wrapped in Bacon. 2 points = 1 drumstick.
+	# Default: 12
+	# Range: 0 ~ 20
+	chickenWrappedInBaconNutrition = 12
+	#Saturation given by Chicken Wrapped in Bacon, multiplied with its hunger points.
+	# Default: 0.7
+	# Range: 0.0 ~ 2.0
+	chickenWrappedInBaconSaturation = 0.7
+	#Hunger points restored by Cooked Salmon. 2 points = 1 drumstick.
+	# Default: 12
+	# Range: 0 ~ 20
+	cookedSalmonNutrition = 12
+	#Saturation given by Cooked Salmon, multiplied with its hunger points.
+	# Default: 0.8
+	# Range: 0.0 ~ 2.0
+	cookedSalmonSaturation = 0.8
+	#Hunger points restored by Cooked Cod. 2 points = 1 drumstick.
+	# Default: 11
+	# Range: 0 ~ 20
+	cookedCodNutrition = 11
+	#Saturation given by Cooked Cod, multiplied with its hunger points.
+	# Default: 0.75
+	# Range: 0.0 ~ 2.0
+	cookedCodSaturation = 0.75
+	#Hunger points restored by Roasted Chicken. 2 points = 1 drumstick.
+	# Default: 5
+	# Range: 0 ~ 20
+	roastedChickenNutrition = 5
+	#Saturation given by Roasted Chicken, multiplied with its hunger points.
+	# Default: 0.6
+	# Range: 0.0 ~ 2.0
+	roastedChickenSaturation = 0.6

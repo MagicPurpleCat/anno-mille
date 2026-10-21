@@ -1,0 +1,93 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "build"
+	group: ""
+	icon: { id: "dawnoftimebuilder:flat_roof_tiles" }
+	id: "FB65335D77753EA6"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["1CDBEEC5FB992C76"]
+			id: "3B108CF4473901EB"
+			rewards: [{ id: "817B826D85CB047B", type: "xp", xp: 30 }]
+			tasks: [{ count: 4L, id: "6E8A3B942BC54F4E", item: { count: 1, id: "decorative_blocks:oak_beam" }, type: "item" }]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3B108CF4473901EB"]
+			id: "15816F25A6CC6508"
+			rewards: [{ id: "1E44F6E489EC8377", type: "xp", xp: 40 }]
+			tasks: [{ count: 8L, id: "787B348A2F7B2A27", item: { count: 1, id: "mcwroofs:thatch_roof" }, type: "item" }]
+			x: 2.0d
+			y: -0.875d
+		}
+		{
+			dependencies: ["15816F25A6CC6508"]
+			id: "5885487107C3CD87"
+			rewards: [{ id: "8927FA9D53B68391", type: "xp", xp: 50 }]
+			tasks: [{ count: 8L, id: "30D6377A8BDFF009", item: { count: 1, id: "mcwbridges:rope_oak_bridge" }, type: "item" } { count: 2L, id: "B4CE738B42295D98", item: { count: 1, id: "mcwwindows:oak_window" }, type: "item" }]
+			x: 4.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["15816F25A6CC6508"]
+			id: "16A28CE16556A4A1"
+			rewards: [{ id: "1CDEF6460FA3F875", type: "xp", xp: 60 }]
+			tasks: [{ count: 8L, id: "0CD309EF80ECE1B6", item: { count: 1, id: "dawnoftimebuilder:flat_roof_tiles" }, type: "item" }]
+			x: 4.0d
+			y: -1.75d
+		}
+		{
+			dependencies: ["3B108CF4473901EB"]
+			id: "8A850FB0CDED93DC"
+			rewards: [{ id: "8EB6DBFFA15F601E", type: "xp", xp: 40 }]
+			tasks: [{ count: 1L, id: "C46C2A7023F20B60", item: { count: 1, id: "handcrafted:oak_table" }, type: "item" } { count: 1L, id: "15A4AF27B288DB71", item: { count: 1, id: "handcrafted:oak_chair" }, type: "item" }]
+			x: 2.0d
+			y: 0.875d
+		}
+		{
+			dependencies: ["8A850FB0CDED93DC"]
+			id: "F7E3F8664D1A7B18"
+			rewards: [{ id: "F6F36B9A2AFD5C25", type: "xp", xp: 60 }]
+			tasks: [{ count: 1L, id: "932031520276144E", item: { count: 1, id: "chipped:carpenters_table" }, type: "item" }]
+			x: 4.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["16A28CE16556A4A1"]
+			id: "7BA95338F9E136E4"
+			optional: true
+			rewards: [{ id: "65C84D5B548CF9D7", type: "xp", xp: 60 }]
+			tasks: [{ count: 4L, id: "036E04E4A028BD9D", item: { count: 1, id: "fetzisasiandeco:black_flat_roof_block" }, type: "item" }]
+			x: 6.0d
+			y: -0.875d
+		}
+		{
+			dependencies: ["8A850FB0CDED93DC"]
+			id: "37AA51506F35F74E"
+			rewards: [{ id: "B1521CEB14BCB13B", type: "xp", xp: 30 }]
+			tasks: [{ count: 1L, id: "7BC470A715F1FC22", item: { count: 1, id: "chimes:bamboo_chimes" }, type: "item" }]
+			x: 4.0d
+			y: 1.75d
+		}
+		{
+			dependencies: ["8A850FB0CDED93DC"]
+			id: "B387B5441567044C"
+			rewards: [{ id: "4BEB2AB94EA4B486", type: "xp", xp: 40 }]
+			tasks: [{ count: 1L, id: "AC8066CA30996ADA", item: { count: 1, id: "immersive_melodies:lute" }, type: "item" }]
+			x: 4.0d
+			y: 3.5d
+		}
+		{
+			dependencies: ["16A28CE16556A4A1", "0464DCC814261E4B"]
+			id: "9F9E1DA8631EC59A"
+			rewards: [{ id: "A274E82E683A96C1", type: "xp", xp: 200 }]
+			tasks: [{ count: 1L, id: "CB7BA4D71ABACC0C", item: { count: 1, id: "torchmaster:megatorch" }, type: "item" }]
+			x: 6.0d
+			y: 0.875d
+		}
+	]
+}

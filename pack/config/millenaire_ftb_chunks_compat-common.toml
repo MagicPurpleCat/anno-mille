@@ -1,0 +1,22 @@
+#Whether to create server-side FTB Chunks team claims for village protection (Default: false)
+enableFtbProtection = false
+#Whether to render Millenaire village chunk boundaries on FTB Chunks map (Default: true)
+showVillageBoundaries = true
+#Whether to render Millenaire village labels on FTB Chunks map (Default: true)
+showVillageIcons = true
+#Color for Norman culture in Hex format (Default: #3B82F6)
+normanColor = "#3B82F6"
+#Color for Japanese culture in Hex format (Default: #EF4444)
+japaneseColor = "#EF4444"
+#Color for Seljuk culture in Hex format (Default: #10B981)
+seljukColor = "#10B981"
+#Color for Mayan culture in Hex format (Default: #EAB308)
+mayanColor = "#EAB308"
+#Color for Indian culture in Hex format (Default: #F97316)
+indianColor = "#F97316"
+#Color for Byzantine culture in Hex format (Default: #A855F7)
+byzantinesColor = "#A855F7"
+#Color for Inuits culture in Hex format (Default: #06B6D4)
+inuitsColor = "#06B6D4"
+#Default fallback color for unknown cultures in Hex format (Default: #06B6D4)
+defaultCultureColor = "#06B6D4"

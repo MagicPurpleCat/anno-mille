@@ -1,0 +1,58 @@
+#=========[ Pillager Caravans Common Config ]========
+# Please prefer editing the config through the in-game 
+# configuration screen (available via the mods list),
+# as it includes many hints and quality-of-life improvements.
+#====================================================
+enablePillagerCaravans = true
+enableEncounterToast = true
+toastLightMode = false
+# Default: 24000
+# Range: > 0
+worldAgeRequired = 24000
+# Default: 1200
+# Range: > 0
+spawnAttemptCooldown = 1200
+# Default: 1.0
+# Range: 0.1 ~ 10.0
+spawnCooldownMultiplier = 1.0
+# Default: 9
+# Range: 0 ~ 100
+smallCaravanSpawnWeight = 9
+# Default: 48000
+# Range: > 12000
+smallCaravanSpawnCooldown = 48000
+# Default: 12000
+# Range: > 12000
+smallCaravanDespawnDelay = 12000
+# Default: 3
+# Range: 0 ~ 100
+mediumCaravanSpawnWeight = 3
+# Default: 96000
+# Range: > 12000
+mediumCaravanSpawnCooldown = 96000
+# Default: 24000
+# Range: > 12000
+mediumCaravanDespawnDelay = 24000
+# Default: 1
+# Range: 0 ~ 100
+largeCaravanSpawnWeight = 1
+# Default: 144000
+# Range: > 12000
+largeCaravanSpawnCooldown = 144000
+# Default: 36000
+# Range: > 12000
+largeCaravanDespawnDelay = 36000
+# Default: 32
+# Range: > 0
+spawnDistance = 32
+# Default: 32
+# Range: > 0
+spawnDistanceVariance = 32
+# Default: 4
+# Range: 0 ~ 15
+maxBlockLight = 4
+# Default: 3
+# Range: 0 ~ 64
+villageSafeZone = 3
+allowFollowerTeleport = true
+allowLeashedTeleport = true

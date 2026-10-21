@@ -1,0 +1,100 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "survival"
+	group: ""
+	icon: { id: "minecraft:campfire" }
+	id: "12DA1A527EDA85D4"
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["FAF34EEB8C1E1850"]
+			id: "EECA3F9100A082D9"
+			rewards: [{ id: "B6F2CB1A4105D500", type: "xp", xp: 40 }]
+			tasks: [{ count: 1L, id: "CAD9569D54EF8ECA", item: { count: 1, id: "cold_sweat:thermometer" }, type: "item" }]
+			x: 0.0d
+			y: -7.875d
+		}
+		{
+			dependencies: ["FAF34EEB8C1E1850"]
+			id: "28F92A7348B4A128"
+			rewards: [{ id: "B44F3BC16B07FDE3", type: "xp", xp: 40 }]
+			tasks: [{ count: 4L, id: "02CE385805BB1CAC", item: { count: 1, id: "cold_sweat:goat_fur" }, type: "item" }]
+			x: 0.0d
+			y: -6.125d
+		}
+		{
+			dependencies: ["28F92A7348B4A128"]
+			id: "E003C89AA0F7A4B7"
+			rewards: [{ id: "8AD4BE8334057A12", type: "xp", xp: 60 }]
+			tasks: [{ count: 1L, id: "6257BA7DD47F2AE8", item: { count: 1, id: "cold_sweat:goat_fur_chestplate" }, type: "item" }]
+			x: 2.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["741700639044B80F"]
+			id: "23F13842A03F4412"
+			rewards: [{ id: "216FF5D40F5D30A4", type: "xp", xp: 30 }]
+			tasks: [{ count: 1L, id: "D9D74916D6FAE8C0", item: { count: 1, id: "comforts:sleeping_bag_white" }, type: "item" }]
+			x: 0.0d
+			y: -4.375d
+		}
+		{
+			dependencies: ["8C030A7C352ED111"]
+			id: "337402240DD77683"
+			rewards: [{ id: "E1D41826CBD26F54", type: "xp", xp: 40 }]
+			tasks: [{ count: 4L, id: "457A23C3D5EB1CAB", item: { count: 1, id: "naturalist:venison" }, type: "item" }]
+			x: 0.0d
+			y: -2.625d
+		}
+		{
+			dependencies: ["1CDBEEC5FB992C76"]
+			id: "E7827C493372DD74"
+			rewards: [{ count: 16, id: "F0EE997526C2FC55", item: { count: 1, id: "minecraft:bone_meal" }, type: "item" }]
+			tasks: [{ advancement: "minecraft:husbandry/plant_seed", criterion: "", id: "D3642975383D14A2", type: "advancement" } { count: 16L, id: "886C66F95FA16E0F", item: { count: 1, id: "minecraft:wheat" }, type: "item" }]
+			x: 0.0d
+			y: -0.875d
+		}
+		{
+			dependencies: ["372B75EEE69BDE9F"]
+			id: "89C516B02A21DF09"
+			rewards: [{ id: "4E724D147F56459E", type: "xp", xp: 60 }]
+			tasks: [{ id: "CC816A532F779CAC", type: "checkmark" }]
+			x: 0.0d
+			y: 0.875d
+		}
+		{
+			dependencies: ["FAF34EEB8C1E1850"]
+			id: "B62D2189B5444899"
+			rewards: [{ count: 4, id: "DEC7C22A51508EFB", item: { count: 1, id: "minecraft:glass_bottle" }, type: "item" }]
+			tasks: [{ count: 1L, id: "898A86DC4A5CBA31", item: { count: 1, id: "thirst:terracotta_bowl" }, type: "item" }]
+			x: 0.0d
+			y: 2.625d
+		}
+		{
+			dependencies: ["A86904BB0D9F2E50"]
+			id: "41295FAD89E2071E"
+			rewards: [{ id: "ABD982859156D56C", type: "xp", xp: 20 }]
+			tasks: [{ id: "C1D4EB4287A45713", type: "checkmark" }]
+			x: 0.0d
+			y: 4.375d
+		}
+		{
+			dependencies: ["8C030A7C352ED111"]
+			id: "E50B0BA1DA426B01"
+			rewards: [{ count: 8, id: "D18E55391347DDB1", item: { count: 1, id: "aquaculture:worm" }, type: "item" }]
+			tasks: [{ count: 1L, id: "30D1E036BD37ADE4", item: { count: 1, id: "aquaculture:iron_fishing_rod" }, type: "item" } { count: 1L, id: "17C7D3D9DD4CE87C", item: { count: 1, id: "aquaculture:iron_fillet_knife" }, type: "item" }]
+			x: 0.0d
+			y: 6.125d
+		}
+		{
+			dependencies: ["741700639044B80F"]
+			id: "6DE83841622AA3C1"
+			rewards: [{ id: "DF2ACF31DAEF410E", type: "xp", xp: 40 }]
+			tasks: [{ count: 4L, id: "A66E9619612EE1F7", item: { count: 1, id: "environmental:yak_hair" }, type: "item" }]
+			x: 0.0d
+			y: 7.875d
+		}
+	]
+}
