@@ -76,7 +76,10 @@ def find_game_folders():
         add(f"ATLauncher · {os.path.basename(p)}", p)
     add("TLauncher / официальный лаунчер · .minecraft", os.path.join(APPDATA, ".minecraft"))
     order = {True: 0, None: 1, False: 2}
-    return sorted(found, key=lambda f: order[f[2]])
+    return [(NEW, os.path.join(APPDATA, ".minecraft"), True)] + sorted(found, key=lambda f: order[f[2]])
+
+
+NEW = "Новый: NeoForge 1.21.1 · TLauncher / официальный лаунчер"
 
 
 def tag_of(path, ok):
@@ -298,7 +301,7 @@ class App(tk.Tk):
             if not visible:
                 continue
             label, path, ok = self.folders[k]
-            t, col = tag_of(path, ok)
+            t, col = ("скачаю NeoForge", MUTED) if label == NEW else tag_of(path, ok)
             key = "s" if k == self.sel else ("h" if i == self.hover_row else "n")
             c.itemconfig(img, image=self.row_imgs[key])
             c.itemconfig(dot, text="◆" if k == self.sel else "◇", fill=TEXT if k == self.sel else DIM)
@@ -376,9 +379,9 @@ class App(tk.Tk):
         self.progress(0, 1)
         gc.collect()
         gc.disable()      # чтобы сборщик мусора не запускался в потоке установки (см. animate)
-        threading.Thread(target=self.work, args=(game,), daemon=True).start()
+        threading.Thread(target=self.work, args=(game, f[0] == NEW), daemon=True).start()
 
-    def work(self, game):
+    def work(self, game, neo=False):
         try:
             if os.environ.get("ANNO_DEMO"):          # показ вида окна без установки
                 import time
@@ -388,6 +391,8 @@ class App(tk.Tk):
                 if os.environ["ANNO_DEMO"] == "done":
                     self.ui(self.done)
                 return
+            if neo:
+                install.install_neoforge(game, log=self.write)
             install.run(game, log=self.write, progress=self.progress)
             self.ui(self.done)
         except Exception as e:

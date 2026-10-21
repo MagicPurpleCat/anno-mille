@@ -3,7 +3,8 @@
 Из командной строки:  python tools/install.py "<папка игры>"
 
 <папка игры> — та, где у профиля лежат (или появятся) mods/, config/, resourcepacks/.
-Minecraft 1.21.1 + NeoForge 21.1.264 ставит сам лаунчер.
+Minecraft 1.21.1 + NeoForge 21.1.264 ставит лаунчер, либо install_neoforge() в папку .minecraft
+(для TLauncher и официального лаунчера; Java 21 берётся из лаунчера или скачивается).
 
 Что делает:
  1. Скачивает моды, ресурспаки и шейдеры из tools/manifest.txt с Modrinth (с проверкой SHA-512),
@@ -12,7 +13,7 @@ Minecraft 1.21.1 + NeoForge 21.1.264 ставит сам лаунчер.
  2. Копирует настройки, квесты, ресурспак интерфейса и мини-мод сборки; переносит в options.txt клавиши и порядок паков.
  3. Перекрашивает окна модов в тёмный стиль интерфейса.
 """
-import concurrent.futures as cf, hashlib, io, json, os, re, shutil, sys, time, urllib.parse, urllib.request, zipfile
+import concurrent.futures as cf, glob, hashlib, io, json, os, re, shutil, subprocess, sys, time, urllib.parse, urllib.request, zipfile
 
 API = "https://api.modrinth.com/v2"
 UA = {"User-Agent": "anno-mille-installer/1.1"}
@@ -256,6 +257,70 @@ def _fix_excalibur(game):
     _make_writable(path)
     os.replace(tmp, path)
     return len(drop)
+
+
+NEOFORGE = "21.1.264"
+NEO_ID = f"neoforge-{NEOFORGE}"
+NEO_URL = f"https://maven.neoforged.net/releases/net/neoforged/neoforge/{NEOFORGE}/{NEO_ID}-installer.jar"
+JRE_URL = "https://api.adoptium.net/v3/binary/latest/21/ga/windows/x64/jre/hotspot/normal/eclipse"
+NOWIN = getattr(subprocess, "CREATE_NO_WINDOW", 0)
+CACHE = os.path.join(os.environ.get("LOCALAPPDATA", os.path.expanduser("~")), "AnnoMille")
+
+
+def _java_version(exe):
+    try:
+        out = subprocess.run([exe, "-version"], capture_output=True, text=True, timeout=30, creationflags=NOWIN).stderr
+    except (OSError, subprocess.SubprocessError):
+        return 0
+    m = re.search(r'version "(\d+)', out)
+    return int(m.group(1)) if m else 0
+
+
+def find_java(log=print):
+    """Java 21+: из официального лаунчера, TLauncher, системы или скачанная в кэш установщика."""
+    appdata, local = os.environ.get("APPDATA", ""), os.environ.get("LOCALAPPDATA", "")
+    cands = [os.path.join(os.environ["JAVA_HOME"], "bin", "java.exe")] if os.environ.get("JAVA_HOME") else []
+    cands.append(shutil.which("java"))
+    for base in (os.path.join(CACHE, "jre"), os.path.join(appdata, ".minecraft", "runtime"), os.path.join(appdata, ".tlauncher"),
+                 os.path.join(local, "Packages", "Microsoft.4297127D64EC6_8wekyb3d8bbwe", "LocalCache", "Local", "runtime"),
+                 os.path.join(os.environ.get("ProgramFiles", ""), "Java"), os.path.join(os.environ.get("ProgramFiles", ""), "Eclipse Adoptium")):
+        cands += glob.glob(os.path.join(base, "**", "bin", "java.exe"), recursive=True)
+    for exe in cands:
+        if exe and os.path.exists(exe) and _java_version(exe) >= 21:
+            return exe
+    log("Java 21 не нашлась, скачиваю (около 45 МБ)...")
+    data = urllib.request.urlopen(urllib.request.Request(JRE_URL, headers=UA), timeout=600).read()
+    dest = os.path.join(CACHE, "jre")
+    shutil.rmtree(dest, ignore_errors=True)
+    zipfile.ZipFile(io.BytesIO(data)).extractall(dest)
+    exe = next(iter(glob.glob(os.path.join(dest, "*", "bin", "java.exe"))), None)
+    if not exe or _java_version(exe) < 21:
+        raise RuntimeError("не удалось подготовить Java 21")
+    return exe
+
+
+def install_neoforge(mc, log=print):
+    """Ставит версию NeoForge 1.21.1 в папку лаунчера mc (обычно %APPDATA%\\.minecraft). Уже стоящую пропускает."""
+    if os.path.exists(os.path.join(mc, "versions", NEO_ID, NEO_ID + ".json")):
+        log(f"NeoForge {NEOFORGE} уже установлен.")
+        return
+    os.makedirs(mc, exist_ok=True)
+    prof = os.path.join(mc, "launcher_profiles.json")
+    if not os.path.exists(prof):  # без этого файла установщик NeoForge отказывается работать
+        open(prof, "w", encoding="utf-8").write('{"profiles": {}}')
+    java = find_java(log)
+    log(f"Скачиваю NeoForge {NEOFORGE}...")
+    jar = os.path.join(CACHE, NEO_ID + "-installer.jar")
+    os.makedirs(CACHE, exist_ok=True)
+    open(jar, "wb").write(urllib.request.urlopen(urllib.request.Request(NEO_URL, headers=UA), timeout=300).read())
+    log("Ставлю Minecraft 1.21.1 и NeoForge (несколько минут)...")
+    r = subprocess.run([java, "-jar", jar, "--install-client", mc], cwd=CACHE, capture_output=True, text=True,
+                       encoding="utf-8", errors="replace", timeout=1800, creationflags=NOWIN)
+    if r.returncode != 0 or not os.path.exists(os.path.join(mc, "versions", NEO_ID, NEO_ID + ".json")):
+        for line in (r.stdout + r.stderr).strip().splitlines()[-15:]:
+            log("  " + line)
+        raise RuntimeError("установщик NeoForge завершился с ошибкой")
+    log(f"NeoForge {NEOFORGE} установлен: в лаунчере выбери версию {NEO_ID}.")
 
 
 class GameRunning(RuntimeError):
