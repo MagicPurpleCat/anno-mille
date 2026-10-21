@@ -1,6 +1,6 @@
 """Окно установщика Anno Mille в стиле фона главного меню: тёмный фон с живыми волнами, белый текст,
 полупрозрачные кнопки-«таблетки» с тонкой обводкой. Собирается в AnnoMille-Setup.exe командой tools/build_exe.py."""
-import ctypes, glob, io, json, os, queue, sys, threading, zipfile, tkinter as tk
+import ctypes, gc, glob, io, json, os, queue, sys, threading, zipfile, tkinter as tk
 from tkinter import filedialog, messagebox
 from PIL import Image, ImageDraw, ImageTk
 
@@ -272,8 +272,9 @@ class App(tk.Tk):
         self.after(40, self.pump)
 
     def animate(self):
-        self.bg_img = ImageTk.PhotoImage(self.bg.next())
-        self.canvas.itemconfig(self.bg_item, image=self.bg_img)
+        # Одна и та же картинка перерисовывается на месте: новые PhotoImage каждый кадр сборщик мусора
+        # мог удалять из потока установки, а Tk падает, если его трогают не из главного потока.
+        self.bg_img.paste(self.bg.next())
         self.after(66, self.animate)
 
     # --- список профилей
@@ -364,6 +365,8 @@ class App(tk.Tk):
         c.itemconfig(self.status, fill=MUTED)
         c.itemconfig(self.details, state="hidden")
         self.progress(0, 1)
+        gc.collect()
+        gc.disable()      # чтобы сборщик мусора не запускался в потоке установки (см. animate)
         threading.Thread(target=self.work, args=(game,), daemon=True).start()
 
     def work(self, game):
@@ -390,6 +393,7 @@ class App(tk.Tk):
             self.ui(lambda: self.failed(hint))
 
     def done(self):
+        gc.enable()
         c = self.canvas
         self.progress(1, 1)
         c.itemconfig(self.status, text="Готово. Открой лаунчер, выбери этот профиль и выдели игре 8 ГБ памяти.", fill=TEXT)
@@ -400,6 +404,7 @@ class App(tk.Tk):
         self.show_details_link()
 
     def failed(self, hint):
+        gc.enable()
         c = self.canvas
         c.itemconfig(self.status, text=hint, fill=BAD)
         c.itemconfig(self.bar_bg, state="hidden")
@@ -437,4 +442,16 @@ if __name__ == "__main__":
         if os.environ.get("ANNO_DEMO"):
             app.after(800, app.start)
         app.after(int(os.environ.get("ANNO_SHOT_MS", "2500")), snap)
+    target = os.environ.get("ANNO_TARGET")      # проверка: настоящая установка в указанную папку, итог в консоль
+    if target:
+        app.folders.append(("Проверка", os.path.normpath(target), True))
+        app.sel = len(app.folders) - 1
+        app.after(800, app.start)
+        def finished():
+            if app.canvas.itemcget(app.close.img, "state") == "normal" or (not app.busy and app.log_lines):
+                print("RESULT:", app.canvas.itemcget(app.status, "text"), flush=True)
+                app.destroy()
+            else:
+                app.after(1000, finished)
+        app.after(5000, finished)
     app.mainloop()
