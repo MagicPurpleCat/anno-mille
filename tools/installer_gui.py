@@ -193,6 +193,7 @@ class App(tk.Tk):
         except tk.TclError:
             pass
         self.after(10, self.dark_titlebar)
+        self.protocol("WM_DELETE_WINDOW", self.quit_app)
 
         c = self.canvas = tk.Canvas(self, width=W, height=H, highlightthickness=0, bd=0, bg="#0c0c0d")
         c.pack()
@@ -239,7 +240,7 @@ class App(tk.Tk):
         self.bar = c.create_rectangle(W // 2 - 220, 532, W // 2 - 220, 534, fill=TEXT, width=0, state="hidden")
         self.details = c.create_text(W // 2, 540, text="", fill=DIM, font=(FONT, 9), state="hidden")
         c.tag_bind(self.details, "<Button-1>", lambda e: self.show_log())
-        self.close = Button(self, W // 2, 526, 200, 46, "Закрыть", self.destroy, big=True)
+        self.close = Button(self, W // 2, 526, 200, 46, "Закрыть", self.quit_app, big=True)
         self.close.set(visible=False)
         c.create_text(W // 2, H - 14, text="Minecraft 1.21.1  ·  NeoForge 21.1.264  ·  около 190 модов", fill=DIM, font=(FONT, 9))
 
@@ -259,6 +260,14 @@ class App(tk.Tk):
             ctypes.windll.dwmapi.DwmSetWindowAttribute(hwnd, 35, ctypes.byref(ctypes.c_int(0x0d0c0c)), 4)  # цвет заголовка
         except Exception:
             pass
+
+    def quit_app(self):
+        """Выход без разборки Tk: окно прячется, процесс завершается сразу.
+        Обычный destroy() из обработчика кнопки и удаление картинок при выходе роняли программу («alloc: invalid block»)."""
+        if self.busy and not messagebox.askyesno("Anno Mille", "Установка ещё идёт. Прервать и закрыть?"):
+            return
+        self.withdraw()
+        self.after(50, lambda: os._exit(0))
 
     def ui(self, fn):
         self.ui_queue.put(fn)
@@ -394,6 +403,7 @@ class App(tk.Tk):
 
     def done(self):
         gc.enable()
+        self.busy = False
         c = self.canvas
         self.progress(1, 1)
         c.itemconfig(self.status, text="Готово. Открой лаунчер, выбери этот профиль и выдели игре 8 ГБ памяти.", fill=TEXT)
@@ -450,7 +460,7 @@ if __name__ == "__main__":
         def finished():
             if app.canvas.itemcget(app.close.img, "state") == "normal" or (not app.busy and app.log_lines):
                 print("RESULT:", app.canvas.itemcget(app.status, "text"), flush=True)
-                app.destroy()
+                app.close.cmd()                 # как нажатие «Закрыть»
             else:
                 app.after(1000, finished)
         app.after(5000, finished)
