@@ -133,8 +133,15 @@ class App(tk.Tk):
             self.after(0, lambda: messagebox.showinfo("Anno Mille", "Готово! Выдели игре 8 ГБ памяти и запускай."))
             self.after(0, lambda: self.go.config(text="Установлено ✓"))
         except Exception as e:
+            import socket, urllib.error
+            if isinstance(e, (urllib.error.URLError, socket.timeout, ConnectionError, TimeoutError)):
+                hint = "Не удалось скачать файлы. Проверь интернет и попробуй ещё раз."
+            elif isinstance(e, PermissionError):
+                hint = "Windows не дала записать файл. Закрой игру и лаунчер и попробуй ещё раз."
+            else:
+                hint = "Попробуй ещё раз. Если ошибка повторится, пришли этот текст автору сборки."
             self.write(f"Ошибка: {e}")
-            self.after(0, lambda: messagebox.showerror("Anno Mille", f"Не получилось: {e}\n\nПроверь интернет и попробуй ещё раз."))
+            self.after(0, lambda: messagebox.showerror("Anno Mille", f"{hint}\n\nПодробности: {e}"))
             self.after(0, lambda: self.go.config(state="normal", text="Попробовать ещё раз"))
 
 

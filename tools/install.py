@@ -69,6 +69,9 @@ def _download(game, item):
     data = urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"}), timeout=300).read()
     if sha and hashlib.sha512(data).hexdigest() != sha:
         raise RuntimeError(f"файл повреждён при скачивании: {name}")
+    if os.path.exists(dest):
+        _make_writable(dest)
+        os.remove(dest)
     open(dest, "wb").write(data)
     return True, name
 
@@ -96,6 +99,35 @@ def _recolor(im):
                     for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)))
                 dst[x, y] = (*(OUTLINE if edge else MAP[(r, g, b)]), 255)
     return out
+
+
+def _make_writable(path):
+    """Снимает «только чтение» и «скрытый»: Windows не даёт перезаписывать скрытые файлы обычным способом."""
+    try:
+        os.chmod(path, 0o666)
+    except OSError:
+        pass
+    if os.name == "nt":
+        import ctypes
+        ctypes.windll.kernel32.SetFileAttributesW(str(path), 0x80)  # FILE_ATTRIBUTE_NORMAL
+
+
+def safe_copytree(src, dst):
+    """Копирует папку поверх существующей. Занятые файлы пропускает и возвращает их список."""
+    skipped = []
+    for r, _, files in os.walk(src):
+        target_dir = os.path.join(dst, os.path.relpath(r, src))
+        os.makedirs(target_dir, exist_ok=True)
+        for f in files:
+            s, d = os.path.join(r, f), os.path.join(target_dir, f)
+            try:
+                if os.path.exists(d):
+                    _make_writable(d)
+                    os.remove(d)
+                shutil.copy2(s, d)
+            except OSError:
+                skipped.append(d)
+    return skipped
 
 
 def remove_duplicates(game, log):
@@ -138,8 +170,14 @@ def run(game, log=print, progress=lambda done, total: None):
     remove_duplicates(game, log)
 
     log("Копирую настройки, квесты, интерфейс и навыки...")
+    skipped = []
     for sub in ("config", "resourcepacks", "mods"):
-        shutil.copytree(os.path.join(root, "pack", sub), os.path.join(game, sub), dirs_exist_ok=True)
+        skipped += safe_copytree(os.path.join(root, "pack", sub), os.path.join(game, sub))
+    if skipped:
+        log(f"Не удалось обновить файлов: {len(skipped)} (заняты другой программой):")
+        for p in skipped[:10]:
+            log("  " + os.path.relpath(p, game))
+        log("Закрой игру и лаунчер и запусти установщик ещё раз, если что-то работает не так.")
     opt, ref_path = os.path.join(game, "options.txt"), os.path.join(root, "pack", "options.txt")
     if not os.path.exists(opt):
         shutil.copy(ref_path, opt)
@@ -152,6 +190,7 @@ def run(game, log=print, progress=lambda done, total: None):
                 lines[idx[k]] = f"{k}:{ref[k]}"
             else:
                 lines.append(f"{k}:{ref[k]}")
+        _make_writable(opt)
         open(opt, "w", encoding="utf-8").write("\n".join(lines) + "\n")
     log("Клавиши и порядок ресурспаков применены.")
 
