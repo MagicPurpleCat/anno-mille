@@ -118,7 +118,7 @@ mod not-enough-animations 1.12.6
 mod shoulder-surfing-reloaded 1.21.1-5.2.0+neoforge
 mod architectury-api 13.0.11+neoforge
 mod cloth-config 15.0.140+neoforge
-rp fresh-animations 1.11.1
+rp fresh-animations 1.10.4
 rp fresh-animations-extensions 1.8.1
 rp better-leaves 9.6
 rp better-lanterns 1.2+1.21

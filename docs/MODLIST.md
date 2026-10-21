@@ -202,7 +202,7 @@ Minecraft 1.21.1, NeoForge 21.1.264. Точные версии файлов, к�
 | better-lanterns | 1.2+1.21 | `Better+Lanterns+v1.2(mc-1.21).zip` | https://modrinth.com/project/better-lanterns |
 | better-leaves | 9.6 | `Better-Leaves-9.6.zip` | https://modrinth.com/project/better-leaves |
 | Excalibur | V1.21.1 | `Excalibur_V1.21.1.zip` | https://www.curseforge.com/minecraft/texture-packs/excalibur |
-| fresh-animations | 1.11.1 | `FreshAnimations_v1.11.1_1.20+.zip` | https://modrinth.com/project/fresh-animations |
+| fresh-animations | 1.10.4 | `FreshAnimations_v1.10.4.zip` | https://modrinth.com/project/fresh-animations |
 | fresh-animations-extensions | 1.8.1 | `FA+All_Extensions-v1.8.1.zip` | https://modrinth.com/project/fresh-animations-extensions |
 | low-on-fire | 26.3 | `LowOnFire v26.2§8.zip` | https://modrinth.com/project/low-on-fire |
 | medieval-melodies | 1.0.0 | `medieval-melodies-1.7-1.0.0.zip` | https://modrinth.com/project/medieval-melodies |
