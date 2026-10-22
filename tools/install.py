@@ -20,7 +20,7 @@ UA = {"User-Agent": "anno-mille-installer/1.1"}
 DIRS = {"mod": "mods", "rp": "resourcepacks", "shader": "shaderpacks"}
 CF = "https://www.curseforge.com/api/v1/mods/{}/files/{}/download"
 EXTRA = [  # не с Modrinth: (папка, имя файла, URL)
-    ("mods", "millenaire-9.0.2.jar", "https://www.millenaire.org/api/downloads/9.0.2~millenaire-9.0.2.jar"),
+    ("mods", "millenaire-9.0.3.jar", "https://www.millenaire.org/api/downloads/9.0.3~millenaire-9.0.3.jar"),
     ("resourcepacks", "millenaire-hd-9.0.zip", "https://www.millenaire.org/api/downloads/hd-1.21~millenaire-hd-9.0.zip"),
     ("mods", "ftb-chunks-neoforge-2101.1.22.jar", CF.format(314906, 8791113)),
     ("mods", "ftb-library-neoforge-2101.1.37.jar", CF.format(404465, 9008089)),
@@ -28,6 +28,7 @@ EXTRA = [  # не с Modrinth: (папка, имя файла, URL)
     ("mods", "ftb-quests-neoforge-2101.1.36.jar", CF.format(289412, 8885017)),
     ("mods", "ftb-xmod-compat-neoforge-21.1.12.jar", CF.format(889915, 8909889)),
     ("mods", "swem-1.21.1-1.6.14.jar", CF.format(582697, 9156395)),
+    ("mods", "CinematicInteraction-NeoForge-1.21.1-0.18.2.jar", CF.format(1743441, 9220261)),
     ("resourcepacks", "Excalibur_V1.21.1.zip", CF.format(228815, 5710779)),
 ]
 MAP = {(198, 198, 198): (30, 30, 34), (255, 255, 255): (58, 58, 66), (85, 85, 85): (14, 14, 16),
@@ -259,6 +260,36 @@ def _fix_excalibur(game):
     return len(drop)
 
 
+RARE_MAX, RARE_FROM_SPAWN, VILLAGE_RADIUS = 1, 3000, 120  # радиус 120 — предел Millénaire (villageRadiusOverride)
+
+
+def _rare_villages(game):
+    """Деревня Millénaire должна быть находкой: каждый тип деревни не больше одной на мир и не ближе 3 км от спавна,
+    а территория у каждой деревни максимальная, какую держит мод.
+    Правки пишем в millenaire-custom — Millénaire читает их поверх своих файлов и не трогает при обновлении."""
+    jar = next((os.path.join(game, "mods", f) for f in os.listdir(os.path.join(game, "mods"))
+                if re.match(r"millenaire-\d.*\.jar$", f)), None)
+    if not jar:
+        return 0
+    out, n = os.path.join(game, "millenaire-custom", "annomille_rare", "cultures"), 0
+    with zipfile.ZipFile(jar) as z:
+        for name in z.namelist():
+            m = re.match(r"millenaire/cultures/([^/]+)/villages/([^/]+\.json)$", name)
+            if not m:
+                continue
+            j = json.loads(z.read(name).decode("utf-8-sig"))
+            if j.get("lone_building") or j.get("player_controlled") or not j.get("weight") or j.get("spawnable") is False:
+                continue
+            j["max"] = min(j.get("max", RARE_MAX), RARE_MAX)
+            j["min_distance_from_spawn"] = max(j.get("min_distance_from_spawn", 0), RARE_FROM_SPAWN)
+            j["radius"] = max(j.get("radius", 0), VILLAGE_RADIUS)
+            dest = os.path.join(out, m.group(1), "villages", m.group(2))
+            os.makedirs(os.path.dirname(dest), exist_ok=True)
+            json.dump(j, open(dest, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+            n += 1
+    return n
+
+
 NEOFORGE = "21.1.264"
 NEO_ID = f"neoforge-{NEOFORGE}"
 NEO_URL = f"https://maven.neoforged.net/releases/net/neoforged/neoforge/{NEOFORGE}/{NEO_ID}-installer.jar"
@@ -314,37 +345,135 @@ def install_neoforge(mc, log=print):
     os.makedirs(CACHE, exist_ok=True)
     open(jar, "wb").write(urllib.request.urlopen(urllib.request.Request(NEO_URL, headers=UA), timeout=300).read())
     log("Ставлю Minecraft 1.21.1 и NeoForge (несколько минут)...")
-    r = subprocess.run([java, "-jar", jar, "--install-client", mc], cwd=CACHE, capture_output=True, text=True,
-                       encoding="utf-8", errors="replace", timeout=1800, creationflags=NOWIN)
+    for attempt in range(3):  # библиотеки иногда не докачиваются с первого раза; скачанные повторно не качаются
+        r = subprocess.run([java, "-jar", jar, "--install-client", mc], cwd=CACHE, capture_output=True, text=True,
+                           encoding="utf-8", errors="replace", timeout=1800, creationflags=NOWIN)
+        if r.returncode == 0:
+            break
+        log("Не всё скачалось, пробую ещё раз...")
     if r.returncode != 0 or not os.path.exists(os.path.join(mc, "versions", NEO_ID, NEO_ID + ".json")):
         for line in (r.stdout + r.stderr).strip().splitlines()[-15:]:
             log("  " + line)
         raise RuntimeError("установщик NeoForge завершился с ошибкой")
-    log(f"NeoForge {NEOFORGE} установлен: в лаунчере выбери версию {NEO_ID}.")
+    log(f"NeoForge {NEOFORGE} установлен.")
+
+
+PROFILE = "Anno Mille"
+MILLIDA_PROFILE = "ANNO MILLE"
 
 
 def launchers():
-    """Найденные лаунчеры, где установщик сам создаёт профиль NeoForge 1.21.1: (название, способ)."""
+    """Найденные лаунчеры, где установщик сам создаёт профиль NeoForge 1.21.1: (название, способ, папка)."""
     appdata, local = os.environ.get("APPDATA", ""), os.environ.get("LOCALAPPDATA", "")
-    found = []
+    mc, found = os.path.join(appdata, ".minecraft"), []
+    if os.path.isdir(os.path.join(appdata, "net.millida.launcher")):
+        found.append(("Millida", "millida", _millida_dir()))
+    if os.path.exists(os.path.join(appdata, "KLauncher", "config.json")):
+        found.append(("KLauncher", "klauncher", os.path.join(_klauncher_game()[0], "instances", PROFILE)))
     if os.path.isdir(os.path.join(appdata, ".tlauncher")):
-        found.append(("TLauncher", "mc"))
-    if os.path.exists(os.path.join(appdata, ".minecraft", "launcher_profiles.json")) or \
+        found.append(("TLauncher", "mc", mc))
+    if os.path.exists(os.path.join(mc, "launcher_profiles.json")) or \
             os.path.isdir(os.path.join(local, "Packages", "Microsoft.4297127D64EC6_8wekyb3d8bbwe")):
-        found.append(("Официальный лаунчер Minecraft", "mc"))
+        found.append(("Официальный лаунчер Minecraft", "mc", mc))
     if os.path.isdir(os.path.join(appdata, "PrismLauncher")):
-        found.append(("Prism Launcher", "prism"))
+        found.append(("Prism Launcher", "prism", os.path.dirname(_prism_dir())))
     return found
 
 
-def prism_instance(name="Anno Mille"):
-    """Создаёт (или находит) экземпляр Prism с Minecraft 1.21.1 + NeoForge; сам NeoForge Prism скачает при запуске."""
+def _millida_dir():
+    return os.path.join(os.environ.get("APPDATA", ""), "net.millida.launcher", "minecraft", "profiles",
+                        re.sub(r"[^A-Za-z0-9]", "", MILLIDA_PROFILE))
+
+
+def millida_profile():
+    """Профиль Millida «ANNO MILLE» на 1.21.1 + NeoForge (сам NeoForge Millida скачает при запуске). Уже созданный не трогает."""
+    pj = os.path.join(os.environ.get("APPDATA", ""), "net.millida.launcher", "profiles.json")
+    d = _millida_dir()
+    profs = json.load(open(pj, encoding="utf-8")) if os.path.exists(pj) else []
+    folder = os.path.basename(d).lower()   # Millida называет папку профиля его именем без пробелов и знаков
+    if not any(re.sub(r"[^A-Za-z0-9]", "", p.get("name", "")).lower() == folder for p in profs):
+        profs.append({"name": MILLIDA_PROFILE, "version": "1.21.1", "fabric": False, "loader": "neoforge",
+                      "loader_version": NEOFORGE, "icon": None})
+        json.dump(profs, open(pj, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+    os.makedirs(d, exist_ok=True)
+    s = os.path.join(d, "millida-settings.json")
+    if not os.path.exists(s):
+        json.dump({"loader": "neoforge", "loaderVersion": NEOFORGE, "name": MILLIDA_PROFILE, "version": "1.21.1",
+                   "ramMb": RAM_MB, "jvmArgs": JVM_ARGS}, open(s, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+    return d
+
+
+RAM_MB = 8192
+# G1 с короткими паузами: при ~200 модах сборка мусора по умолчанию даёт заметные фризы
+JVM_ARGS = ("-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=50 -XX:+UnlockExperimentalVMOptions "
+            "-XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 "
+            "-XX:+DisableExplicitGC -XX:+AlwaysPreTouch")
+
+
+def _tune_memory(game, log):
+    """Профиль Millida без своей памяти получает от лаунчера слишком мало: ставим 8 ГБ и настройки сборщика мусора.
+    Что игрок задал сам, не трогаем."""
+    s = os.path.join(game, "millida-settings.json")
+    if not os.path.exists(s):
+        return
+    j = json.load(open(s, encoding="utf-8"))
+    changed = False
+    if not j.get("ramMb"):
+        j["ramMb"], changed = RAM_MB, True
+    if not j.get("jvmArgs"):
+        j["jvmArgs"], changed = JVM_ARGS, True
+    if changed:
+        json.dump(j, open(s, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+        log(f"Millida: игре выделено {RAM_MB // 1024} ГБ памяти и настроена сборка мусора.")
+
+
+def _klauncher_game():
+    """(папка игры KLauncher, включены ли общие папки)."""
+    base = os.path.join(os.environ.get("APPDATA", ""), "KLauncher")
+    try:
+        g = json.load(open(os.path.join(base, "config.json"), encoding="utf-8")).get("game", {})
+    except (OSError, ValueError):
+        g = {}
+    return g.get("path") or os.path.join(base, "game"), g.get("useSharedFolder", False)
+
+
+def klauncher_instance(log=print):
+    """Сборка KLauncher «Anno Mille»: версия NeoForge в её versions/, библиотеки в общей папке библиотек KLauncher."""
+    import datetime, _winapi
+    game, shared = _klauncher_game()
+    d = os.path.join(game, "instances", PROFILE)
+    vdir = os.path.join(d, "versions", PROFILE)
+    if not os.path.exists(os.path.join(vdir, PROFILE + ".json")):
+        install_neoforge(game, log)
+        os.makedirs(vdir, exist_ok=True)
+        shutil.copy(os.path.join(game, "versions", NEO_ID, NEO_ID + ".json"), os.path.join(vdir, PROFILE + ".json"))
+        shutil.copy(os.path.join(game, "versions", "1.21.1", "1.21.1.jar"), os.path.join(vdir, PROFILE + ".jar"))
+    meta = os.path.join(d, ".meta")
+    if not os.path.exists(meta):
+        json.dump({"installedAt": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z"),
+                   "lastPlayed": None, "timePlayed": 0, "loader": {"type": "neoforge", "version": NEO_ID}, "modpackData": None},
+                  open(meta, "w", encoding="utf-8"))
+    if shared:  # как у сборок самого KLauncher: ресурспаки, миры, скриншоты и шейдеры общие
+        for sub in ("resourcepacks", "saves", "screenshots", "shaderpacks"):
+            link, target = os.path.join(d, sub), os.path.join(game, "shared", sub)
+            os.makedirs(target, exist_ok=True)
+            if not os.path.exists(link):
+                _winapi.CreateJunction(target, link)
+    return d
+
+
+def _prism_dir():
     base, inst = os.path.join(os.environ.get("APPDATA", ""), "PrismLauncher"), "instances"
     cfg = os.path.join(base, "prismlauncher.cfg")
     if os.path.exists(cfg):
         m = re.search(r"^InstanceDir=(.+)$", open(cfg, encoding="utf-8", errors="replace").read(), re.M)
         inst = m.group(1).strip() if m else inst
-    d = os.path.join(base, inst, name)
+    return os.path.join(base, inst, PROFILE, "minecraft")
+
+
+def prism_instance(name=PROFILE):
+    """Создаёт (или находит) экземпляр Prism с Minecraft 1.21.1 + NeoForge; сам NeoForge Prism скачает при запуске."""
+    d = os.path.dirname(_prism_dir())
     os.makedirs(os.path.join(d, "minecraft"), exist_ok=True)
     if not os.path.exists(os.path.join(d, "mmc-pack.json")):
         json.dump({"formatVersion": 1, "components": [{"uid": "net.minecraft", "version": "1.21.1", "important": True},
@@ -353,7 +482,7 @@ def prism_instance(name="Anno Mille"):
     if not os.path.exists(os.path.join(d, "instance.cfg")):
         open(os.path.join(d, "instance.cfg"), "w", encoding="utf-8").write(
             f"[General]\nConfigVersion=1.2\nInstanceType=OneSix\nname={name}\niconKey=default\n"
-            "OverrideMemory=true\nMinMemAlloc=1024\nMaxMemAlloc=8192\n")
+            f"OverrideMemory=true\nMinMemAlloc=1024\nMaxMemAlloc={RAM_MB}\nOverrideJavaArgs=true\nJvmArgs={JVM_ARGS}\n")
     return os.path.join(d, "minecraft")
 
 
@@ -376,6 +505,7 @@ def run(game, log=print, progress=lambda done, total: None):
     if game_running(game):
         raise GameRunning("игра с этим профилем сейчас запущена. Закрой Minecraft и запусти установку ещё раз.")
     os.makedirs(game, exist_ok=True)
+    _tune_memory(game, log)
 
     log("Ищу файлы модов...")
     entries = [tuple(l.split()[:3]) for l in open(os.path.join(root, "tools", "manifest.txt"), encoding="utf-8")
@@ -399,6 +529,9 @@ def run(game, log=print, progress=lambda done, total: None):
     n = _fix_excalibur(game)
     if n:
         log(f"Excalibur: убрал {n} текстур мобов, чтобы не спорили с Fresh Animations.")
+    n = _rare_villages(game)
+    if n:
+        log(f"Деревни Millénaire: {n} типов, каждый не больше одного на мир, дальше {RARE_FROM_SPAWN} блоков от спавна, радиус {VILLAGE_RADIUS}.")
 
     log("Копирую настройки, квесты, интерфейс и навыки...")
     skipped = []

@@ -1,0 +1,14 @@
+{
+	"version": 1,
+	"foodAndDrinks": {
+		"hungerTooltip": false,
+		"saturationTooltip": false
+	},
+	"mobs": {
+		"disableEmfModels": true
+	},
+	"heldItemTooltip": {
+		"hungerTooltip": false,
+		"saturationTooltip": false
+	}
+}

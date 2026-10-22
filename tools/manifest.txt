@@ -12,6 +12,8 @@ mod sodium-extra mc1.21.1-0.9.4+neoforge
 mod reeses-sodium-options mc1.21.1-2.2.4+neoforge
 mod scalablelux 0.1.0.1+neoforge.1cb1e91
 mod clumps 19.0.0.1
+mod dynamic-fps 3.11.4
+mod noisiumforked 2.7.0+mc1.21-1.21.1
 mod spark 1.10.124-neoforge-1.21.1
 mod euphoria-patches 1.10.5-r5.9.3-neoforge
 mod entity-model-features 3.3.12-neoforge-1.21
@@ -134,9 +136,7 @@ mod rpg-hud 3.13
 mod stylish-effects v21.1.3-1.21.1-NeoForge
 mod immersive-hotbar 1.2.2-neoforge-1.21.1
 mod yacl 3.8.2+1.21.1-neoforge
-mod legendary-tooltips 1.5.5
-mod iceberg 1.3.2
-mod prism-lib 1.0.11
+mod enhancedtooltips 1.11.0+neoforge.1.21.1
 mod inventory-profiles-next neoforge-1.21.1-2.2.5
 mod libipn neoforge-1.21.1-6.6.3
 mod cold-sweat 2.4.4
@@ -166,6 +166,8 @@ mod just-zoom 3.0.1-1.21.1-neoforge
 mod konkrete 1.9.9-1.21-neoforge
 mod fancymenu 3.9.14-1.21.1-neoforge
 mod melody 1.0.10-1.21-neoforge
+mod drippy-loading-screen 3.1.5-1.21.1-neoforge
+mod drippy-early-loading-module 3.1.5-1.21.1-neoforge
 # --- additions 3: hardcore survival / atmosphere / neutral ---
 mod survivalist-essentials 1.21.1-6.3.1.5-NEOFORGE
 mod treechop 0.19.3
@@ -193,3 +195,11 @@ mod open-loader 21.1.5
 mod default-options 21.1.8+neoforge-1.21.1
 mod balm 21.0.66+neoforge-1.21.1
 mod mcwifipnp 1.9.0
+# --- client visuals (picture mode, first-person, clouds, chat, skins, inventory) ---
+mod picture-mode 1.1.7+1.21.1-neoforge
+mod punchy-fpa 2.8g
+mod better-clouds 1.13.11+1.21.1-neoforge-release
+mod chatanimation 1.3.5+neoforge-1.21
+mod 3dskinlayers 1.11.4
+mod invmove 0.9.3+1.21.1-neoforge
+mod hide-item-frame 1.5.2-neoforge+1.21

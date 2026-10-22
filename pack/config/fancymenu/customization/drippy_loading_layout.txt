@@ -1,0 +1,107 @@
+type = fancymenu_layout
+
+layout-meta {
+  identifier = drippy_loading_overlay
+  render_custom_elements_behind_vanilla = false
+  last_edited_time = 1792650000000
+  is_enabled = true
+  randommode = false
+  randomgroup = 1
+  randomonlyfirsttime = false
+  layout_index = 0
+}
+
+menu_background {
+  instance_identifier = annomille-loading-background-0001
+  background_type = image
+  show_background = true
+  image_path = [source:local]/config/fancymenu/assets/millenaire_bg.fma
+  slide = false
+  repeat_texture = false
+  parallax = false
+  parallax_intensity_x = 0.02
+  parallax_intensity_y = 0.02
+  invert_parallax = false
+  restart_animated_on_menu_load = false
+}
+
+element {
+  element_type = image
+  instance_identifier = annomille-loading-logo-0001
+  appearance_delay = no_delay
+  appearance_delay_seconds = 1.0
+  fade_in_v2 = no_fading
+  fade_in_speed = 1.0
+  anchor_point = mid-centered
+  x = -150
+  y = -82
+  width = 300
+  height = 104
+  stretch_x = false
+  stretch_y = false
+  stay_on_screen = false
+  source = [source:local]/config/fancymenu/assets/loading_logo.fma
+  repeat_texture = false
+  restart_animated_on_menu_load = false
+}
+
+element {
+  element_type = drippy_vanilla_bar
+  instance_identifier = annomille-loading-bar-0001
+  appearance_delay = no_delay
+  appearance_delay_seconds = 1.0
+  fade_in_v2 = no_fading
+  fade_in_speed = 1.0
+  anchor_point = mid-centered
+  x = -100
+  y = 34
+  width = 200
+  height = 5
+  stretch_x = false
+  stretch_y = false
+  stay_on_screen = false
+  color = #F4F4F5
+}
+
+element {
+  element_type = text_v2
+  instance_identifier = annomille-loading-percent-0001
+  appearance_delay = no_delay
+  appearance_delay_seconds = 1.0
+  fade_in_v2 = no_fading
+  fade_in_speed = 1.0
+  anchor_point = mid-centered
+  x = 106
+  y = 32
+  width = 40
+  height = 10
+  stretch_x = false
+  stretch_y = false
+  stay_on_screen = false
+  source_mode = direct
+  source = {"placeholder":"drippy_gl_percent"}%
+  shadow = false
+  case_mode = normal
+  scale = 0.8
+  base_color = #9A9AA2
+  text_border = 0
+  line_spacing = 1
+  enable_scrolling = false
+  auto_line_wrapping = false
+  parse_markdown = false
+  interactable = false
+}
+
+vanilla_button {
+  element_type = vanilla_button
+  instance_identifier = mojang_logo
+  anchor_point = vanilla
+  is_hidden = true
+}
+
+vanilla_button {
+  element_type = vanilla_button
+  instance_identifier = progress_bar
+  anchor_point = vanilla
+  is_hidden = true
+}

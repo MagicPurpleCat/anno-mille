@@ -37,6 +37,12 @@ def profile_info(path):
             j = json.load(open(s, encoding="utf-8"))
             ml = (j.get("baseModLoader") or {}).get("name", "")
             return j.get("gameVersion"), ml.split("-")[0] if ml else None
+        s = os.path.join(path, ".meta")                                  # KLauncher
+        if os.path.exists(s):
+            loader = (json.load(open(s, encoding="utf-8")).get("loader") or {}).get("type") or "vanilla"
+            v = next(iter(glob.glob(os.path.join(path, "versions", "*", "*.json"))), None)
+            j = json.load(open(v, encoding="utf-8")) if v else {}
+            return j.get("inheritsFrom") or j.get("id"), loader
     except Exception:
         pass
     return None, None
@@ -63,6 +69,8 @@ def find_game_folders():
         except Exception:
             name = os.path.basename(p)
         add(f"Millida · {name}", p)
+    for p in glob.glob(os.path.join(install._klauncher_game()[0], "instances", "*")):
+        add(f"KLauncher · {os.path.basename(p)}", p)
     for p in glob.glob(os.path.join(APPDATA, "PrismLauncher", "instances", "*")):
         sub = next((s for s in ("minecraft", ".minecraft") if os.path.isdir(os.path.join(p, s))), None)
         if sub:
@@ -212,13 +220,14 @@ class App(tk.Tk):
             c.create_text(W // 2, 92, text="ANNO MILLE", fill=TEXT, font=("Cinzel", 40))
         c.create_text(W // 2, 162, text="Г О Д   Т Ы С Я Ч Н Ы Й   ·   M I L L É N A I R E", fill=MUTED, font=(FONT, 9))
 
-        c.create_text(self.LIST_X + 4, self.LIST_Y - 20, anchor="w", text="Куда установить", fill=MUTED, font=(FONT, 10))
-        c.create_text(self.LIST_X + self.LIST_W - 4, self.LIST_Y - 20, anchor="e",
+        self.head_l = c.create_text(self.LIST_X + 4, self.LIST_Y - 20, anchor="w", text="Куда установить", fill=MUTED, font=(FONT, 10))
+        self.head_r = c.create_text(self.LIST_X + self.LIST_W - 4, self.LIST_Y - 20, anchor="e",
                       text="нужен профиль Minecraft 1.21.1 + NeoForge", fill=DIM, font=(FONT, 9))
         self.row_imgs = {k: pill(self.LIST_W, self.ROW_H - 8, *v, radius=14) for k, v in {
             "n": ((255, 255, 255, 8), (255, 255, 255, 26)), "h": ((255, 255, 255, 16), (255, 255, 255, 70)),
             "s": ((255, 255, 255, 24), (255, 255, 255, 190))}.items()}
         self.folders, self.sel, self.offset, self.hover_row, self.rows = find_game_folders(), 0, 0, None, []
+        self.picking, self.saved, self.from_pick = None, None, False
         for i in range(self.ROWS):
             y = self.LIST_Y + i * self.ROW_H + self.ROW_H // 2
             img = c.create_image(W // 2, y, image=self.row_imgs["n"])
@@ -235,7 +244,7 @@ class App(tk.Tk):
         self.empty = c.create_text(W // 2, self.LIST_Y + 90, text="Лаунчеры не найдены. Выбери папку игры вручную.",
                                    fill=MUTED, font=(FONT, 11), state="hidden")
         self.path_txt = c.create_text(self.LIST_X + 4, list_bottom + 16, anchor="w", text="", fill=DIM, font=(FONT, 9))
-        self.other = Button(self, self.LIST_X + self.LIST_W - 70, list_bottom + 16, 140, 30, "Другая папка…", self.pick)
+        self.other = Button(self, self.LIST_X + self.LIST_W - 70, list_bottom + 16, 140, 30, "Другая папка…", self.other_click)
 
         self.go = Button(self, W // 2, 526, 240, 50, "Установить", self.start, big=True)
         self.status = c.create_text(W // 2, 510, text="", fill=MUTED, font=(FONT, 10), state="hidden")
@@ -301,7 +310,7 @@ class App(tk.Tk):
             if not visible:
                 continue
             label, path, ok = self.folders[k]
-            t, col = ("выбор лаунчера", MUTED) if label == NEW else tag_of(path, ok)
+            t, col = ("", MUTED) if self.picking else ("выбор лаунчера", MUTED) if label == NEW else tag_of(path, ok)
             key = "s" if k == self.sel else ("h" if i == self.hover_row else "n")
             c.itemconfig(img, image=self.row_imgs[key])
             c.itemconfig(dot, text="◆" if k == self.sel else "◇", fill=TEXT if k == self.sel else DIM)
@@ -358,28 +367,68 @@ class App(tk.Tk):
         self.ui(do)
 
     def start(self):
+        if self.picking:                     # выбран лаунчер для нового профиля
+            name, key = self.folders[self.sel][0], self.picking[self.sel]
+            self.leave_picking(restore=False)
+            self.from_pick = True
+            return self.begin(*self.new_profile(name, key))
+        self.from_pick = False
         f = self.selected()
         if not f:
             messagebox.showwarning("Anno Mille", "Выбери папку игры.")
             return
-        game, ok, neo = f[1], f[2], False
-        self.done_msg = "Готово. Открой лаунчер, выбери этот профиль и выдели игре 8 ГБ памяти."
+        game, ok = f[1], f[2]
         if f[0] == NEW:
-            found = install.launchers() or [("Официальный лаунчер / TLauncher", "mc")]
-            choice = found[0] if len(found) == 1 else self.ask_launcher(found)
-            if not choice:
-                return
-            if choice[1] == "prism":
-                game = install.prism_instance()
-                self.done_msg = "Готово. В Prism Launcher запусти профиль «Anno Mille»."
-            else:
-                neo = True
-                self.done_msg = f"Готово. В {choice[0]} выбери версию {install.NEO_ID} и выдели игре 8 ГБ памяти."
-        elif ok is False:
+            found = install.launchers() or [("Официальный лаунчер / TLauncher", "mc", os.path.join(APPDATA, ".minecraft"))]
+            if len(found) == 1:
+                return self.begin(*self.new_profile(found[0][0], found[0][1]))
+            return self.enter_picking(found)
+        if ok is False:
             v, l = profile_info(game)
             if not messagebox.askyesno("Anno Mille", f"Этот профиль на Minecraft {v} ({l}).\n\nСборке нужен Minecraft 1.21.1 с NeoForge, "
                                                      "иначе игра не запустится. Создай в лаунчере такой профиль и выбери его.\n\nВсё равно установить сюда?"):
                 return
+        self.begin(game, None, "Готово. Открой лаунчер, выбери этот профиль и выдели игре 8 ГБ памяти.")
+
+    # --- выбор лаунчера для нового профиля: тот же список в главном окне, только с лаунчерами
+    def enter_picking(self, found):
+        self.saved = (self.folders, self.sel, self.offset)
+        self.folders = [(name, path, True) for name, _, path in found]
+        self.picking = [key for _, key, _ in found]
+        self.sel = self.offset = 0
+        self.canvas.itemconfig(self.head_l, text="В какой лаунчер установить?")
+        self.canvas.itemconfig(self.head_r, text="найдены на этом компьютере")
+        self.other.set(text="Назад")
+        self.redraw()
+
+    def leave_picking(self, restore=True):
+        if restore:
+            self.folders, self.sel, self.offset = self.saved
+        self.picking = None
+        self.canvas.itemconfig(self.head_l, text="Куда установить")
+        self.canvas.itemconfig(self.head_r, text="нужен профиль Minecraft 1.21.1 + NeoForge")
+        self.other.set(text="Другая папка…")
+        self.redraw()
+
+    def other_click(self):
+        if self.picking:
+            self.leave_picking()
+        else:
+            self.pick()
+
+    def new_profile(self, name, key):
+        """(папка игры, что поставить до модов, итоговая подсказка) для нового профиля в выбранном лаунчере."""
+        if key == "prism":
+            return install.prism_instance(), None, f"Готово. В Prism Launcher запусти профиль «{install.PROFILE}»."
+        if key == "millida":
+            return install.millida_profile(), None, \
+                f"Готово. Перезапусти Millida и выбери профиль «{install.MILLIDA_PROFILE}», выдели игре 8 ГБ памяти."
+        if key == "klauncher":
+            return None, "klauncher", f"Готово. Перезапусти KLauncher и выбери сборку «{install.PROFILE}», выдели игре 8 ГБ памяти."
+        return os.path.join(APPDATA, ".minecraft"), "mc", f"Готово. В {name} выбери версию {install.NEO_ID} и выдели игре 8 ГБ памяти."
+
+    def begin(self, game, prep, done_msg):
+        self.done_msg = done_msg
         self.busy = True
         self.go.set(visible=False)
         self.other.set(enabled=False)
@@ -391,29 +440,9 @@ class App(tk.Tk):
         self.progress(0, 1)
         gc.collect()
         gc.disable()      # чтобы сборщик мусора не запускался в потоке установки (см. animate)
-        threading.Thread(target=self.work, args=(game, neo), daemon=True).start()
+        threading.Thread(target=self.work, args=(game, prep), daemon=True).start()
 
-    def ask_launcher(self, found):
-        """Окно «В какой лаунчер установить?»: кнопка на каждый найденный лаунчер. Возвращает выбор или None."""
-        top = tk.Toplevel(self, bg="#0c0c0d", padx=28, pady=22)
-        top.title("Anno Mille")
-        top.resizable(False, False)
-        top.transient(self)
-        res = []
-        tk.Label(top, text="В какой лаунчер установить?", bg="#0c0c0d", fg=TEXT, font=(FONT_B, 12)).pack(pady=(0, 14))
-        for item in found:
-            tk.Button(top, text=item[0], width=34, bg="#1c1c20", fg=TEXT, activebackground="#2a2a30", activeforeground=TEXT,
-                      relief="flat", font=(FONT, 11), cursor="hand2",
-                      command=lambda item=item: (res.append(item), top.destroy())).pack(pady=4, ipady=4)
-        tk.Button(top, text="Отмена", bg="#0c0c0d", fg=MUTED, activebackground="#0c0c0d", activeforeground=TEXT,
-                  relief="flat", font=(FONT, 10), cursor="hand2", command=top.destroy).pack(pady=(10, 0))
-        top.update_idletasks()
-        top.geometry(f"+{self.winfo_rootx() + (W - top.winfo_width()) // 2}+{self.winfo_rooty() + (H - top.winfo_height()) // 2}")
-        top.grab_set()
-        self.wait_window(top)
-        return res[0] if res else None
-
-    def work(self, game, neo=False):
+    def work(self, game, prep=None):
         try:
             if os.environ.get("ANNO_DEMO"):          # показ вида окна без установки
                 import time
@@ -423,8 +452,10 @@ class App(tk.Tk):
                 if os.environ["ANNO_DEMO"] == "done":
                     self.ui(self.done)
                 return
-            if neo:
+            if prep == "mc":
                 install.install_neoforge(game, log=self.write)
+            elif prep == "klauncher":
+                game = install.klauncher_instance(log=self.write)
             install.run(game, log=self.write, progress=self.progress)
             self.ui(self.done)
         except Exception as e:
@@ -460,6 +491,9 @@ class App(tk.Tk):
         c.itemconfig(self.bar, state="hidden")
         c.coords(self.status, W // 2, 494)
         self.busy = False
+        if self.from_pick:   # «Попробовать ещё раз» снова начнёт с выбора лаунчера
+            self.folders, self.sel, self.offset = self.saved
+            self.redraw()
         self.other.set(enabled=True)
         self.go.set(text="Попробовать ещё раз", visible=True)
         self.show_details_link()

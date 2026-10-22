@@ -2,25 +2,25 @@
 
 Minecraft 1.21.1, NeoForge 21.1.264. Точные версии файлов, которые ставит установщик. Ссылки ведут на страницы авторов.
 
-## Моды (188)
+## Моды (198)
 
 | Мод | Версия | Файл | Источник |
 |---|---|---|---|
+| 3dskinlayers | 1.11.4 | `skinlayers3d-neoforge-1.11.4-mc1.21.1.jar` | https://modrinth.com/project/3dskinlayers |
 | almanac | 1.26.10.3 | `almanac-neoforge-1.21.1-1.26.10.3.jar` | https://modrinth.com/project/almanac |
 | ambientsounds | 6.3.11 | `AmbientSounds_NEOFORGE_v6.3.11_mc1.21.1.jar` | https://modrinth.com/project/ambientsounds |
 | amendments | 1.21-2.1.11 | `amendments-1.21-2.1.11-neoforge.jar` | https://modrinth.com/project/amendments |
 | appleskin | 3.0.9+mc1.21 | `appleskin-neoforge-mc1.21-3.0.9.jar` | https://modrinth.com/project/appleskin |
 | aquaculture | 2.7.21 | `Aquaculture-1.21.1-2.7.21.jar` | https://modrinth.com/project/aquaculture |
 | architectury-api | 13.0.11+neoforge | `architectury-13.0.11-neoforge.jar` | https://modrinth.com/project/architectury-api |
-| balm | 21.0.66+neoforge-1.21.1 | `balm-neoforge-1.21.1-21.0.66.jar` | https://modrinth.com/project/balm |
-| default-options | 21.1.8+neoforge-1.21.1 | `defaultoptions-neoforge-1.21.1-21.1.8.jar` | https://modrinth.com/project/default-options |
-| open-loader | 21.1.5 | `OpenLoader-neoforge-1.21.1-21.1.5.jar` | https://modrinth.com/project/open-loader |
 | astikorcarts-redux | 1.2.4 | `astikorcartsredux-1.2.4.jar` | https://modrinth.com/project/astikorcarts-redux |
 | athena-ctm | 4.0.6 | `athena-neoforge-1.21.1-4.0.6.jar` | https://modrinth.com/project/athena-ctm |
 | attributes | 0.8.3 | `puffish_attributes-0.8.3-1.21-neoforge.jar` | https://modrinth.com/project/attributes |
 | azurelib | 3.0.39 | `azurelib-neo-1.21.1-3.0.39.jar` | https://modrinth.com/project/azurelib |
 | badoptimizations | 2.4.1 | `BadOptimizations-2.4.1-1.21.1.jar` | https://modrinth.com/project/badoptimizations |
+| balm | 21.0.66+neoforge-1.21.1 | `balm-neoforge-1.21.1-21.0.66.jar` | https://modrinth.com/project/balm |
 | better-animations-collection | v21.1.1-1.21.1-NeoForge | `BetterAnimationsCollection-v21.1.1-1.21.1-NeoForge.jar` | https://modrinth.com/project/better-animations-collection |
+| better-clouds | 1.13.11+1.21.1-neoforge-release | `better-clouds-1.13.11+1.21.1-neoforge.jar` | https://modrinth.com/project/better-clouds |
 | better-combat | 2.4.0+1.21.1-neoforge | `bettercombat-neoforge-2.4.0+1.21.1.jar` | https://modrinth.com/project/better-combat |
 | bl4cks-sit | v1.4 | `sit-1.21.1-1.4.jar` | https://modrinth.com/project/bl4cks-sit |
 | blueprint | 8.2.0 | `blueprint-1.21.1-8.2.0.jar` | https://modrinth.com/project/blueprint |
@@ -28,9 +28,11 @@ Minecraft 1.21.1, NeoForge 21.1.264. Точные версии файлов, к�
 | borninchaos | 1.7.6 | `born_in_chaos_[Neoforge]_1.21.1_1.7.6.jar` | https://modrinth.com/project/borninchaos |
 | brewin-and-chewin | 4.5.0+1.21.1-neoforge | `BrewinAndChewin-neoforge-4.5.0+1.21.1.jar` | https://modrinth.com/project/brewin-and-chewin |
 | carry-on | 2.2.6 | `carryon-neoforge-1.21.1-2.2.6.13.jar` | https://modrinth.com/project/carry-on |
+| chatanimation | 1.3.5+neoforge-1.21 | `chatanimation-neoforge-1.3.5+mc1.21.jar` | https://modrinth.com/project/chatanimation |
 | chimes | 2.1.1 | `Chimes-v2.1.1-1.21.1-NeoForge.jar` | https://modrinth.com/project/chimes |
 | chipped | 4.0.2 | `chipped-neoforge-1.21.1-4.0.2.jar` | https://modrinth.com/project/chipped |
 | chunky | 1.4.23 | `Chunky-NeoForge-1.4.23.jar` | https://modrinth.com/project/chunky |
+| Cinematic Interactions | 0.18.2 | `CinematicInteraction-NeoForge-1.21.1-0.18.2.jar` | https://www.curseforge.com/minecraft/mc-mods/cinematic-interactions |
 | cloth-config | 15.0.140+neoforge | `cloth-config-15.0.140-neoforge.jar` | https://modrinth.com/project/cloth-config |
 | clumps | 19.0.0.1 | `Clumps-neoforge-1.21.1-19.0.0.1.jar` | https://modrinth.com/project/clumps |
 | cold-sweat | 2.4.4 | `ColdSweat-2.4.4.jar` | https://modrinth.com/project/cold-sweat |
@@ -46,9 +48,14 @@ Minecraft 1.21.1, NeoForge 21.1.264. Точные версии файлов, к�
 | data-anchor | 2.0.0.17-neoforge | `Data_Anchor-neoforge-1.21.1-2.0.0.17.jar` | https://modrinth.com/project/data-anchor |
 | dawn-of-time | 1.6.8 | `dawnoftimebuilder-neoforge-1.21.1-1.6.8.jar` | https://modrinth.com/project/dawn-of-time |
 | decorative-blocks-reborn | 6.0.2 | `DecorativeBlocks-Reborn-neoforge-1.21.1-6.0.2.jar` | https://modrinth.com/project/decorative-blocks-reborn |
+| default-options | 21.1.8+neoforge-1.21.1 | `defaultoptions-neoforge-1.21.1-21.1.8.jar` | https://modrinth.com/project/default-options |
+| drippy-early-loading-module | 3.1.5-1.21.1-neoforge | `drippyloadingscreen-earlywindow_neoforge_3.1.5_MC_1.21.1.jar` | https://modrinth.com/project/drippy-early-loading-module |
+| drippy-loading-screen | 3.1.5-1.21.1-neoforge | `drippyloadingscreen_neoforge_3.1.5_MC_1.21.1.jar` | https://modrinth.com/project/drippy-loading-screen |
 | dungeons-and-taverns | v4.4.4+mod | `dungeons-and-taverns-v4.4.4.jar` | https://modrinth.com/project/dungeons-and-taverns |
 | durability-tooltip | 1.2.0-neoforge-mc1.21 | `durabilitytooltip-1.2.0-neoforge-mc1.21.jar` | https://modrinth.com/project/durability-tooltip |
+| dynamic-fps | 3.11.4 | `dynamic-fps-3.11.4+minecraft-1.21.0-neoforge.jar` | https://modrinth.com/project/dynamic-fps |
 | enchantment-descriptions | 21.1.11 | `enchdesc-neoforge-1.21.1-21.1.11.jar` | https://modrinth.com/project/enchantment-descriptions |
+| enhancedtooltips | 1.11.0+neoforge.1.21.1 | `EnhancedTooltips-1.11.0+neoforge.1.21.1.jar` | https://modrinth.com/project/enhancedtooltips |
 | entity-model-features | 3.3.12-neoforge-1.21 | `entity_model_features-3.3.12-1.21-neoforge.jar` | https://modrinth.com/project/entity-model-features |
 | entityculling | 1.11.3 | `entityculling-neoforge-1.11.3-mc1.21.1.jar` | https://modrinth.com/project/entityculling |
 | entitytexturefeatures | 7.2.6-neoforge-1.21 | `entity_texture_features-7.2.6-1.21-neoforge.jar` | https://modrinth.com/project/entitytexturefeatures |
@@ -79,15 +86,16 @@ Minecraft 1.21.1, NeoForge 21.1.264. Точные версии файлов, к�
 | glitchcore | 2.1.0.2 | `GlitchCore-neoforge-1.21.1-2.1.0.2.jar` | https://modrinth.com/project/glitchcore |
 | gui-compass | 1.21.1-5.1-fabric+forge+neo | `guicompass-1.21.1-5.1.jar` | https://modrinth.com/project/gui-compass |
 | handcrafted | 4.0.3 | `handcrafted-neoforge-1.21.1-4.0.3.jar` | https://modrinth.com/project/handcrafted |
+| hide-item-frame | 1.5.2-neoforge+1.21 | `hide-item-frame-1.5.2-neoforge+1.21.jar` | https://modrinth.com/project/hide-item-frame |
 | horse-expert | v21.1.0-1.21.1-NeoForge | `HorseExpert-v21.1.0-1.21.1-NeoForge.jar` | https://modrinth.com/project/horse-expert |
 | horseman | 1.5.13 | `horseman-neoforge-1.21.1-1.5.13.jar` | https://modrinth.com/project/horseman |
-| iceberg | 1.3.2 | `Iceberg-1.21.1-neoforge-1.3.2.jar` | https://modrinth.com/project/iceberg |
 | illager-invasion | v21.1.6-1.21.1-NeoForge | `IllagerInvasion-v21.1.6-1.21.1-NeoForge.jar` | https://modrinth.com/project/illager-invasion |
 | immediatelyfast | 1.6.15+1.21.1-neoforge | `ImmediatelyFast-NeoForge-1.6.15+1.21.1.jar` | https://modrinth.com/project/immediatelyfast |
 | immersive-hotbar | 1.2.2-neoforge-1.21.1 | `immersivehotbar-1.2.2-neoforge-1.21-1.21.1.jar` | https://modrinth.com/project/immersive-hotbar |
 | immersive-melodies | 0.8.0+1.21.1 | `immersive_melodies-neoforge-0.8.0+1.21.1.jar` | https://modrinth.com/project/immersive-melodies |
 | improved-mobs | 1.21.1-1.16.0.b-neoforge | `improvedmobs-1.21.1-1.16.0.b-neoforge.jar` | https://modrinth.com/project/improved-mobs |
 | inventory-profiles-next | neoforge-1.21.1-2.2.5 | `InventoryProfilesNext-neoforge-1.21.1-2.2.5.jar` | https://modrinth.com/project/inventory-profiles-next |
+| invmove | 0.9.3+1.21.1-neoforge | `InvMove-0.9.3+1.21.1-NeoForge.jar` | https://modrinth.com/project/invmove |
 | iris | 1.8.14-beta.1+1.21.1-neoforge | `iris-neoforge-1.8.14-beta.1+mc1.21.1.jar` | https://modrinth.com/project/iris |
 | jade | 15.10.6+neoforge | `Jade-1.21.1-NeoForge-15.10.6.jar` | https://modrinth.com/project/jade |
 | jei | 19.64.0.455 | `jei-1.21.1-neoforge-19.64.0.455.jar` | https://modrinth.com/project/jei |
@@ -95,7 +103,6 @@ Minecraft 1.21.1, NeoForge 21.1.264. Точные версии файлов, к�
 | konkrete | 1.9.9-1.21-neoforge | `konkrete_neoforge_1.9.9_MC_1.21.jar` | https://modrinth.com/project/konkrete |
 | kotlin-for-forge | 5.12.0 | `kotlinforforge-5.12.0-all.jar` | https://modrinth.com/project/kotlin-for-forge |
 | leaves-be-gone | v21.1.1-1.21.1-NeoForge | `LeavesBeGone-v21.1.1-1.21.1-NeoForge.jar` | https://modrinth.com/project/leaves-be-gone |
-| legendary-tooltips | 1.5.5 | `LegendaryTooltips-1.21.1-neoforge-1.5.5.jar` | https://modrinth.com/project/legendary-tooltips |
 | lets-do-bakery-farmcharm-compat | 2.1.11 | `letsdo-bakery-neoforge-2.1.11.jar` | https://modrinth.com/project/lets-do-bakery-farmcharm-compat |
 | lets-do-farm-charm | 1.1.29 | `letsdo-farm_and_charm-neoforge-1.1.29.jar` | https://modrinth.com/project/lets-do-farm-charm |
 | lets-do-meadow | 1.4.10 | `letsdo-meadow-neoforge-1.4.10.jar` | https://modrinth.com/project/lets-do-meadow |
@@ -121,7 +128,7 @@ Minecraft 1.21.1, NeoForge 21.1.264. Точные версии файлов, к�
 | mezzconfig | 0.6.8 | `mezz_config-1.21.1-neoforge-0.6.8-standalone.jar` | https://modrinth.com/project/mezzconfig |
 | midnightlib | 1.10.0+1.21.1-neoforge | `midnightlib-neoforge-1.10.0+1.21.1.jar` | https://modrinth.com/project/midnightlib |
 | millenaire-ftb-chunks-compat | 0.2 | `millenaire_ftb_chunks_compat-1.21.1-0.2.jar` | https://modrinth.com/project/millenaire-ftb-chunks-compat |
-| Millénaire | 9.0.2 | `millenaire-9.0.2.jar` | https://www.millenaire.org/ru |
+| Millénaire | 9.0.3 | `millenaire-9.0.3.jar` | https://www.millenaire.org/ru |
 | Millénaire pack tweaks (свой мини-мод: без ванильных деревень, теги структур, деревья навыков) | 1.2.0 | `no_vanilla_villages-1.2.0.jar` | свой файл сборки |
 | modernfix | 5.27.26+mc1.21.1 | `modernfix-neoforge-5.27.26+mc1.21.1.jar` | https://modrinth.com/project/modernfix |
 | moonlight | 1.21.1-3.7.2 | `moonlight-1.21.1-3.7.2-neoforge.jar` | https://modrinth.com/project/moonlight |
@@ -130,15 +137,18 @@ Minecraft 1.21.1, NeoForge 21.1.264. Точные версии файлов, к�
 | mowzies-mobs | 1.8.2 | `mowziesmobs-1.21.1-1.8.2.jar` | https://modrinth.com/project/mowzies-mobs |
 | naturalist | 2.0.5+1.21.1-neoforge | `naturalist-2.0.5-neoforge-1.21.1.jar` | https://modrinth.com/project/naturalist |
 | neat | 1.21.1-47-neoforge | `Neat-1.21-47-NEOFORGE.jar` | https://modrinth.com/project/neat |
+| noisiumforked | 2.7.0+mc1.21-1.21.1 | `noisium-neoforge-2.7.0+mc1.21-1.21.1.jar` | https://modrinth.com/project/noisiumforked |
 | not-enough-animations | 1.12.6 | `notenoughanimations-neoforge-1.12.6-mc1.21.1.jar` | https://modrinth.com/project/not-enough-animations |
 | nyfs-spiders | 3.0.2 | `nyfsspiders-neoforge-1.21.1-3.0.2.jar` | https://modrinth.com/project/nyfs-spiders |
+| open-loader | 21.1.5 | `OpenLoader-neoforge-1.21.1-21.1.5.jar` | https://modrinth.com/project/open-loader |
 | particle-rain | v4.0.2+1.21.1-neoforge | `particlerain-4.0.2+1.21.1-neoforge.jar` | https://modrinth.com/project/particle-rain |
 | pf-neoforge | 1.21.1-1.12.0-beta.1 | `PresenceFootsteps-1.21.1-1.12.0-beta.1-1.21NeoForge.jar` | https://modrinth.com/project/pf-neoforge |
 | philips-ruins | 1.21.1-2.0 | `Philips-Ruins1.21.1-2.0-NeoForge.jar` | https://modrinth.com/project/philips-ruins |
+| picture-mode | 1.1.7+1.21.1-neoforge | `picturemode-neoforge-1.1.7+1.21.1.jar` | https://modrinth.com/project/picture-mode |
 | pillager-caravans | 3.0.1 | `caravans-neoforge-1.21.1-3.0.1.jar` | https://modrinth.com/project/pillager-caravans |
 | playeranimator | 2.0.4+1.21.1-forge | `player-animation-lib-forge-2.0.4+1.21.1.jar` | https://modrinth.com/project/playeranimator |
 | prickle | 21.1.11 | `prickle-neoforge-1.21.1-21.1.11.jar` | https://modrinth.com/project/prickle |
-| prism-lib | 1.0.11 | `Prism-1.21.1-neoforge-1.0.11.jar` | https://modrinth.com/project/prism-lib |
+| punchy-fpa | 2.8g | `punchy-2.8g-neoforge-1.21.1.jar` | https://modrinth.com/project/punchy-fpa |
 | puzzles-lib | 21.1.64 | `puzzleslib-v21.1.64-mc1.21.1+neoforge.jar` | https://modrinth.com/project/puzzles-lib |
 | realistic-campfires | 1.1.2+1.21-neoforge | `1.1.2+1.21-neoforge.jar` | https://modrinth.com/project/realistic-campfires |
 | reeses-sodium-options | mc1.21.1-2.2.4+neoforge | `reeses-sodium-options-neoforge-2.2.4+mc1.21.1.jar` | https://modrinth.com/project/reeses-sodium-options |

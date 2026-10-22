@@ -57,7 +57,7 @@
 	#Radius for keeping village chunks loaded (blocks). 0 = disabled.
 	# Default: 200
 	# Range: 0 ~ 2000
-	keepActiveRadius = 200
+	keepActiveRadius = 128
 	#Override all village type radii with this value (blocks).
 	#-1 = use per-type JSON value. Requires world restart to take effect.
 	# Default: -1
