@@ -16,7 +16,7 @@ Minecraft 1.21.1 + NeoForge 21.1.264 ставит лаунчер, либо insta
 import concurrent.futures as cf, glob, hashlib, io, json, os, re, shutil, subprocess, sys, time, urllib.parse, urllib.request, zipfile
 
 API = "https://api.modrinth.com/v2"
-UA = {"User-Agent": "anno-mille-installer/1.1"}
+UA = {"User-Agent": "anno-mille-installer/1.2"}
 DIRS = {"mod": "mods", "rp": "resourcepacks", "shader": "shaderpacks"}
 CF = "https://www.curseforge.com/api/v1/mods/{}/files/{}/download"
 EXTRA = [  # не с Modrinth: (папка, имя файла, URL)
@@ -258,6 +258,27 @@ def _fix_excalibur(game):
     _make_writable(path)
     os.replace(tmp, path)
     return len(drop)
+
+
+def _fix_cinematic(game):
+    """Cinematic Interactions и Amendments оба добавляют варочной стойке getUpdatePacket — игра падает при запуске.
+    Синхронизацию стойки уже даёт Amendments, поэтому из Cinematic убираем его mixin стойки (сцена варки
+    отключена в config/cinematic-client.toml). Лицензия Cinematic Interactions — MIT."""
+    n = 0
+    for f in glob.glob(os.path.join(game, "mods", "CinematicInteraction*.jar")):
+        with zipfile.ZipFile(f) as z:
+            cfg = json.loads(z.read("cinematic.mixins.json"))
+            if "BrewingStandBlockEntityMixin" not in cfg.get("mixins", []):
+                continue
+            cfg["mixins"].remove("BrewingStandBlockEntityMixin")
+            tmp = f + ".tmp"
+            with zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED) as out:
+                for info in z.infolist():
+                    out.writestr(info, json.dumps(cfg, indent=2) if info.filename == "cinematic.mixins.json" else z.read(info))
+        _make_writable(f)
+        os.replace(tmp, f)
+        n += 1
+    return n
 
 
 RARE_MAX, RARE_FROM_SPAWN, VILLAGE_RADIUS = 1, 3000, 120  # радиус 120 — предел Millénaire (villageRadiusOverride)
@@ -529,6 +550,8 @@ def run(game, log=print, progress=lambda done, total: None):
     n = _fix_excalibur(game)
     if n:
         log(f"Excalibur: убрал {n} текстур мобов, чтобы не спорили с Fresh Animations.")
+    if _fix_cinematic(game):
+        log("Cinematic Interactions: убран конфликт с Amendments у варочной стойки.")
     n = _rare_villages(game)
     if n:
         log(f"Деревни Millénaire: {n} типов, каждый не больше одного на мир, дальше {RARE_FROM_SPAWN} блоков от спавна, радиус {VILLAGE_RADIUS}.")
