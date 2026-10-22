@@ -14,6 +14,7 @@ mod scalablelux 0.1.0.1+neoforge.1cb1e91
 mod clumps 19.0.0.1
 mod dynamic-fps 3.11.4
 mod noisiumforked 2.7.0+mc1.21-1.21.1
+mod async 0.2.0+alpha-1.21.1
 mod spark 1.10.124-neoforge-1.21.1
 mod euphoria-patches 1.10.5-r5.9.3-neoforge
 mod entity-model-features 3.3.12-neoforge-1.21

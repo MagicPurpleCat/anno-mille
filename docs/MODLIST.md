@@ -2,7 +2,7 @@
 
 Minecraft 1.21.1, NeoForge 21.1.264. Точные версии файлов, которые ставит установщик. Ссылки ведут на страницы авторов.
 
-## Моды (198)
+## Моды (199)
 
 | Мод | Версия | Файл | Источник |
 |---|---|---|---|
@@ -14,6 +14,7 @@ Minecraft 1.21.1, NeoForge 21.1.264. Точные версии файлов, к�
 | aquaculture | 2.7.21 | `Aquaculture-1.21.1-2.7.21.jar` | https://modrinth.com/project/aquaculture |
 | architectury-api | 13.0.11+neoforge | `architectury-13.0.11-neoforge.jar` | https://modrinth.com/project/architectury-api |
 | astikorcarts-redux | 1.2.4 | `astikorcartsredux-1.2.4.jar` | https://modrinth.com/project/astikorcarts-redux |
+| async | 0.2.0+alpha-1.21.1 | `async-neoforge-0.2.0+alpha-1.21.1.jar` | https://modrinth.com/project/async |
 | athena-ctm | 4.0.6 | `athena-neoforge-1.21.1-4.0.6.jar` | https://modrinth.com/project/athena-ctm |
 | attributes | 0.8.3 | `puffish_attributes-0.8.3-1.21-neoforge.jar` | https://modrinth.com/project/attributes |
 | azurelib | 3.0.39 | `azurelib-neo-1.21.1-3.0.39.jar` | https://modrinth.com/project/azurelib |
