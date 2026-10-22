@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "wah",
+  "key": {
+    "#": {
+      "tag": "c:crops/corn"
+    },
+    "X": {
+      "item": "minecraft:chicken"
+    }
+  },
+  "pattern": [
+    "#X#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "millenaire:wah"
+  }
+}

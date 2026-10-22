@@ -4,94 +4,106 @@
 	filename: "trials"
 	group: ""
 	icon: { id: "minecraft:wither_skeleton_skull" }
-	id: "883453A105EB3FF8"
+	id: "083453A105EB3FF8"
 	order_index: 9
 	quest_links: [ ]
 	quests: [
 		{
-			dependencies: ["A50CFF48479D9998"]
+			dependencies: ["21BA363741B04F53", "2772B6CF5ED142A2", "609B0731835CBF26", "2B9A5A14DD893DCA", "7A69C5A97179B8D3", "23094F20C179C299", "2A2DD37A3DDC2A12", "66C6C8EE5967D73E", "6616E8693828FC03", "6512B93ED997DBD2", "769542E143FEA2D9", "7B15CEED8476AE75", "106561C82246D807"]
+			hide_dependency_lines: true
+			min_required_dependencies: 7
+			icon: { id: "minecraft:wither_skeleton_skull" }
+			id: "04717DC2B6D69D02"
+			rewards: [{ id: "52B9AAEC83005C7F", type: "xp", xp: 50 }]
+			size: 1.5d
+			tasks: [{ id: "47847725FF1A78B0", type: "checkmark" }]
+			x: 0.0d
+			y: -0.375d
+		}
+		{
+			dependencies: ["04717DC2B6D69D02"]
 			icon: { id: "minecraft:bell" }
 			id: "532793547031FF23"
-			rewards: [{ id: "ED66ADD61AA48A98", type: "xp", xp: 300 }]
-			tasks: [{ advancement: "minecraft:adventure/hero_of_the_village", criterion: "", icon: { id: "minecraft:bell" }, id: "B888E3B2F08E5231", type: "advancement" }]
-			x: 0.0d
-			y: 0.0d
+			rewards: [{ id: "6D66ADD61AA48A98", type: "xp", xp: 300 }]
+			tasks: [{ advancement: "minecraft:adventure/hero_of_the_village", criterion: "", icon: { id: "minecraft:bell" }, id: "3888E3B2F08E5231", type: "advancement" }]
+			x: 2.0d
+			y: -0.375d
 		}
 		{
 			dependencies: ["532793547031FF23"]
 			id: "79D36FBC486E1E55"
-			rewards: [{ id: "C6825E54BEECA6FA", type: "xp", xp: 300 }]
-			tasks: [{ entity: "illagerinvasion:inquisitor", id: "DD6FCC7068D97523", type: "kill", value: 1L }]
-			x: 2.0d
-			y: -0.875d
+			rewards: [{ id: "46825E54BEECA6FA", type: "xp", xp: 300 }]
+			tasks: [{ entity: "illagerinvasion:inquisitor", id: "5D6FCC7068D97523", type: "kill", value: 1L }]
+			x: 4.0d
+			y: -1.5d
 		}
 		{
-			dependencies: ["C7E539BE45BB6250"]
+			dependencies: ["47E539BE45BB6250"]
 			id: "7A528EA03F1ACEAA"
 			rewards: [{ id: "199F5054B3ACF227", type: "xp", xp: 500 }]
 			size: 1.5d
 			tasks: [{ entity: "mowziesmobs:ferrous_wroughtnaut", id: "3A6A9E8D9E1FE0E5", type: "kill", value: 1L }]
-			x: 4.0d
-			y: -0.875d
+			x: 6.0d
+			y: 0.75d
 		}
 		{
 			dependencies: ["7A528EA03F1ACEAA"]
-			id: "9A754FE914716D8C"
+			id: "1A754FE914716D8C"
 			rewards: [{ id: "77755FC946F378BA", type: "xp", xp: 400 }]
-			tasks: [{ entity: "born_in_chaos_v1:fallen_chaos_knight", id: "A6A4F1E1B530A925", type: "kill", value: 1L }]
-			x: 6.0d
-			y: -0.875d
-		}
-		{
-			dependencies: ["9A754FE914716D8C"]
-			id: "6F03057613FD3572"
-			rewards: [{ id: "F0587BC7020A0399", type: "xp", xp: 800 }]
-			size: 1.5d
-			tasks: [{ entity: "born_in_chaos_v1:lord_pumpkinhead", id: "FEB5055841317E6F", type: "kill", value: 1L }]
+			tasks: [{ entity: "born_in_chaos_v1:fallen_chaos_knight", id: "26A4F1E1B530A925", type: "kill", value: 1L }]
 			x: 8.0d
 			y: 0.0d
 		}
 		{
-			dependencies: ["7A528EA03F1ACEAA", "08E1C48CC6AD12F0"]
-			id: "AC87F6FA8D176031"
-			rewards: [{ id: "7E52CAB95E374369", type: "xp", xp: 800 }]
-			tasks: [{ entity: "mowziesmobs:frostmaw", id: "187D0216E9AA85C9", type: "kill", value: 1L }]
-			x: 6.0d
-			y: 0.875d
-		}
-		{
-			dependencies: ["6F03057613FD3572"]
-			id: "A2BA06B0019866A3"
-			rewards: [{ id: "6D013FFA995D3D05", type: "xp", xp: 1500 }]
-			size: 2.0d
-			tasks: [{ entity: "minecraft:wither", id: "BCEAA7CE878609BC", type: "kill", value: 1L }]
+			dependencies: ["1A754FE914716D8C"]
+			id: "6F03057613FD3572"
+			rewards: [{ id: "70587BC7020A0399", type: "xp", xp: 800 }]
+			size: 1.5d
+			tasks: [{ entity: "born_in_chaos_v1:lord_pumpkinhead", id: "7EB5055841317E6F", type: "kill", value: 1L }]
 			x: 10.0d
 			y: 0.0d
 		}
 		{
-			dependencies: ["A2BA06B0019866A3"]
-			id: "1675C7E8464221DA"
-			rewards: [{ count: 2, id: "C09E98A10B255583", item: { count: 1, id: "millenaire:denier_or" }, type: "item" }]
-			size: 2.5d
-			tasks: [{ entity: "minecraft:ender_dragon", id: "3100655151EEB39B", type: "kill", value: 1L }]
+			dependencies: ["7A528EA03F1ACEAA"]
+			id: "2C87F6FA8D176031"
+			rewards: [{ id: "7E52CAB95E374369", type: "xp", xp: 800 }]
+			tasks: [{ entity: "mowziesmobs:frostmaw", id: "187D0216E9AA85C9", type: "kill", value: 1L }]
+			x: 8.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["6F03057613FD3572"]
+			id: "22BA06B0019866A3"
+			rewards: [{ id: "6D013FFA995D3D05", type: "xp", xp: 1500 }]
+			size: 2.0d
+			tasks: [{ entity: "minecraft:wither", id: "3CEAA7CE878609BC", type: "kill", value: 1L }]
 			x: 12.0d
 			y: 0.0d
 		}
 		{
+			dependencies: ["22BA06B0019866A3"]
+			id: "1675C7E8464221DA"
+			rewards: [{ count: 2, id: "409E98A10B255583", item: { count: 1, id: "millenaire:denier_or" }, type: "item" }]
+			size: 2.5d
+			tasks: [{ entity: "minecraft:ender_dragon", id: "3100655151EEB39B", type: "kill", value: 1L }]
+			x: 14.0d
+			y: 0.0d
+		}
+		{
 			dependencies: ["532793547031FF23"]
-			id: "C7E539BE45BB6250"
-			rewards: [{ id: "BCCED0BDB3D98767", type: "xp", xp: 150 }]
+			id: "47E539BE45BB6250"
+			rewards: [{ id: "3CCED0BDB3D98767", type: "xp", xp: 150 }]
 			tasks: [{ id: "79DB0D681CEC4644", structure: "mowziesmobs:wrought_chamber", type: "structure" }]
-			x: 2.0d
-			y: 0.875d
+			x: 4.0d
+			y: 0.75d
 		}
 		{
 			dependencies: ["79D36FBC486E1E55"]
-			id: "AAF6D9C6B8382670"
+			id: "2AF6D9C6B8382670"
 			rewards: [{ id: "3E35808C1E59AB0C", type: "xp", xp: 300 }]
 			tasks: [{ id: "2B0FAACD8B2B9AE0", structure: "illagerinvasion:illager_fort", type: "structure" }]
-			x: 4.0d
-			y: 0.875d
+			x: 6.0d
+			y: -1.5d
 		}
 	]
 }

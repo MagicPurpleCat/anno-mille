@@ -1,0 +1,12 @@
+{
+  "type": "armor",
+  "item": {
+    "items": [
+      "millenaire:furboots"
+    ]
+  },
+  "insulation": {
+    "cold": 10,
+    "heat": 0
+  }
+}

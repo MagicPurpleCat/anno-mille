@@ -4,124 +4,136 @@
 	filename: "roads"
 	group: ""
 	icon: { id: "minecraft:filled_map" }
-	id: "C8364F3C2ADDEBA9"
+	id: "48364F3C2ADDEBA9"
 	order_index: 8
 	quest_links: [ ]
 	quests: [
 		{
-			dependencies: ["C12283B890CC6405"]
-			id: "21BA363741B04F53"
-			rewards: [{ count: 8, id: "84DD22BCC26DDBE6", item: { count: 1, id: "minecraft:cooked_porkchop" }, type: "item" }]
-			tasks: [{ id: "6DCC1DC157215689", type: "checkmark" }]
+			dependencies: ["40DBA13DC4BC1DAC", "3065236FA872C84F", "5F864EE550CFAAAE", "2686B6DB86A8A40C", "3499685FB433E41F", "50BBF388B5682E6D", "5949B53253D226E1", "599B537C7521B311", "1A3D7925C2ADFA2B", "1E51206D8F3EF9DA", "6BFF2F5F8BF247A2", "219FFAF378BF62CE", "1D94E429C620092F"]
+			hide_dependency_lines: true
+			min_required_dependencies: 7
+			icon: { id: "minecraft:filled_map" }
+			id: "6586C83A6E592991"
+			rewards: [{ id: "5A8C29D0B6735FBC", type: "xp", xp: 50 }]
+			size: 1.5d
+			tasks: [{ id: "0CA82D2207C2333F", type: "checkmark" }]
 			x: 0.0d
-			y: 0.0d
+			y: -0.2142857142857144d
+		}
+		{
+			dependencies: ["6586C83A6E592991"]
+			id: "21BA363741B04F53"
+			rewards: [{ count: 8, id: "04DD22BCC26DDBE6", item: { count: 1, id: "minecraft:cooked_porkchop" }, type: "item" }]
+			tasks: [{ id: "6DCC1DC157215689", type: "checkmark" }]
+			x: 2.0d
+			y: -0.2142857142857144d
 		}
 		{
 			dependencies: ["21BA363741B04F53"]
-			id: "A772B6CF5ED142A2"
+			id: "2772B6CF5ED142A2"
 			rewards: [{ id: "4A1DE50CCA8879BD", type: "xp", xp: 40 }]
-			tasks: [{ biome: "minecraft:desert", id: "CD5B31F79D5B1BB6", type: "biome" }]
-			x: 2.0d
+			tasks: [{ biome: "minecraft:desert", id: "4D5B31F79D5B1BB6", type: "biome" }]
+			x: 4.0d
 			y: -5.25d
 		}
 		{
 			dependencies: ["21BA363741B04F53"]
-			id: "E09B0731835CBF26"
-			rewards: [{ id: "E3985058E5DDA8A0", type: "xp", xp: 40 }]
-			tasks: [{ biome: "minecraft:snowy_plains", id: "890E9B348509F15B", type: "biome" }]
-			x: 2.0d
-			y: -3.5d
+			id: "609B0731835CBF26"
+			rewards: [{ id: "63985058E5DDA8A0", type: "xp", xp: 40 }]
+			tasks: [{ biome: "minecraft:snowy_plains", id: "090E9B348509F15B", type: "biome" }]
+			x: 4.0d
+			y: -3.75d
 		}
 		{
 			dependencies: ["21BA363741B04F53"]
 			id: "2B9A5A14DD893DCA"
-			rewards: [{ id: "BC56B8EAF4B09175", type: "xp", xp: 40 }]
+			rewards: [{ id: "3C56B8EAF4B09175", type: "xp", xp: 40 }]
 			tasks: [{ biome: "minecraft:cherry_grove", id: "3CCB4EC761C19805", type: "biome" }]
-			x: 2.0d
-			y: -1.75d
+			x: 4.0d
+			y: -2.25d
 		}
 		{
 			dependencies: ["21BA363741B04F53"]
 			id: "7A69C5A97179B8D3"
-			rewards: [{ id: "830321B82058A702", type: "xp", xp: 40 }]
+			rewards: [{ id: "030321B82058A702", type: "xp", xp: 40 }]
 			tasks: [{ biome: "minecraft:jungle", id: "3A13C605F573D1CC", type: "biome" }]
-			x: 2.0d
-			y: 0.0d
+			x: 4.0d
+			y: -0.75d
 		}
 		{
 			dependencies: ["21BA363741B04F53"]
 			id: "23094F20C179C299"
 			rewards: [{ id: "2B6C9F3D0349FD9B", type: "xp", xp: 150 }]
-			tasks: [{ count: 1L, id: "A1065279A52148C6", item: { count: 1, id: "minecraft:name_tag" }, type: "item" }]
-			x: 2.0d
-			y: 1.75d
+			tasks: [{ count: 1L, id: "21065279A52148C6", item: { count: 1, id: "minecraft:name_tag" }, type: "item" }]
+			x: 4.0d
+			y: 1.5d
 		}
 		{
 			dependencies: ["23094F20C179C299"]
 			icon: { id: "minecraft:crossbow" }
-			id: "AA2DD37A3DDC2A12"
-			rewards: [{ count: 8, id: "F309B2AF68129D30", item: { count: 1, id: "minecraft:emerald" }, type: "item" }]
+			id: "2A2DD37A3DDC2A12"
+			rewards: [{ count: 8, id: "7309B2AF68129D30", item: { count: 1, id: "minecraft:emerald" }, type: "item" }]
 			tasks: [{ advancement: "minecraft:adventure/voluntary_exile", criterion: "", icon: { id: "minecraft:crossbow" }, id: "06465DC9C620735C", type: "advancement" }]
-			x: 4.0d
-			y: -1.75d
+			x: 6.0d
+			y: 1.5d
 		}
 		{
-			dependencies: ["AA2DD37A3DDC2A12"]
-			id: "E6C6C8EE5967D73E"
+			dependencies: ["2A2DD37A3DDC2A12"]
+			id: "66C6C8EE5967D73E"
 			rewards: [{ id: "35C9325A123AFF36", type: "xp", xp: 200 }]
-			tasks: [{ entity: "valarian_conquest:soldier", id: "BBC493E74F7C058F", type: "kill", value: 5L }]
-			x: 6.0d
-			y: -1.75d
+			tasks: [{ entity: "valarian_conquest:soldier", id: "3BC493E74F7C058F", type: "kill", value: 5L }]
+			x: 8.0d
+			y: 0.75d
 		}
 		{
 			dependencies: ["21BA363741B04F53"]
 			id: "6616E8693828FC03"
-			rewards: [{ count: 8, id: "DD9ABD7C2631D88E", item: { count: 1, id: "minecraft:cooked_beef" }, type: "item" }]
+			rewards: [{ count: 8, id: "5D9ABD7C2631D88E", item: { count: 1, id: "minecraft:cooked_beef" }, type: "item" }]
 			tasks: [{ id: "5A7030863047E8B9", structure: "#millpack:taverns", type: "structure" }]
-			x: 2.0d
-			y: 3.5d
+			x: 4.0d
+			y: 3.75d
 		}
 		{
 			dependencies: ["21BA363741B04F53"]
 			id: "6512B93ED997DBD2"
 			rewards: [{ id: "7C14C3007D43E1CD", type: "xp", xp: 100 }]
-			tasks: [{ id: "8A49304119BB4A9B", structure: "#millpack:ruins", type: "structure" }]
-			x: 2.0d
+			tasks: [{ id: "0A49304119BB4A9B", structure: "#millpack:ruins", type: "structure" }]
+			x: 4.0d
 			y: 5.25d
 		}
 		{
 			dependencies: ["6512B93ED997DBD2"]
-			id: "F69542E143FEA2D9"
-			rewards: [{ id: "F9A7411AC97ED65D", type: "xp", xp: 150 }]
-			tasks: [{ id: "9A28B061A2329E1C", structure: "medieval_buildings:fort", type: "structure" }]
-			x: 4.0d
-			y: 0.0d
-		}
-		{
-			dependencies: ["AA2DD37A3DDC2A12"]
-			id: "7B15CEED8476AE75"
-			rewards: [{ count: 2, id: "A5470B6CF22D2EE7", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
-			tasks: [{ id: "1BC0336E50E52095", structure: "#millpack:bandit_camps", type: "structure" }]
+			id: "769542E143FEA2D9"
+			rewards: [{ id: "79A7411AC97ED65D", type: "xp", xp: 150 }]
+			tasks: [{ id: "1A28B061A2329E1C", structure: "medieval_buildings:fort", type: "structure" }]
 			x: 6.0d
-			y: 0.0d
+			y: 5.25d
 		}
 		{
-			dependencies: ["F69542E143FEA2D9"]
-			id: "906561C82246D807"
+			dependencies: ["2A2DD37A3DDC2A12"]
+			id: "7B15CEED8476AE75"
+			rewards: [{ count: 2, id: "25470B6CF22D2EE7", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
+			tasks: [{ id: "1BC0336E50E52095", structure: "#millpack:bandit_camps", type: "structure" }]
+			x: 8.0d
+			y: 2.25d
+		}
+		{
+			dependencies: ["769542E143FEA2D9"]
+			id: "106561C82246D807"
 			rewards: [{ id: "41375285DA10AEAC", type: "xp", xp: 400 }]
 			size: 1.5d
-			tasks: [{ id: "E792A4DD09C58934", structure: "#millpack:castles", type: "structure" }]
-			x: 6.0d
-			y: 1.75d
+			tasks: [{ id: "6792A4DD09C58934", structure: "#millpack:castles", type: "structure" }]
+			x: 8.0d
+			y: 5.25d
 		}
 		{
 			dependencies: ["2B9A5A14DD893DCA"]
-			id: "E4AE32609F8772C3"
+			id: "64AE32609F8772C3"
 			optional: true
-			rewards: [{ id: "BE629429E2019F77", type: "xp", xp: 100 }]
-			tasks: [{ id: "FA74B7911F2424EF", structure: "samurai_dynasty:shrine", type: "structure" }]
-			x: 4.0d
-			y: 1.75d
+			rewards: [{ id: "3E629429E2019F77", type: "xp", xp: 100 }]
+			tasks: [{ id: "7A74B7911F2424EF", structure: "samurai_dynasty:shrine", type: "structure" }]
+			x: 6.0d
+			y: -2.25d
 		}
 	]
 }

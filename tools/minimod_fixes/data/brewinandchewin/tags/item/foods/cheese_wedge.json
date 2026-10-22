@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "meadow:cheese_slice",
+    "meadow:goat_cheese_slice",
+    "meadow:sheep_cheese_slice",
+    "meadow:buffalo_cheese_slice",
+    "meadow:grain_cheese_slice",
+    "millenaire:feta"
+  ]
+}

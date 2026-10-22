@@ -1,0 +1,12 @@
+{
+  "type": "armor",
+  "item": {
+    "items": [
+      "millenaire:furlegs"
+    ]
+  },
+  "insulation": {
+    "cold": 12,
+    "heat": 0
+  }
+}

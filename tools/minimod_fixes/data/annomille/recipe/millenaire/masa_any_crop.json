@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "masa",
+  "key": {
+    "#": {
+      "tag": "c:crops/corn"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "millenaire:masa"
+  }
+}

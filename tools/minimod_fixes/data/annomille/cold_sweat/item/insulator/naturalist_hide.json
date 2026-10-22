@@ -1,0 +1,12 @@
+{
+  "type": "item",
+  "item": {
+    "items": [
+      "naturalist:hide"
+    ]
+  },
+  "insulation": {
+    "cold": 1,
+    "heat": 1
+  }
+}

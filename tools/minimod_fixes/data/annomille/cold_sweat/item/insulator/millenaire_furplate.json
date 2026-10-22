@@ -1,0 +1,12 @@
+{
+  "type": "armor",
+  "item": {
+    "items": [
+      "millenaire:furplate"
+    ]
+  },
+  "insulation": {
+    "cold": 14,
+    "heat": 0
+  }
+}

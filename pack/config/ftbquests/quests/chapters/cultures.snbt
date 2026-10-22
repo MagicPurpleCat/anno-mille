@@ -4,16 +4,28 @@
 	filename: "cultures"
 	group: ""
 	icon: { id: "millenaire:norman_sword" }
-	id: "AF80BFAD16341605"
+	id: "2F80BFAD16341605"
 	order_index: 5
 	quest_links: [ ]
 	quests: [
 		{
-			dependencies: ["C12283B890CC6405"]
+			dependencies: ["0464DCC814261E4B", "4A21969E3E6C4151", "18311D438F597439", "076C2A1E9273D0DF", "73E3C16AA70D78F8", "62FEE13E41AB4697", "2890B110539D053F", "11AB585EDD20E9F1"]
+			hide_dependency_lines: true
+			min_required_dependencies: 4
+			icon: { id: "millenaire:norman_sword" }
+			id: "3B3A7337B1D947F4"
+			rewards: [{ id: "67BF3AAD6A92605C", type: "xp", xp: 50 }]
+			size: 1.5d
+			tasks: [{ id: "6206690610BCE09D", type: "checkmark" }]
+			x: 7.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["3B3A7337B1D947F4"]
 			icon: { id: "millenaire:calva" }
 			id: "365FBC4B45F4FE21"
 			rewards: [{ count: 32, id: "1ED8E34C49C36A57", item: { count: 1, id: "millenaire:denier" }, type: "item" }]
-			tasks: [{ count: 1L, id: "A7F56DA3EBFB4385", item: { count: 1, id: "millenaire:calva" }, type: "item" }]
+			tasks: [{ count: 1L, id: "27F56DA3EBFB4385", item: { count: 1, id: "millenaire:calva" }, type: "item" }]
 			x: 0.0d
 			y: 0.0d
 		}
@@ -21,7 +33,7 @@
 			dependencies: ["365FBC4B45F4FE21"]
 			icon: { id: "millenaire:norman_pattern" }
 			id: "51B13530DA1BBEDD"
-			rewards: [{ count: 4, id: "08FF47BB83AEC90A", item: { count: 1, id: "millenaire:cider" }, type: "item" } { count: 2, id: "B2A48711168FA8B7", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
+			rewards: [{ count: 4, id: "08FF47BB83AEC90A", item: { count: 1, id: "millenaire:cider" }, type: "item" } { count: 2, id: "32A48711168FA8B7", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
 			tasks: [{ advancement: "millenaire:rep_norman", criterion: "", icon: { id: "millenaire:cider" }, id: "7BC6CFC0DC2DE78D", type: "advancement" }]
 			x: 0.0d
 			y: 1.5d
@@ -31,7 +43,7 @@
 			icon: { id: "millenaire:timber_frame_cross" }
 			id: "3539720530BE837B"
 			optional: true
-			rewards: [{ count: 16, id: "A633FBB089F70C13", item: { count: 1, id: "millenaire:timber_frame_cross" }, type: "item" } { id: "93EA9610819592BF", type: "xp", xp: 400 }]
+			rewards: [{ count: 16, id: "2633FBB089F70C13", item: { count: 1, id: "millenaire:timber_frame_cross" }, type: "item" } { id: "13EA9610819592BF", type: "xp", xp: 400 }]
 			tasks: [{ advancement: "millenaire:complete_norman", criterion: "", icon: { id: "millenaire:timber_frame_plain" }, id: "0421879148C3CA02", type: "advancement" }]
 			x: 0.0d
 			y: 3.0d
@@ -48,7 +60,7 @@
 			y: 4.5d
 		}
 		{
-			dependencies: ["C12283B890CC6405"]
+			dependencies: ["3B3A7337B1D947F4"]
 			icon: { id: "millenaire:feta" }
 			id: "15405D20447CB245"
 			rewards: [{ count: 32, id: "6805FFA956951F5F", item: { count: 1, id: "millenaire:denier" }, type: "item" }]
@@ -60,18 +72,18 @@
 			dependencies: ["15405D20447CB245"]
 			icon: { id: "millenaire:byzantine_pattern" }
 			id: "2401B3251A743883"
-			rewards: [{ count: 4, id: "FF7880CBDA29FAFE", item: { count: 1, id: "millenaire:winefancy" }, type: "item" } { count: 2, id: "A82D678DDE10F38A", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
-			tasks: [{ advancement: "millenaire:rep_byzantines", criterion: "", icon: { id: "minecraft:golden_apple" }, id: "EEC1BF035F54DD9D", type: "advancement" }]
+			rewards: [{ count: 4, id: "7F7880CBDA29FAFE", item: { count: 1, id: "millenaire:winefancy" }, type: "item" } { count: 2, id: "282D678DDE10F38A", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
+			tasks: [{ advancement: "millenaire:rep_byzantines", criterion: "", icon: { id: "minecraft:golden_apple" }, id: "6EC1BF035F54DD9D", type: "advancement" }]
 			x: 2.5d
 			y: 1.5d
 		}
 		{
 			dependencies: ["2401B3251A743883"]
 			icon: { id: "millenaire:byzantine_tiles" }
-			id: "9A7B87DEB9E1E3F7"
+			id: "1A7B87DEB9E1E3F7"
 			optional: true
-			rewards: [{ count: 16, id: "F49F1594D8DE6F4D", item: { count: 1, id: "millenaire:byzantine_tiles" }, type: "item" } { id: "C371477612626E7D", type: "xp", xp: 400 }]
-			tasks: [{ advancement: "millenaire:complete_byzantines", criterion: "", icon: { id: "minecraft:polished_deepslate" }, id: "CA10D42FB9826E63", type: "advancement" }]
+			rewards: [{ count: 16, id: "749F1594D8DE6F4D", item: { count: 1, id: "millenaire:byzantine_tiles" }, type: "item" } { id: "4371477612626E7D", type: "xp", xp: 400 }]
+			tasks: [{ advancement: "millenaire:complete_byzantines", criterion: "", icon: { id: "minecraft:polished_deepslate" }, id: "4A10D42FB9826E63", type: "advancement" }]
 			x: 2.5d
 			y: 3.0d
 		}
@@ -80,18 +92,18 @@
 			icon: { id: "millenaire:byzantine_mace" }
 			id: "03CB60A82F0AC883"
 			optional: true
-			rewards: [{ count: 1, id: "AA755CA2D0BB1880", item: { count: 1, id: "millenaire:denier_or" }, type: "item" }]
+			rewards: [{ count: 1, id: "2A755CA2D0BB1880", item: { count: 1, id: "millenaire:denier_or" }, type: "item" }]
 			size: 1.5d
 			tasks: [{ advancement: "millenaire:leader_byzantines", criterion: "", icon: { id: "minecraft:golden_helmet" }, id: "1F68740E54E51E21", type: "advancement" }]
 			x: 2.5d
 			y: 4.5d
 		}
 		{
-			dependencies: ["C12283B890CC6405"]
+			dependencies: ["3B3A7337B1D947F4"]
 			icon: { id: "millenaire:lokum" }
 			id: "06AD5461732DE6C0"
 			rewards: [{ count: 32, id: "1E80482DC18C13FB", item: { count: 1, id: "millenaire:denier" }, type: "item" }]
-			tasks: [{ count: 1L, id: "8313D707F9314DBD", item: { count: 1, id: "millenaire:lokum" }, type: "item" }]
+			tasks: [{ count: 1L, id: "0313D707F9314DBD", item: { count: 1, id: "millenaire:lokum" }, type: "item" }]
 			x: 5.0d
 			y: 0.0d
 		}
@@ -99,8 +111,8 @@
 			dependencies: ["06AD5461732DE6C0"]
 			icon: { id: "millenaire:seljuk_pattern" }
 			id: "1591B08C034E5DA9"
-			rewards: [{ count: 4, id: "6EF2E5B19CF159D8", item: { count: 1, id: "millenaire:ayran" }, type: "item" } { count: 2, id: "9218EA93F231E662", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
-			tasks: [{ advancement: "millenaire:rep_seljuk", criterion: "", icon: { id: "minecraft:red_carpet" }, id: "E46E34BC1ABA7FF6", type: "advancement" }]
+			rewards: [{ count: 4, id: "6EF2E5B19CF159D8", item: { count: 1, id: "millenaire:ayran" }, type: "item" } { count: 2, id: "1218EA93F231E662", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
+			tasks: [{ advancement: "millenaire:rep_seljuk", criterion: "", icon: { id: "minecraft:red_carpet" }, id: "646E34BC1ABA7FF6", type: "advancement" }]
 			x: 5.0d
 			y: 1.5d
 		}
@@ -117,7 +129,7 @@
 		{
 			dependencies: ["1591B08C034E5DA9"]
 			icon: { id: "millenaire:seljuk_scimitar" }
-			id: "A957B1B70B183F71"
+			id: "2957B1B70B183F71"
 			optional: true
 			rewards: [{ count: 1, id: "538620D4577C3927", item: { count: 1, id: "millenaire:denier_or" }, type: "item" }]
 			size: 1.5d
@@ -126,10 +138,10 @@
 			y: 4.5d
 		}
 		{
-			dependencies: ["C12283B890CC6405"]
+			dependencies: ["3B3A7337B1D947F4"]
 			icon: { id: "millenaire:vegcurry" }
 			id: "1FEA0AD548339918"
-			rewards: [{ count: 32, id: "D2AF2FC258A4CC1C", item: { count: 1, id: "millenaire:denier" }, type: "item" }]
+			rewards: [{ count: 32, id: "52AF2FC258A4CC1C", item: { count: 1, id: "millenaire:denier" }, type: "item" }]
 			tasks: [{ count: 1L, id: "53BFE688A505A6EE", item: { count: 1, id: "millenaire:vegcurry" }, type: "item" }]
 			x: 7.5d
 			y: 0.0d
@@ -138,7 +150,7 @@
 			dependencies: ["1FEA0AD548339918"]
 			icon: { id: "millenaire:indian_pattern" }
 			id: "326A1B190C927AB8"
-			rewards: [{ count: 4, id: "9DA55AEFB1C99008", item: { count: 1, id: "millenaire:rasgulla" }, type: "item" } { count: 2, id: "0EDE9FB79BFB7A66", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
+			rewards: [{ count: 4, id: "1DA55AEFB1C99008", item: { count: 1, id: "millenaire:rasgulla" }, type: "item" } { count: 2, id: "0EDE9FB79BFB7A66", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
 			tasks: [{ advancement: "millenaire:rep_indian", criterion: "", icon: { id: "millenaire:rasgulla" }, id: "6DD5B100E3D08EF8", type: "advancement" }]
 			x: 7.5d
 			y: 1.5d
@@ -146,17 +158,17 @@
 		{
 			dependencies: ["326A1B190C927AB8"]
 			icon: { id: "millenaire:sandstone_carved" }
-			id: "E837EDABC9413E93"
+			id: "6837EDABC9413E93"
 			optional: true
 			rewards: [{ count: 16, id: "00B336BD11619EBA", item: { count: 1, id: "millenaire:sandstone_carved" }, type: "item" } { id: "7D940FD0598EC911", type: "xp", xp: 400 }]
-			tasks: [{ advancement: "millenaire:complete_indian", criterion: "", icon: { id: "millenaire:painted_brick_orange" }, id: "BCF4CFAE8D0AE059", type: "advancement" }]
+			tasks: [{ advancement: "millenaire:complete_indian", criterion: "", icon: { id: "millenaire:painted_brick_orange" }, id: "3CF4CFAE8D0AE059", type: "advancement" }]
 			x: 7.5d
 			y: 3.0d
 		}
 		{
 			dependencies: ["326A1B190C927AB8"]
 			icon: { id: "millenaire:wall_indian_statue" }
-			id: "CCE3A73FBEF3504B"
+			id: "4CE3A73FBEF3504B"
 			optional: true
 			rewards: [{ count: 1, id: "11D7BB486CF3900D", item: { count: 1, id: "millenaire:denier_or" }, type: "item" }]
 			size: 1.5d
@@ -165,49 +177,49 @@
 			y: 4.5d
 		}
 		{
-			dependencies: ["C12283B890CC6405"]
+			dependencies: ["3B3A7337B1D947F4"]
 			icon: { id: "millenaire:sake" }
 			id: "08249FC5507D0611"
 			rewards: [{ count: 32, id: "3CAB56BB3320116C", item: { count: 1, id: "millenaire:denier" }, type: "item" }]
-			tasks: [{ count: 1L, id: "EFBBBF92D90091B9", item: { count: 1, id: "millenaire:sake" }, type: "item" }]
+			tasks: [{ count: 1L, id: "6FBBBF92D90091B9", item: { count: 1, id: "millenaire:sake" }, type: "item" }]
 			x: 10.0d
 			y: 0.0d
 		}
 		{
 			dependencies: ["08249FC5507D0611"]
 			icon: { id: "millenaire:jappattern" }
-			id: "880F8A50D950357A"
+			id: "080F8A50D950357A"
 			rewards: [{ count: 4, id: "3AA8BEBDC18C74E8", item: { count: 1, id: "millenaire:udon" }, type: "item" } { count: 2, id: "33BF9D65C59545DE", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
-			tasks: [{ advancement: "millenaire:rep_japanese", criterion: "", icon: { id: "minecraft:cherry_sapling" }, id: "9E5510511B32B0C2", type: "advancement" }]
+			tasks: [{ advancement: "millenaire:rep_japanese", criterion: "", icon: { id: "minecraft:cherry_sapling" }, id: "1E5510511B32B0C2", type: "advancement" }]
 			x: 10.0d
 			y: 1.5d
 		}
 		{
-			dependencies: ["880F8A50D950357A"]
+			dependencies: ["080F8A50D950357A"]
 			icon: { id: "millenaire:japanese_tiles" }
-			id: "A537117487A8CB6A"
+			id: "2537117487A8CB6A"
 			optional: true
-			rewards: [{ count: 16, id: "BE7757B55D4A9C61", item: { count: 1, id: "millenaire:japanese_tiles" }, type: "item" } { id: "58C77692E81DC804", type: "xp", xp: 400 }]
+			rewards: [{ count: 16, id: "3E7757B55D4A9C61", item: { count: 1, id: "millenaire:japanese_tiles" }, type: "item" } { id: "58C77692E81DC804", type: "xp", xp: 400 }]
 			tasks: [{ advancement: "millenaire:complete_japanese", criterion: "", icon: { id: "minecraft:cherry_planks" }, id: "27FA6685478D8465", type: "advancement" }]
 			x: 10.0d
 			y: 3.0d
 		}
 		{
-			dependencies: ["880F8A50D950357A"]
+			dependencies: ["080F8A50D950357A"]
 			icon: { id: "millenaire:japanese_tachi" }
 			id: "790995692B00085D"
 			optional: true
 			rewards: [{ count: 1, id: "3D04825A7654497C", item: { count: 1, id: "millenaire:denier_or" }, type: "item" }]
 			size: 1.5d
-			tasks: [{ advancement: "millenaire:leader_japanese", criterion: "", icon: { id: "minecraft:cherry_sign" }, id: "E6F07A87FAC154A6", type: "advancement" }]
+			tasks: [{ advancement: "millenaire:leader_japanese", criterion: "", icon: { id: "minecraft:cherry_sign" }, id: "66F07A87FAC154A6", type: "advancement" }]
 			x: 10.0d
 			y: 4.5d
 		}
 		{
-			dependencies: ["C12283B890CC6405"]
+			dependencies: ["3B3A7337B1D947F4"]
 			icon: { id: "millenaire:cacauhaa" }
 			id: "75A91A0CBB880646"
-			rewards: [{ count: 32, id: "A58995503986381E", item: { count: 1, id: "millenaire:denier" }, type: "item" }]
+			rewards: [{ count: 32, id: "258995503986381E", item: { count: 1, id: "millenaire:denier" }, type: "item" }]
 			tasks: [{ count: 1L, id: "27621CEFC5856510", item: { count: 1, id: "millenaire:cacauhaa" }, type: "item" }]
 			x: 12.5d
 			y: 0.0d
@@ -215,14 +227,14 @@
 		{
 			dependencies: ["75A91A0CBB880646"]
 			icon: { id: "millenaire:mayan_pattern" }
-			id: "CB0CA1333F2CAB4E"
+			id: "4B0CA1333F2CAB4E"
 			rewards: [{ count: 4, id: "6D9E1673A503753E", item: { count: 1, id: "millenaire:masa" }, type: "item" } { count: 2, id: "773E663A0174A3DD", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
 			tasks: [{ advancement: "millenaire:rep_mayan", criterion: "", icon: { id: "millenaire:wah" }, id: "717656AABAC97492", type: "advancement" }]
 			x: 12.5d
 			y: 1.5d
 		}
 		{
-			dependencies: ["CB0CA1333F2CAB4E"]
+			dependencies: ["4B0CA1333F2CAB4E"]
 			icon: { id: "millenaire:mayan_gold_block" }
 			id: "64CD3656B4E7B312"
 			optional: true
@@ -232,30 +244,30 @@
 			y: 3.0d
 		}
 		{
-			dependencies: ["CB0CA1333F2CAB4E"]
+			dependencies: ["4B0CA1333F2CAB4E"]
 			icon: { id: "millenaire:mayan_statue" }
 			id: "23373062921E9B7B"
 			optional: true
-			rewards: [{ count: 1, id: "FBC2E50FF48FC07D", item: { count: 1, id: "millenaire:denier_or" }, type: "item" }]
+			rewards: [{ count: 1, id: "7BC2E50FF48FC07D", item: { count: 1, id: "millenaire:denier_or" }, type: "item" }]
 			size: 1.5d
-			tasks: [{ advancement: "millenaire:leader_mayan", criterion: "", icon: { id: "millenaire:mayan_mace" }, id: "FAE65D7AE4226850", type: "advancement" }]
+			tasks: [{ advancement: "millenaire:leader_mayan", criterion: "", icon: { id: "millenaire:mayan_mace" }, id: "7AE65D7AE4226850", type: "advancement" }]
 			x: 12.5d
 			y: 4.5d
 		}
 		{
-			dependencies: ["C12283B890CC6405"]
+			dependencies: ["3B3A7337B1D947F4"]
 			icon: { id: "millenaire:inuitbearstew" }
-			id: "B45B95866C09B596"
-			rewards: [{ count: 32, id: "C06BD4229AE4D1EA", item: { count: 1, id: "millenaire:denier" }, type: "item" }]
-			tasks: [{ count: 1L, id: "86025E48251A405B", item: { count: 1, id: "millenaire:inuitbearstew" }, type: "item" }]
+			id: "345B95866C09B596"
+			rewards: [{ count: 32, id: "406BD4229AE4D1EA", item: { count: 1, id: "millenaire:denier" }, type: "item" }]
+			tasks: [{ count: 1L, id: "06025E48251A405B", item: { count: 1, id: "millenaire:inuitbearstew" }, type: "item" }]
 			x: 15.0d
 			y: 0.0d
 		}
 		{
-			dependencies: ["B45B95866C09B596"]
+			dependencies: ["345B95866C09B596"]
 			icon: { id: "millenaire:inuit_carving" }
 			id: "48492452BBE0B148"
-			rewards: [{ count: 4, id: "A9626BC2046E8562", item: { count: 1, id: "millenaire:inuitmeatystew" }, type: "item" } { count: 2, id: "BF59A3AB24636517", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
+			rewards: [{ count: 4, id: "29626BC2046E8562", item: { count: 1, id: "millenaire:inuitmeatystew" }, type: "item" } { count: 2, id: "3F59A3AB24636517", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
 			tasks: [{ advancement: "millenaire:rep_inuits", criterion: "", icon: { id: "minecraft:packed_ice" }, id: "2CF2362CEDA6B951", type: "advancement" }]
 			x: 15.0d
 			y: 1.5d
@@ -265,15 +277,15 @@
 			icon: { id: "millenaire:snow_brick" }
 			id: "636E6A705B512077"
 			optional: true
-			rewards: [{ count: 16, id: "6A4B087FAD10A8D2", item: { count: 1, id: "millenaire:snow_brick" }, type: "item" } { id: "CD924FF6E2FD4CCA", type: "xp", xp: 400 }]
-			tasks: [{ advancement: "millenaire:complete_inuits", criterion: "", icon: { id: "minecraft:snow_block" }, id: "CA0D95964B1A3C13", type: "advancement" }]
+			rewards: [{ count: 16, id: "6A4B087FAD10A8D2", item: { count: 1, id: "millenaire:snow_brick" }, type: "item" } { id: "4D924FF6E2FD4CCA", type: "xp", xp: 400 }]
+			tasks: [{ advancement: "millenaire:complete_inuits", criterion: "", icon: { id: "minecraft:snow_block" }, id: "4A0D95964B1A3C13", type: "advancement" }]
 			x: 15.0d
 			y: 3.0d
 		}
 		{
 			dependencies: ["48492452BBE0B148"]
 			icon: { id: "millenaire:inuittrident" }
-			id: "E14EFA4F9665D1DD"
+			id: "614EFA4F9665D1DD"
 			optional: true
 			rewards: [{ count: 1, id: "59F04D3B737F9967", item: { count: 1, id: "millenaire:denier_or" }, type: "item" }]
 			size: 1.5d
@@ -286,18 +298,18 @@
 			icon: { id: "millenaire:rosette" }
 			id: "25489C153E2F9127"
 			optional: true
-			rewards: [{ count: 1, id: "87A7021E551F8C36", item: { count: 1, id: "millenaire:denier_or" }, type: "item" }]
+			rewards: [{ count: 1, id: "07A7021E551F8C36", item: { count: 1, id: "millenaire:denier_or" }, type: "item" }]
 			size: 1.5d
-			tasks: [{ advancement: "millenaire:marvel_norman", criterion: "", icon: { id: "millenaire:rosette" }, id: "B62ACEDA78B645EE", type: "advancement" }]
+			tasks: [{ advancement: "millenaire:marvel_norman", criterion: "", icon: { id: "millenaire:rosette" }, id: "362ACEDA78B645EE", type: "advancement" }]
 			x: 0.0d
 			y: 6.0d
 		}
 		{
 			dependencies: ["03CB60A82F0AC883"]
 			icon: { id: "minecraft:shield" }
-			id: "DB52C78431B2EA3E"
+			id: "5B52C78431B2EA3E"
 			optional: true
-			rewards: [{ id: "B522137674D1CF51", type: "xp", xp: 500 }]
+			rewards: [{ id: "3522137674D1CF51", type: "xp", xp: 500 }]
 			tasks: [{ advancement: "millenaire:byzantines_nottoday", criterion: "", icon: { id: "minecraft:shield" }, id: "38D201609620001D", type: "advancement" }]
 			x: 2.5d
 			y: 6.0d
@@ -305,19 +317,19 @@
 		{
 			dependencies: ["326A1B190C927AB8"]
 			icon: { id: "millenaire:paint_bucket_red" }
-			id: "B2D80D7DD6FFBAF1"
+			id: "32D80D7DD6FFBAF1"
 			optional: true
 			rewards: [{ id: "24DEA72C1B2F71E1", type: "xp", xp: 150 }]
-			tasks: [{ advancement: "millenaire:rainbow", criterion: "", icon: { id: "millenaire:paint_bucket_red" }, id: "CD623A1B347DB250", type: "advancement" }]
+			tasks: [{ advancement: "millenaire:rainbow", criterion: "", icon: { id: "millenaire:paint_bucket_red" }, id: "4D623A1B347DB250", type: "advancement" }]
 			x: 7.5d
 			y: 6.0d
 		}
 		{
 			dependencies: ["48492452BBE0B148"]
 			icon: { id: "minecraft:cooked_cod" }
-			id: "CE6BE20C5230D677"
+			id: "4E6BE20C5230D677"
 			optional: true
-			rewards: [{ id: "F6678E8A04241BBD", type: "xp", xp: 200 }]
+			rewards: [{ id: "76678E8A04241BBD", type: "xp", xp: 200 }]
 			tasks: [{ advancement: "millenaire:greathunter", criterion: "", icon: { id: "minecraft:cooked_cod" }, id: "73A1EBC45D744900", type: "advancement" }]
 			x: 15.0d
 			y: 6.0d

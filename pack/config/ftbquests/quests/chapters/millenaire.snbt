@@ -9,74 +9,86 @@
 	quest_links: [ ]
 	quests: [
 		{
-			dependencies: ["C12283B890CC6405"]
+			dependencies: ["2087965BEAFA04F7", "6309A125029A7B62", "7D0C687F7C7EC463", "559D2F30129AF089", "1360F7D16E3A710D", "58572EE0B9223D49", "5BBBB146236A6FC2", "5482698B7CAD0516"]
+			hide_dependency_lines: true
+			min_required_dependencies: 4
+			icon: { id: "millenaire:denier" }
+			id: "7BB1C6A4B1CBD79A"
+			rewards: [{ id: "0749C3780AB702BD", type: "xp", xp: 50 }]
+			size: 1.5d
+			tasks: [{ id: "350058D7955E8643", type: "checkmark" }]
+			x: 0.0d
+			y: 0.625d
+		}
+		{
+			dependencies: ["7BB1C6A4B1CBD79A"]
 			icon: { id: "minecraft:compass" }
 			id: "0464DCC814261E4B"
 			rewards: [{ id: "003471486F8D7C31", type: "xp", xp: 60 }]
 			tasks: [{ advancement: "millenaire:explorer", criterion: "", icon: { id: "minecraft:compass" }, id: "5673BED8E95BA5F7", type: "advancement" }]
-			x: 0.0d
-			y: -4.375d
+			x: 2.0d
+			y: -3.75d
 		}
 		{
-			dependencies: ["BC207F770B11B2D5"]
+			dependencies: ["7BB1C6A4B1CBD79A"]
 			icon: { id: "minecraft:wheat_seeds" }
-			id: "CA21969E3E6C4151"
-			rewards: [{ count: 32, id: "9DEF6180C7BDA228", item: { count: 1, id: "minecraft:bone_meal" }, type: "item" }]
+			id: "4A21969E3E6C4151"
+			rewards: [{ count: 32, id: "1DEF6180C7BDA228", item: { count: 1, id: "minecraft:bone_meal" }, type: "item" }]
 			tasks: [{ advancement: "millenaire:masterfarmer", criterion: "", icon: { id: "minecraft:wheat_seeds" }, id: "735B744359F7FB5F", type: "advancement" }]
-			x: 0.0d
-			y: -2.625d
+			x: 2.0d
+			y: -1.5d
 		}
 		{
-			dependencies: ["BC207F770B11B2D5"]
+			dependencies: ["7BB1C6A4B1CBD79A"]
 			icon: { id: "millenaire:cider" }
 			id: "18311D438F597439"
 			rewards: [{ id: "366633DB12614EE1", type: "xp", xp: 50 }]
 			tasks: [{ advancement: "millenaire:cheers", criterion: "", icon: { id: "millenaire:cider" }, id: "5E37544C05E95F77", type: "advancement" }]
-			x: 0.0d
-			y: -0.875d
+			x: 2.0d
+			y: 0.0d
 		}
 		{
 			dependencies: ["0464DCC814261E4B"]
 			icon: { id: "minecraft:book" }
-			id: "876C2A1E9273D0DF"
-			rewards: [{ id: "BE43FC1990884FF3", type: "xp", xp: 100 }]
+			id: "076C2A1E9273D0DF"
+			rewards: [{ id: "3E43FC1990884FF3", type: "xp", xp: 100 }]
 			tasks: [{ advancement: "millenaire:maitreapenser", criterion: "", icon: { id: "minecraft:book" }, id: "3E90DDECD3AB8A69", type: "advancement" }]
-			x: 2.0d
-			y: -0.875d
+			x: 4.0d
+			y: -4.5d
 		}
 		{
 			dependencies: ["0464DCC814261E4B"]
 			icon: { id: "minecraft:iron_sword" }
-			id: "F3E3C16AA70D78F8"
+			id: "73E3C16AA70D78F8"
 			rewards: [{ count: 1, id: "01153BC6EB385CBE", item: { count: 1, id: "millenaire:denier_argent" }, type: "item" }]
-			tasks: [{ advancement: "millenaire:selfdefense", criterion: "", icon: { id: "minecraft:iron_sword" }, id: "90EDF75DDFD0EEFA", type: "advancement" }]
-			x: 2.0d
-			y: 0.875d
+			tasks: [{ advancement: "millenaire:selfdefense", criterion: "", icon: { id: "minecraft:iron_sword" }, id: "10EDF75DDFD0EEFA", type: "advancement" }]
+			x: 4.0d
+			y: -3.0d
 		}
 		{
-			dependencies: ["458EA928F633AB0B"]
-			id: "E2FEE13E41AB4697"
+			dependencies: ["7BB1C6A4B1CBD79A"]
+			id: "62FEE13E41AB4697"
 			rewards: [{ id: "57080A1759EAD0AF", type: "xp", xp: 80 }]
-			tasks: [{ id: "9D0179AD2EF6B073", type: "checkmark" }]
-			x: 0.0d
-			y: 0.875d
+			tasks: [{ id: "1D0179AD2EF6B073", type: "checkmark" }]
+			x: 2.0d
+			y: 1.5d
 		}
 		{
-			dependencies: ["458EA928F633AB0B"]
+			dependencies: ["7BB1C6A4B1CBD79A"]
 			id: "2890B110539D053F"
 			rewards: [{ id: "1DACEC0D8F5BAC5A", type: "xp", xp: 80 }]
 			tasks: [{ count: 1L, id: "723888E48EF50DD0", item: { count: 1, id: "millenaire:village_scroll" }, type: "item" }]
-			x: 0.0d
-			y: 2.625d
+			x: 2.0d
+			y: 3.0d
 		}
 		{
-			dependencies: ["EA15E6430373F811"]
+			dependencies: ["7BB1C6A4B1CBD79A"]
 			icon: { id: "minecraft:shield" }
-			id: "91AB585EDD20E9F1"
+			id: "11AB585EDD20E9F1"
 			rewards: [{ id: "04F69C5344D2B726", type: "xp", xp: 400 }]
-			tasks: [{ advancement: "millenaire:viking", criterion: "", icon: { id: "minecraft:shield" }, id: "F478128B6C837B89", type: "advancement" }]
-			x: 0.0d
-			y: 4.375d
+			tasks: [{ advancement: "millenaire:viking", criterion: "", icon: { id: "minecraft:shield" }, id: "7478128B6C837B89", type: "advancement" }]
+			x: 2.0d
+			y: 4.5d
 		}
 	]
 }

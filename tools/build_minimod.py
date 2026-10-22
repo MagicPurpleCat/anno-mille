@@ -18,9 +18,9 @@ license="CC0"
 
 [[mods]]
 modId="no_vanilla_villages"
-version="1.2.0"
+version="1.3.0"
 displayName="Millénaire pack tweaks"
-description=\'\'\'Отключает ванильные деревни (живут только поселения Millénaire) , добавляет теги структур для квестов и деревья навыков.\'\'\'
+description=\'\'\'Отключает ванильные деревни (живут только поселения Millénaire) , добавляет теги структур для квестов, деревья навыков и связи модов (общие теги, рецепты).\'\'\'
 
 [[dependencies.no_vanilla_villages]]
 modId="minecraft"
@@ -51,14 +51,14 @@ side="BOTH"
 '''
 for f in os.listdir(mods):
     if f.startswith("no_vanilla_villages"): os.remove(os.path.join(mods,f))
-with zipfile.ZipFile(os.path.join(mods,"no_vanilla_villages-1.2.0.jar"),"w",zipfile.ZIP_DEFLATED) as z:
+with zipfile.ZipFile(os.path.join(mods,"no_vanilla_villages-1.3.0.jar"),"w",zipfile.ZIP_DEFLATED) as z:
     z.writestr("META-INF/neoforge.mods.toml",toml); z.writestr("META-INF/MANIFEST.MF","Manifest-Version: 1.0\n")
     z.writestr("pack.mcmeta",json.dumps({"pack":{"pack_format":48,"description":"Millénaire pack tweaks"}}))
     for v in ("plains","desert","savanna","snowy","taiga"):
         z.writestr(f"data/minecraft/tags/worldgen/biome/has_structure/village_{v}.json",json.dumps({"replace":True,"values":[]}))
     for t,vals in tags.items():
         z.writestr(f"data/millpack/tags/worldgen/structure/{t}.json",json.dumps({"values":[{"id":v,"required":False} for v in vals]},indent=1))
-    # исправления данных модов: рецепт пиццы (тесто называется wheat_dough), добыча статуй Samurai Dynasty
+    # исправления данных модов (пицца, статуи Samurai Dynasty) и связи модов (docs/LINKS.md)
     fixes=os.path.join(os.path.dirname(os.path.abspath(__file__)),"minimod_fixes")
     for root,_,fs in os.walk(fixes):
         for f in fs:

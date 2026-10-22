@@ -1,0 +1,12 @@
+{
+  "type": "item",
+  "item": {
+    "items": [
+      "naturalist:fur"
+    ]
+  },
+  "insulation": {
+    "cold": 2,
+    "heat": 0
+  }
+}

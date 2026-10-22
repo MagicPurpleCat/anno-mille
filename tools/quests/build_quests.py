@@ -4,7 +4,7 @@ Main line («Путь») runs through the whole pack; branch chapters unlock fro
 Dependencies: "key" = same chapter, "chapter/key" = other chapter.
 All recipe hints were checked against the recipe JSONs of the installed jars.
 """
-import hashlib, json, os, sys
+import hashlib, json, math, os, sys
 
 sys.stdout.reconfigure(encoding="utf-8")
 ROOT = sys.argv[1]
@@ -13,7 +13,10 @@ VALID = set(json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__
 ADV_ICONS = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "adv_icons.json"), encoding="utf-8"))
 
 
-def hid(*p): return hashlib.sha1("|".join(p).encode()).hexdigest()[:16].upper()
+def hid(*p):
+    # FTB Quests хранит id в long со знаком: id с первой цифрой 8–F игра считает неверным и заменяет случайным,
+    # и тогда пропадают названия из lang и рвутся зависимости. Сбрасываем старший бит.
+    return format(int(hashlib.sha1("|".join(p).encode()).hexdigest()[:16], 16) & 0x7FFF_FFFF_FFFF_FFFF, "016X")
 def item(i, n=1): return ("item", i, n)
 def adv(a, title=None): return ("advancement", a, title)
 def kill(e, n=1): return ("kill", e, n)
@@ -75,7 +78,7 @@ MAIN = [
          d=[f"{G}Цепочка крафта:{R} стальной слиток → 9 стальных самородков → {Y}стальное кольцо{R} (4 самородка ромбом) → {Y}стальная кольчуга{R} (9 колец) → {Y}хауберк{R} (8 кольчуг, как нагрудник).",
             "Под кольчугу надень стёганку (гамбезон): 8 шерстяных тканей, ткань — 3 белой шерсти в ряд или 6 нитей."],
          r=[give("magistuarmory:steel_ingot", 4)]),
-    dict(k="insulate", t="Утепление брони", dep=["chainmail", "warmth"], task=[item("cold_sweat:sewing_table")], x=14, y=2,
+    dict(k="insulate", t="Утепление брони", dep=["chainmail"], task=[item("cold_sweat:sewing_table")], x=14, y=2,
          d=["Швейный стол: 2 шерсти сверху, 4 доски под ними.",
             f"Положи в стол броню и утеплитель — шерсть, кожу, {Y}козий мех{R} (стриги коз ножницами) или шкуру хоглина. Пришитый утеплитель греет, и кольчуга перестаёт превращать тебя в сосульку.",
             "Без этого в снега к инуитам и в горы лучше не ходить."],
@@ -213,14 +216,14 @@ CULT = []
 for i, cu in enumerate(CULTURES):
     c, name, gen = cu["c"], cu["name"], cu["gen"]
     CULT += [
-        dict(k=f"{c}_guest", t=cu["guest"][0], dep=["main/contact"], task=[item(cu["food"])], x=i * 2.5, y=0, icon=cu["food"], sub=f"{name}: первая покупка",
+        dict(k=f"{c}_guest", t=f"{name}: знакомство", dep=["main/contact"], task=[item(cu["food"])], x=i * 2.5, y=0, icon=cu["food"], sub=cu["guest"][0],
              d=[cu["guest"][1]], r=[give("millenaire:denier", 32)]),
-        dict(k=f"{c}_rep", t=cu["rep"][0], dep=[f"{c}_guest"], task=[adv(f"millenaire:rep_{c}", f"Репутация «один из нас» у {gen}")], x=i * 2.5, y=1.5,
-             icon=cu["rep"][1], sub=f"{name}: свой среди своих", d=[cu["rep"][2]], r=[give(cu["gift"], 4), give("millenaire:denier_argent", 2)]),
-        dict(k=f"{c}_complete", t=cu["comp"][0], dep=[f"{c}_rep"], task=[adv(f"millenaire:complete_{c}", f"Все постройки деревни {gen}")], x=i * 2.5, y=3,
-             icon=cu["comp"][1], optional=True, sub=f"{name}: деревня достроена", d=[cu["comp"][2]], r=[give(cu["comp"][1], 16), xp(400)]),
-        dict(k=f"{c}_leader", t=cu["lead"][0], dep=[f"{c}_rep"], task=[adv(f"millenaire:leader_{c}", f"Своя деревня {gen}")], x=i * 2.5, y=4.5, size=1.5,
-             icon=cu["lead"][1], optional=True, sub=f"{name}: вождь", d=[cu["lead"][2], "Как основать деревню, рассказано в квесте «Жезл призыва» в «Летописи»."],
+        dict(k=f"{c}_rep", t=f"{name}: стать своим", dep=[f"{c}_guest"], task=[adv(f"millenaire:rep_{c}", f"Репутация «один из нас» у {gen}")], x=i * 2.5, y=1.5,
+             icon=cu["rep"][1], sub="Репутация «Один из нас»", d=[cu["rep"][2]], r=[give(cu["gift"], 4), give("millenaire:denier_argent", 2)]),
+        dict(k=f"{c}_complete", t=f"{name}: достроить деревню", dep=[f"{c}_rep"], task=[adv(f"millenaire:complete_{c}", f"Все постройки деревни {gen}")], x=i * 2.5, y=3,
+             icon=cu["comp"][1], optional=True, sub="Все дома деревни готовы", d=[cu["comp"][2]], r=[give(cu["comp"][1], 16), xp(400)]),
+        dict(k=f"{c}_leader", t=f"{name}: своя деревня", dep=[f"{c}_rep"], task=[adv(f"millenaire:leader_{c}", f"Своя деревня {gen}")], x=i * 2.5, y=4.5, size=1.5,
+             icon=cu["lead"][1], optional=True, sub="Стать вождём", d=[cu["lead"][2], "Как основать деревню, рассказано в квесте «Основать свою деревню» в главе «Главный путь»."],
              r=[give("millenaire:denier_or", 1)]),
     ]
 CULT += [
@@ -439,18 +442,92 @@ TRIALS += [
 ]
 TRIALS[[q["k"] for q in TRIALS].index("wrought")]["dep"] = ["chamber"]
 
+# Порядок глав = порядок открытия: каждая следующая открывается, когда в предыдущей выполнена половина обязательных квестов.
 CHAPTERS = [
-    ("main", "Летопись", "millenaire:travel_book", MAIN),
-    ("travel", "Пути и паруса", "smallships:oak_cog", TRAVEL),
-    ("build", "Зодчество", "dawnoftimebuilder:flat_roof_tiles", BUILD),
-    ("survival", "Суровый край", "minecraft:campfire", SURVIVAL),
-    ("millenaire", "Жизнь деревень", "millenaire:denier", MILL),
+    ("main", "Главный путь", "millenaire:travel_book", MAIN),
+    ("survival", "Выживание", "minecraft:campfire", SURVIVAL),
+    ("craft", "Кухня и напитки", "farmersdelight:cooking_pot", CRAFT),
+    ("travel", "Дорога и транспорт", "smallships:oak_cog", TRAVEL),
+    ("millenaire", "Деревни Millénaire", "millenaire:denier", MILL),
     ("cultures", "Семь народов", "millenaire:norman_sword", CULT),
-    ("craft", "Ремесло и очаг", "farmersdelight:cooking_pot", CRAFT),
-    ("arms", "Кузня и сталь", "magistuarmory:iron_kiteshield", ARMS),
-    ("roads", "За горизонтом", "minecraft:filled_map", ROADS),
-    ("trials", "Ратные подвиги", "minecraft:wither_skeleton_skull", TRIALS),
+    ("build", "Строительство", "dawnoftimebuilder:flat_roof_tiles", BUILD),
+    ("arms", "Оружие и броня", "magistuarmory:iron_kiteshield", ARMS),
+    ("roads", "Исследование мира", "minecraft:filled_map", ROADS),
+    ("trials", "Боссы и крепости", "minecraft:wither_skeleton_skull", TRIALS),
 ]
+UNLOCK_SHARE = 0.5
+
+# Названия квестов простыми словами (ключ: глава/квест). Названия достижений в задачах берёт сама игра.
+TITLES = {
+    "main/start": "С чего начать", "main/skills": "Навыки персонажа", "main/iron": "Первое железо",
+    "main/contact": "Найти деревню", "main/trade": "Заработать денье", "main/friend": "Подружиться с деревней",
+    "main/steel": "Выплавить сталь", "main/chainmail": "Сделать кольчугу", "main/kitchen": "Кухонный котёл",
+    "main/quest": "Задание жителя", "main/hire": "Нанять жителя", "main/marco": "Три народа",
+    "main/nether": "Нижний мир", "main/hearth": "Очаг для дома", "main/oneofus": "Стать своим в деревне",
+    "main/cresus": "Накопить золотое денье", "main/wand": "Основать свою деревню", "main/builder": "Строить в своей деревне",
+    "main/magellan": "Все семь народов", "main/metropolis": "Деревня на сто жителей",
+    "survival/furcoat": "Меховая куртка", "survival/diet": "Разная еда",
+    "millenaire/explorer": "Одиночные постройки", "millenaire/crop": "Новые культуры", "millenaire/cheers": "Местный напиток",
+    "millenaire/sage": "Найти мудреца", "millenaire/bandit": "Победить разбойника", "millenaire/raid": "Свой набег",
+    "cultures/cathedral": "Собор норманнов", "cultures/nottoday": "Отбить набег сельджуков",
+    "cultures/rainbow": "Перекрасить кирпичи", "cultures/greathunter": "Охотничий приём инуитов",
+    "craft/storage": "Мешки и кувшины", "craft/corn": "Кукуруза и баклажаны",
+    "arms/kettle": "Шлем-шапель", "arms/knight13": "Доспех рыцаря XIII века",
+    "roads/desert": "Пустыня", "roads/snow": "Снега", "roads/cherry": "Вишнёвая роща", "roads/jungle": "Джунгли",
+    "roads/outpost": "Аванпост разбойников", "roads/tavern": "Таверна", "roads/ruins": "Руины",
+    "trials/pillage": "Отбить набег", "trials/dragon": "Эндер-дракон",
+    "travel/horse": "Выбрать лошадь", "travel/wreck": "Корабль в океане",
+    "build/roof": "Крыши", "build/tiles": "Черепица Dawn of Time", "build/carpenter": "Стол плотника",
+}
+for ck, _, _, qs in CHAPTERS:
+    for q in qs:
+        q["t"] = TITLES.pop(f"{ck}/{q['k']}", q["t"])
+assert not TITLES, f"unused title renames: {sorted(TITLES)}"
+
+# Ворота глав: входной квест каждой главы, начиная со второй. Он открывается, когда выполнена половина
+# обязательных квестов предыдущей главы; с него начинаются все бывшие корневые квесты главы.
+# Межглавные связи веток убраны — порядок задают ворота. Главный путь сохраняет связь с культурами
+# («Стать своим в деревне» требует репутацию у любого народа).
+# Вместо ступеней главной линии (железо → сталь → кольчуга) внутри глав — цепочки по смыслу,
+# чтобы квесты не висели одним веером на воротах.
+IN_DEPS = {
+    "survival/thirst": [], "survival/thermo": [], "survival/death": [], "survival/seeds": [],
+    "survival/bag": ["death"], "survival/goatfur": ["thermo"], "survival/yak": ["goatfur"],
+    "survival/hunt": ["seeds"], "survival/fishing": ["hunt"], "survival/diet": ["fishing"],
+    "arms/tower": [], "arms/kite": ["tower"], "arms/ridge": [], "arms/kettle": ["ridge"], "arms/nasal": ["ridge"],
+    "arms/spear": [], "arms/sword": ["spear"], "arms/crossbow": ["sword"], "arms/lamellar": [], "arms/rus": [],
+    "arms/knight13": ["lamellar"], "arms/katana": [],
+}
+CH_INDEX = {c[0]: i for i, c in enumerate(CHAPTERS)}
+
+
+def needs_later(ci, qs):
+    """Квесты главы ci, которые (сами или через предков в главе) зависят от более поздних глав.
+    Их нельзя ставить условием ворот: получится замкнутый круг, и FTB Quests падает с StackOverflowError."""
+    bad, changed = set(), True
+    while changed:
+        changed = False
+        for q in qs:
+            if q["k"] not in bad and any(("/" in d and CH_INDEX[d.split("/")[0]] > ci) or d in bad for d in q.get("dep", [])):
+                bad.add(q["k"]); changed = True
+    return bad
+
+
+for n, (ck, title, icon, qs) in enumerate(CHAPTERS):
+    if n == 0:
+        continue
+    pck, ptitle, _, pqs = CHAPTERS[n - 1]
+    later = needs_later(n - 1, pqs)
+    need = [f"{pck}/{q['k']}" for q in pqs if not q.get("optional") and q["k"] != "gate" and q["k"] not in later]
+    for q in qs:
+        inner = IN_DEPS.pop(f"{ck}/{q['k']}", None)
+        q["dep"] = (inner if inner is not None else [d for d in q.get("dep", []) if "/" not in d]) or ["gate"]
+    qs.insert(0, dict(k="gate", t=title, task=[check()], size=1.5, icon=icon, dep=need,
+                      min_deps=math.ceil(len(need) * UNLOCK_SHARE),
+                      sub="Новая глава открыта",
+                      d=[f"Эта глава открывается, когда в главе «{ptitle}» выполнена половина квестов.",
+                         "Отметь этот квест галочкой — и вперёд."], r=[xp(50)]))
+assert not IN_DEPS, f"unused chapter dependencies: {sorted(IN_DEPS)}"
 ALL = {(ck, q["k"]) for ck, _, _, qs in CHAPTERS for q in qs}
 
 # Humanized texts (subtitle + description) override the drafts above; chapter subtitles live under "_chapters".
@@ -472,26 +549,44 @@ def ref(ck, d):
     return hid(c, k)
 
 
+STEP_X, STEP_Y = 2.0, 1.5
+
+
 def layout(qs):
-    keys = {q["k"] for q in qs}
-    depth, pos, rows = {}, {}, {}
-    def dd(k):
-        if k not in depth:
-            q = next(x for x in qs if x["k"] == k)
-            depth[k] = 1 + max((dd(d) for d in q.get("dep", []) if "/" not in d and d in keys), default=-1)
-        return depth[k]
-    for q in qs:
-        if "x" in q:
-            pos[q["k"]] = (float(q["x"]), float(q["y"]))
+    """Слева направо по глубине. Дерево строится по первому родителю в главе: листья идут сверху вниз по порядку
+    обхода, родитель встаёт по центру своих детей — ветки не перекрещиваются. Ручные x/y (Главный путь, народы)
+    сохраняются; ворота в такой главе ставятся над серединой."""
+    by = {q["k"]: q for q in qs}
+    if all("x" in q for q in qs if q["k"] != "gate"):
+        pos = {q["k"]: (float(q["x"]), float(q["y"])) for q in qs if "x" in q}
+        if "gate" in by:
+            xs, ys = [p[0] for p in pos.values()], [p[1] for p in pos.values()]
+            pos["gate"] = ((min(xs) + max(xs)) / 2, min(ys) - 2 * STEP_Y)
+        return pos
+    parent = {q["k"]: next((d for d in q.get("dep", []) if d in by), None) for q in qs}
+    kids = {k: [] for k in by}
+    for q in qs:  # порядок детей = порядок квестов в списке главы
+        if parent[q["k"]]:
+            kids[parent[q["k"]]].append(q["k"])
+    depth, ypos, row = {}, {}, [0]
+    def place(k, d):
+        depth[k] = d
+        for c in kids[k]:
+            place(c, d + 1)
+        if kids[k]:
+            ypos[k] = sum(ypos[c] for c in kids[k]) / len(kids[k])
         else:
-            d = dd(q["k"]); r = rows.get(d, 0); rows[d] = r + 1
-            pos[q["k"]] = (d * 2.0, r * 1.75)
+            ypos[k] = row[0] * STEP_Y; row[0] += 1
     for q in qs:
-        if "x" not in q:
-            n = rows[depth[q["k"]]]
-            x, y = pos[q["k"]]
-            pos[q["k"]] = (x, y - (n - 1) * 0.875)
-    return pos
+        if parent[q["k"]] is None:
+            place(q["k"], 0)
+    mid = (row[0] - 1) * STEP_Y / 2
+    # квест с несколькими родителями в главе ставим правее самого глубокого из них
+    for q in qs:
+        inner = [d for d in q.get("dep", []) if d in by]
+        if len(inner) > 1:
+            depth[q["k"]] = max(depth[q["k"]], max(depth[d] for d in inner) + 1)
+    return {k: (depth[k] * STEP_X, ypos[k] - mid) for k in by}
 
 
 S = lambda s: json.dumps(s, ensure_ascii=False)
@@ -506,8 +601,11 @@ for sub in ("chapters", "lang"):
 chap_lang, total = {}, 0
 for order, (ck, title, icon, qs) in enumerate(CHAPTERS):
     cid = hid("chapter", ck); chap_lang[f"chapter.{cid}.title"] = title
-    if ck in CHAPTER_SUB:
-        chap_lang[f"chapter.{cid}.chapter_subtitle"] = CHAPTER_SUB[ck]
+    sub = list(CHAPTER_SUB.get(ck, []))
+    if order:
+        sub.append(f"Откроется, когда в главе «{CHAPTERS[order - 1][1]}» будет выполнена половина квестов.")
+    if sub:
+        chap_lang[f"chapter.{cid}.chapter_subtitle"] = sub
     pos, out, ql = layout(qs), [], {}
     for q in qs:
         qid = hid(ck, q["k"]); L = ["\t\t{"]
@@ -515,6 +613,9 @@ for order, (ck, title, icon, qs) in enumerate(CHAPTERS):
             L.append("\t\t\tdependencies: [" + ", ".join(S(ref(ck, d)) for d in q["dep"]) + "]")
         if q.get("dep_req"):
             L.append(f"\t\t\tdependency_requirement: {S(q['dep_req'])}")
+        if q.get("min_deps"):
+            L.append("\t\t\thide_dependency_lines: true")
+            L.append(f"\t\t\tmin_required_dependencies: {q['min_deps']}")
         qicon = q.get("icon") or next((ADV_ICONS.get(t[1]) for t in q["task"] if t[0] == "advancement" and ADV_ICONS.get(t[1])), None)
         if qicon:
             chk(qicon); L.append(f"\t\t\ticon: {{ id: {S(qicon)} }}")
