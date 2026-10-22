@@ -61,6 +61,7 @@ YungsExtras-1.21.1-NeoForge-5.1.1.jar
 [1.21.1][NeoForge] RPG-HUD 3.13.jar
 almanac-neoforge-1.21.1-1.26.10.3.jar
 amendments-1.21-2.1.11-neoforge.jar
+annomille_bodies-1.0.0.jar
 annomille_reputation-1.0.0.jar
 appleskin-neoforge-mc1.21-3.0.9.jar
 architectury-13.0.11-neoforge.jar
