@@ -295,11 +295,11 @@ def _fix_mixins(game, log=print):
     return n
 
 
-RARE_MAX, RARE_FROM_SPAWN, VILLAGE_RADIUS = 1, 3000, 120  # радиус 120 — предел Millénaire (villageRadiusOverride)
+RARE_MAX, RARE_FROM_SPAWN, VILLAGE_RADIUS = 1, 1000, 120  # радиус 120 — предел Millénaire (villageRadiusOverride)
 
 
 def _rare_villages(game):
-    """Деревня Millénaire должна быть находкой: каждый тип деревни не больше одной на мир и не ближе 3 км от спавна,
+    """Деревня Millénaire должна быть находкой: каждый тип деревни не больше одной на мир и не ближе 1000 блоков от спавна,
     а территория у каждой деревни максимальная, какую держит мод.
     Правки пишем в millenaire-custom — Millénaire читает их поверх своих файлов и не трогает при обновлении."""
     jar = next((os.path.join(game, "mods", f) for f in os.listdir(os.path.join(game, "mods"))
