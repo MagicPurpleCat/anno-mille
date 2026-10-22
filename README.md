@@ -93,7 +93,7 @@ Anno Mille («год тысячный» по-латыни) собрана вок
 <details>
 <summary>Prism Launcher, Modrinth App, ATLauncher: установка через .mrpack</summary>
 
-Можно импортировать файл [`Anno-Mille-1.2.0.mrpack`](../../releases/latest). В Prism это «Добавить экземпляр → Импорт», в Modrinth App «+ → Import from file». Лаунчер сам создаст профиль с NeoForge и скачает 200 файлов.
+Можно импортировать файл [`Anno-Mille-1.2.1.mrpack`](../../releases/latest). В Prism это «Добавить экземпляр → Импорт», в Modrinth App «+ → Import from file». Лаунчер сам создаст профиль с NeoForge и скачает 200 файлов.
 
 Несколько модов авторы выкладывают только на CurseForge и на сайте Millénaire, поэтому в `.mrpack` их нет. Это сам Millénaire, FTB Quests, FTB Chunks, лошади SWEM, Cinematic Interactions и текстуры Excalibur. После импорта запусти `AnnoMille-Setup.exe` и выбери этот профиль: установщик докачает недостающее, а уже скачанное пропустит.
 </details>
@@ -123,6 +123,10 @@ python tools/install.py "путь\к\папке\игры"
 5. Перед тем как открыть мир для сети, перезапусти игру, если до этого уже заходил в другой мир. Иначе друга может выкинуть с ошибкой `set_equipment`.
 
 Чтобы делить квесты и захваченные чанки, вступите в одну команду FTB Teams (кнопка команды в окне инвентаря).
+
+## Что нового в 1.2.1
+
+- Исправлен вылет, когда смотришь на бак, котёл или другой блок с жидкостью (Thirst Was Taken и Jade).
 
 ## Что нового в 1.2.0
 

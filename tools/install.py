@@ -260,24 +260,38 @@ def _fix_excalibur(game):
     return len(drop)
 
 
-def _fix_cinematic(game):
-    """Cinematic Interactions и Amendments оба добавляют варочной стойке getUpdatePacket — игра падает при запуске.
-    Синхронизацию стойки уже даёт Amendments, поэтому из Cinematic убираем его mixin стойки (сцена варки
-    отключена в config/cinematic-client.toml). Лицензия Cinematic Interactions — MIT."""
+# Mixin-ы, которые ломают игру вместе с другими модами сборки: (jar, конфиг mixin, что убрать, почему)
+MIXIN_FIXES = [
+    # Cinematic Interactions и Amendments оба добавляют варочной стойке getUpdatePacket — падение при запуске.
+    # Синхронизацию стойки даёт Amendments, сцена варки отключена в config/cinematic-client.toml. Лицензия MIT.
+    ("CinematicInteraction*.jar", "cinematic.mixins.json", "BrewingStandBlockEntityMixin",
+     "Cinematic Interactions: убран конфликт с Amendments у варочной стойки."),
+    # Thirst Was Taken 2.1.5 встраивается в подсказку Jade о жидкостях, а в Jade 15.10 этот код изменился:
+    # игра падает, когда смотришь на бак или котёл. Пропадает только пометка Thirst в подсказке Jade.
+    ("ThirstWasTaken-*.jar", "thirst.mixins.json", "jade.MixinFluidView",
+     "Thirst Was Taken: убрано встраивание в Jade, из-за которого игра падала при взгляде на жидкость."),
+]
+
+
+def _fix_mixins(game, log=print):
     n = 0
-    for f in glob.glob(os.path.join(game, "mods", "CinematicInteraction*.jar")):
-        with zipfile.ZipFile(f) as z:
-            cfg = json.loads(z.read("cinematic.mixins.json"))
-            if "BrewingStandBlockEntityMixin" not in cfg.get("mixins", []):
-                continue
-            cfg["mixins"].remove("BrewingStandBlockEntityMixin")
-            tmp = f + ".tmp"
-            with zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED) as out:
-                for info in z.infolist():
-                    out.writestr(info, json.dumps(cfg, indent=2) if info.filename == "cinematic.mixins.json" else z.read(info))
-        _make_writable(f)
-        os.replace(tmp, f)
-        n += 1
+    for pattern, cfg_name, mixin, msg in MIXIN_FIXES:
+        for f in glob.glob(os.path.join(game, "mods", pattern)):
+            with zipfile.ZipFile(f) as z:
+                cfg = json.loads(z.read(cfg_name))
+                lists = [k for k in ("mixins", "client", "server") if mixin in cfg.get(k, [])]
+                if not lists:
+                    continue
+                for k in lists:
+                    cfg[k].remove(mixin)
+                tmp = f + ".tmp"
+                with zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED) as out:
+                    for info in z.infolist():
+                        out.writestr(info, json.dumps(cfg, indent=2) if info.filename == cfg_name else z.read(info))
+            _make_writable(f)
+            os.replace(tmp, f)
+            log(msg)
+            n += 1
     return n
 
 
@@ -550,8 +564,7 @@ def run(game, log=print, progress=lambda done, total: None):
     n = _fix_excalibur(game)
     if n:
         log(f"Excalibur: убрал {n} текстур мобов, чтобы не спорили с Fresh Animations.")
-    if _fix_cinematic(game):
-        log("Cinematic Interactions: убран конфликт с Amendments у варочной стойки.")
+    _fix_mixins(game, log)
     n = _rare_villages(game)
     if n:
         log(f"Деревни Millénaire: {n} типов, каждый не больше одного на мир, дальше {RARE_FROM_SPAWN} блоков от спавна, радиус {VILLAGE_RADIUS}.")
