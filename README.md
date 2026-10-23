@@ -131,7 +131,7 @@ Anno Mille («год тысячный» по-латыни) собрана вок
 <details>
 <summary>Prism Launcher, Modrinth App, ATLauncher: установка через .mrpack</summary>
 
-Можно импортировать файл [`Anno-Mille-1.3.1.mrpack`](../../releases/latest). В Prism это «Добавить экземпляр → Импорт», в Modrinth App «+ → Import from file». Лаунчер сам создаст профиль с NeoForge и скачает 201 файл.
+Можно импортировать файл [`Anno-Mille-1.3.2.mrpack`](../../releases/latest). В Prism это «Добавить экземпляр → Импорт», в Modrinth App «+ → Import from file». Лаунчер сам создаст профиль с NeoForge и скачает 201 файл.
 
 Несколько модов авторы выкладывают только на CurseForge и на сайте Millénaire, поэтому в `.mrpack` их нет. Это сам Millénaire, FTB Quests, FTB Chunks, лошади SWEM, Cinematic Interactions и текстуры Excalibur. После импорта запусти `AnnoMille-Setup.exe` и выбери этот профиль: установщик докачает недостающее, а уже скачанное пропустит.
 </details>

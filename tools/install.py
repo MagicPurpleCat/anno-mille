@@ -13,7 +13,7 @@ Minecraft 1.21.1 + NeoForge 21.1.264 ставит лаунчер, либо insta
  2. Копирует настройки, квесты, ресурспак интерфейса и мини-мод сборки; переносит в options.txt клавиши и порядок паков.
  3. Перекрашивает окна модов в тёмный стиль интерфейса.
 """
-import concurrent.futures as cf, glob, hashlib, io, json, os, re, shutil, subprocess, sys, time, urllib.parse, urllib.request, zipfile
+import concurrent.futures as cf, glob, hashlib, io, json, os, re, shutil, subprocess, sys, time, urllib.error, urllib.parse, urllib.request, zipfile
 
 API = "https://api.modrinth.com/v2"
 UA = {"User-Agent": "anno-mille-installer/1.2"}
@@ -43,9 +43,20 @@ def data_root():
     return os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+def _fetch(url, headers, timeout, name):
+    """Скачивает с 3 попытками: серверы иногда рвут соединение. В ошибку добавляет имя файла."""
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=timeout) as r:
+                return r.read()
+        except Exception as e:
+            if isinstance(e, urllib.error.HTTPError) and e.code < 500 or attempt == 2:
+                raise urllib.error.URLError(f"{name}: {e}") from e
+            time.sleep(2 * (attempt + 1))
+
+
 def _get_json(url):
-    with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=60) as r:
-        return json.load(r)
+    return json.loads(_fetch(url, UA, 60, url.split("/project/")[-1].split("/")[0]))
 
 
 def _resolve(kind, slug, want):
@@ -68,7 +79,7 @@ def _download(game, item):
     os.makedirs(os.path.dirname(dest), exist_ok=True)
     if os.path.exists(dest) and (sha is None or hashlib.sha512(open(dest, "rb").read()).hexdigest() == sha):
         return False, name
-    data = urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"}), timeout=300).read()
+    data = _fetch(url, {"User-Agent": "Mozilla/5.0"}, 300, name)
     if sha and hashlib.sha512(data).hexdigest() != sha:
         raise RuntimeError(f"файл повреждён при скачивании: {name}")
     if os.path.exists(dest):
