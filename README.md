@@ -91,6 +91,32 @@ Anno Mille («год тысячный» по-латыни) собрана вок
 Если Windows покажет «Система Windows защитила ваш компьютер», нажми «Подробнее» → «Выполнить в любом случае». Так бывает с любой программой без платной цифровой подписи. Установщик ничего не меняет за пределами выбранной папки игры.
 
 <details>
+<summary>Сколько памяти выделять и аргументы Java</summary>
+
+| Память ПК | Игре |
+|---|---|
+| 8 ГБ | 6 ГБ (6144 МБ). Минимум: закрой браузер и всё лишнее, шейдеры выключи (<kbd>K</kbd>) |
+| 12 ГБ | 8 ГБ (8192 МБ) |
+| 16 ГБ | 8 ГБ (8192 МБ), рекомендуется |
+| 24 ГБ | 10 ГБ (10240 МБ) |
+| 32 ГБ и больше | 12 ГБ (12288 МБ). Больше не ставь: игра станет фризить, а не ускорится |
+
+Объём задавай ползунком в лаунчере, `-Xmx` в аргументы не дописывай. Если в лаунчере есть поле для аргументов Java, вставь строку для своего объёма. Это убирает фризы от сборки мусора.
+
+Для 6, 8 и 10 ГБ:
+```
+-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=50 -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:InitiatingHeapOccupancyPercent=15 -XX:+DisableExplicitGC -XX:+AlwaysPreTouch
+```
+
+Для 12 ГБ:
+```
+-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=50 -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=40 -XX:G1MaxNewSizePercent=50 -XX:G1HeapRegionSize=16M -XX:G1ReservePercent=15 -XX:InitiatingHeapOccupancyPercent=20 -XX:+DisableExplicitGC -XX:+AlwaysPreTouch
+```
+
+Если у компьютера 8 ГБ, убери из строки `-XX:+AlwaysPreTouch`: тогда игра не будет занимать всю память сразу при запуске.
+</details>
+
+<details>
 <summary>Ручная установка: готовая папка игры (Google Drive)</summary>
 
 Если установщик не может скачать моды, возьми готовую папку с [Google Drive](https://drive.google.com/drive/folders/12EUoMQlnu9oMRqeByhCzRdyWruczVSpm?usp=sharing). Там уже лежат моды, настройки, квесты, ресурспаки и шейдеры.
